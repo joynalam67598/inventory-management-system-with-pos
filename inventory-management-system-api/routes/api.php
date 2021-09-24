@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\CustomerController;
+use App\Http\Controllers\API\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,22 @@ use App\Http\Controllers\API\CustomerController;
 
     //Customer
     Route::post("customer/add",[CustomerController::class,"saveCustomer"])->name("add-customer");
+    Route::get("customers",[CustomerController::class,"getCustomers"])->name("all-customers");
+    Route::get("customer/view/{id}",[CustomerController::class,"showCustomer"])->name("customer");
+    Route::get("customer/edit/{id}",[CustomerController::class,"editCustomer"])->name("edit-customer");
+    Route::post("customer/update",[CustomerController::class,"updateCustomer"])->name("update-customer");
+    Route::get("customer/view/{id}",[CustomerController::class,"showCustomer"])->name("customer");
+    Route::get("customer/delete/{id}",[CustomerController::class,"deleteCustomer"])->name("delete-customer");
+
+    //Supply
+    Route::post("supplier/add",[SupplierController::class,"saveSupplier"])->name("add-supplier");
+    Route::get("suppliers",[SupplierController::class,"getSupplier"])->name("all-suppliers");
+    Route::get("supplier/view/{id}",[SupplierController::class,"showSupplier"])->name("customer");
+    Route::get("supplier/edit/{id}",[SupplierController::class,"editSupplier"])->name("edit-supplier");
+    Route::post("supplier/update",[SupplierController::class,"updateSupplier"])->name("update-supplier");
+    Route::get("supplier/view/{id}",[SupplierController::class,"showSupplier"])->name("supplier");
+    Route::get("supplier/delete/{id}",[SupplierController::class,"deleteSupplier"])->name("delete-supplier");
+
 
 
 
