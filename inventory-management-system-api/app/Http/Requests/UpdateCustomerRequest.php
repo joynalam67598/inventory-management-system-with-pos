@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateEmployeeRequest extends FormRequest
+class UpdateCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,16 +28,17 @@ class UpdateEmployeeRequest extends FormRequest
         return [
             "name"=> "required|max:150",
             'email'=>['email','required',
-                Rule::unique('employees')->ignore($this->emp_id)],
+                Rule::unique('customers')->ignore($this->cust_id)],
             "phone"=> ['required','max:15',
-                Rule::unique('employees')->ignore($this->emp_id)],
-            "nid_no"=> ["required","numaric",'max:20',
-                Rule::unique('employees')->ignore($this->emp_id)],
+                Rule::unique('customers')->ignore($this->cust_id)],
+//            "photo"=> "required",
             "address"=> "required|max:500",
-            "salary"=> "required|numeric",
-            "city"=> "required|max:20",
-            "experience"=> "required",
-            "vacation"=> "required|numeric",
+            "city"=> "required|max:100",
+//            "shop_name"=> "required",
+//            "bank_name"=> "required",
+//            "account_holder"=> "max:20",
+//            "account_number"=> "required",
+//            "bank_branch"=> "required|numeric",
         ];
     }
 }
