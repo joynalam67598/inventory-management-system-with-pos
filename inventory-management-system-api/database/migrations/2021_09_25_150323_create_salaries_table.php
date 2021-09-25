@@ -16,10 +16,9 @@ class CreateSalariesTable extends Migration
         Schema::create('salaries', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->integer("employee_id");
-            $table->string("month");
-            $table->string("year");
-            $table->string("status")->default("0");
-            $table->string("advance")->nullable();
+            $table->string("salary_month");
+            $table->string("salary_year");
+            $table->string("paid_amount")->nullable();
             $table->timestamps();
         });
     }

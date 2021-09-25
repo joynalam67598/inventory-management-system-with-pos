@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\SupplierController;
+use App\Http\Controllers\API\SalaryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,14 @@ use App\Http\Controllers\API\SupplierController;
     Route::get("supplier/view/{id}",[SupplierController::class,"showSupplier"])->name("supplier");
     Route::get("supplier/delete/{id}",[SupplierController::class,"deleteSupplier"])->name("delete-supplier");
 
+    //AdvancedSalary
+    Route::post("advanced-salary/add",[SalaryController::class,"saveAdvancedSalary"])->name("addAdvancedSalary");
+    Route::get("advanced-salaries",[SalaryController::class,"getAdvancedSalaries"])->name("advanced-salaries");
+
+    //Salary
+    Route::get("salary/payable",[SalaryController::class,"getPayableSalary"])->name("payableSalary");
+    Route::post("salary/add",[SalaryController::class,"saveSalary"])->name("addSalary");
+    Route::get("salaries",[SalaryController::class,"getSalaries"])->name("salaries");
 
 
 
