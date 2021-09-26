@@ -49,13 +49,7 @@ class CustomerController extends Controller
             "customers" =>$customers,200,
         ]);
     }
-    public function showCustomer($id){
-        $customer = Customer::findOrFail($id);
-        return response()->json([
-            "customer" =>$customer,200,
-        ]);
-    }
-    public function editCustomer($id){
+    public function getSupplier($id){
         $customer = Customer::findOrFail($id);
         return response()->json([
             "customer" =>$customer,200,

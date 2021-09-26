@@ -24,8 +24,9 @@ class EmployeeController extends Controller
 
     public function saveEmployee(SaveEmployeeRequest $request){
 
+
+        $imageUrl = $this->uploadEmployeeImage($request);
         $employee = new Employee();
-//        $request->photo = $this->uploadEmployeeImage($request);
         $employee->name = $request->name;
         $employee->email = $request->email;
         $employee->nid_no = $request->nid_no;
@@ -35,7 +36,7 @@ class EmployeeController extends Controller
         $employee->vacation = $request->vacation;
         $employee->salary = $request->salary;
         $employee->experience = $request->experience;
-        $employee->photo = "add later";
+        $employee->photo = $imageUrl;
         $employee->save();
         return response()->json([
             "message"=>"Employee added successfully!",
@@ -50,20 +51,14 @@ class EmployeeController extends Controller
         ]);
     }
 
-    public function showEmployee($id){
+    public function getEmployee($id){
         $employee = Employee::findOrFail($id);
         return response()->json([
             "employee"=>$employee,
             200
         ]);
     }
-    public function editEmployee($id){
-        $employee = Employee::findOrFail($id);
-        return response()->json([
-            "employee"=>$employee,
-            200
-        ]);
-    }
+
     public function deleteEmployee($id){
         $employee = Employee::findOrFail($id);
         $employee->delete();

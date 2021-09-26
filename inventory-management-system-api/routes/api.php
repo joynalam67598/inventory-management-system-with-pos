@@ -6,6 +6,9 @@ use App\Http\Controllers\API\EmployeeController;
 use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\SupplierController;
 use App\Http\Controllers\API\SalaryController;
+use App\Http\Controllers\API\CategoryController;
+use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\ExpenseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,27 +24,26 @@ use App\Http\Controllers\API\SalaryController;
     // Employee
     Route::post("employee/add",[EmployeeController::class,"saveEmployee"])->name("employee-save");
     Route::get("employees",[EmployeeController::class,"getEmployees"])->name("employees");
-    Route::get("employee/view/{id}",[EmployeeController::class,"showEmployee"])->name("employee");
-    Route::get("employee/edit/{id}",[EmployeeController::class,"editEmployee"])->name("employee-edit");
+    Route::get("employee/view/{id}",[EmployeeController::class,"getEmployee"])->name("employee");
+    Route::get("employee/edit/{id}",[EmployeeController::class,"getEmployee"])->name("employee-edit");
     Route::post("employee/update",[EmployeeController::class,"updateEmployee"])->name("employee-update");
     Route::get("employee/delete/{id}",[EmployeeController::class,"deleteEmployee"])->name("employee-delete");
 
     //Customer
     Route::post("customer/add",[CustomerController::class,"saveCustomer"])->name("add-customer");
     Route::get("customers",[CustomerController::class,"getCustomers"])->name("all-customers");
-    Route::get("customer/view/{id}",[CustomerController::class,"showCustomer"])->name("customer");
-    Route::get("customer/edit/{id}",[CustomerController::class,"editCustomer"])->name("edit-customer");
+    Route::get("customer/view/{id}",[CustomerController::class,"getCustomer"])->name("customer");
+    Route::get("customer/edit/{id}",[CustomerController::class,"getCustomer"])->name("edit-customer");
     Route::post("customer/update",[CustomerController::class,"updateCustomer"])->name("update-customer");
     Route::get("customer/view/{id}",[CustomerController::class,"showCustomer"])->name("customer");
     Route::get("customer/delete/{id}",[CustomerController::class,"deleteCustomer"])->name("delete-customer");
 
     //Supply
     Route::post("supplier/add",[SupplierController::class,"saveSupplier"])->name("add-supplier");
-    Route::get("suppliers",[SupplierController::class,"getSupplier"])->name("all-suppliers");
-    Route::get("supplier/view/{id}",[SupplierController::class,"showSupplier"])->name("customer");
-    Route::get("supplier/edit/{id}",[SupplierController::class,"editSupplier"])->name("edit-supplier");
+    Route::get("suppliers",[SupplierController::class,"getSuppliers"])->name("all-suppliers");
+    Route::get("supplier/view/{id}",[SupplierController::class,"getSupplier"])->name("customer");
+    Route::get("supplier/edit/{id}",[SupplierController::class,"getSupplier"])->name("edit-supplier");
     Route::post("supplier/update",[SupplierController::class,"updateSupplier"])->name("update-supplier");
-    Route::get("supplier/view/{id}",[SupplierController::class,"showSupplier"])->name("supplier");
     Route::get("supplier/delete/{id}",[SupplierController::class,"deleteSupplier"])->name("delete-supplier");
 
     //AdvancedSalary
@@ -52,6 +54,35 @@ use App\Http\Controllers\API\SalaryController;
     Route::get("salary/payable",[SalaryController::class,"getPayableSalary"])->name("payableSalary");
     Route::post("salary/add",[SalaryController::class,"saveSalary"])->name("addSalary");
     Route::get("salaries",[SalaryController::class,"getSalaries"])->name("salaries");
+
+    //Category
+    Route::post("category/add",[CategoryController::class,"saveCategory"])->name("addCategory");
+    Route::get("categories",[CategoryController::class,"getCategories"])->name("categories");
+    Route::get("category/edit/{id}",[CategoryController::class,"editCategory"])->name("editCategory");
+    Route::post("category/update",[CategoryController::class,"updateCategory"])->name("updateCategory");
+    Route::get("category/delete/{id}",[CategoryController::class,"deleteCategory"])->name("deleteCategory");
+
+    //Product
+    Route::post("product/add",[ProductController::class,"saveProduct"])->name("addProduct");
+    Route::get("products",[ProductController::class,"getProducts"])->name("products");
+    Route::get("product/edit/{id}",[ProductController::class,"getProduct"])->name("editProduct");
+    Route::get("product/view/{id}",[ProductController::class,"getProduct"])->name("viewProduct");
+    Route::post("product/update",[ProductController::class,"updateProduct"])->name("updateProduct");
+    Route::get("delete/product//{id}",[ProductController::class,"deleteProduct"])->name("deleteProduct");
+
+    //Expense
+    Route::post("expense/add",[ExpenseController::class,"saveExpense"])->name("addExpense");
+    Route::get("expenses",[ExpenseController::class,"getExpenses"])->name("Expenses");
+    Route::get("expense/edit/{id}",[ExpenseController::class,"getExpense"])->name("Expenses");
+    Route::post("expense/update",[ExpenseController::class,"updateExpense"])->name("updateExpense");
+    Route::get("expense/today",[ExpenseController::class,"getTodayExpense"])->name("todayExpense");
+    Route::get("expense/month",[ExpenseController::class,"getMonthExpense"])->name("monthlyExpense");
+    Route::get("expense/year",[ExpenseController::class,"getYearExpense"])->name("yearlyExpense");
+
+
+
+
+
 
 
 
