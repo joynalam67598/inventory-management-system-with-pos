@@ -42,24 +42,19 @@ class SupplierController extends Controller
         ]);
 
     }
-    public function getSupplier(){
+    public function getSuppliers(){
         $suppliers = Supplier::all();
         return response()->json([
             "suppliers" =>$suppliers,200,
         ]);
     }
-    public function showSupplier($id){
+    public function getSupplier($id){
         $supplier = Supplier::findOrFail($id);
         return response()->json([
             "supplier" =>$supplier,200,
         ]);
     }
-    public function editSupplier($id){
-        $supplier = Supplier::findOrFail($id);
-        return response()->json([
-            "supplier" =>$supplier,200,
-        ]);
-    }
+
     public function updateSupplier(UpdateSupplierRequest $request){
         $supplier = Supplier::findOrFail($request->cust_id);
         $supplier-> name = $request-> name;

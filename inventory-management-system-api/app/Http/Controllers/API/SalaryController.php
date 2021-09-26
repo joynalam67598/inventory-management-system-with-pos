@@ -54,12 +54,19 @@ class SalaryController extends Controller
 
     public function getPayableSalary(){
 
-        $month = date("F",strtotime("-1 month"));
-        $payableSalaries = DB::table("advanced_salaries")
-            ->leftJoin("employees","employees.id",'=','advanced_salaries.employee_id')
-            ->select("advanced_salaries.*","employees.name","employees.salary","employees.photo")
-            ->where('month','=',$month)
+        $prevMonth = date("F",strtotime("-1 month"));
+        $currMonth = date("F",strtotime("0 month"));
+//        $year = date("Y",strtotime("0 year"));
+        $payableSalaries = DB::table("employees")
+            ->leftJoin("advanced_salaries",'advanced_salaries.employee_id','=',"employees.id" ,'and',
+                'advanced_salaries.month','=',$prevMonth,'or','advanced_salaries.month','=',$currMonth)
+            ->select("advanced_salaries.advance_salary","employees.name","employees.salary","employees.photo")
+            //->where('month','=',$prevMonth,'or','month','=',$currMonth)
 //            ->orderBy("id","DESC")
             ->get();
+        return response()->json([
+            "payableSalaries"=>$payableSalaries,
+            200,
+        ]);
     }
 }
