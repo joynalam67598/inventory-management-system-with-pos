@@ -9,6 +9,7 @@ use App\Http\Controllers\API\SalaryController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ExpenseController;
+use App\Http\Controllers\API\AttendanceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +79,16 @@ use App\Http\Controllers\API\ExpenseController;
     Route::get("expense/today",[ExpenseController::class,"getTodayExpense"])->name("todayExpense");
     Route::get("expense/month",[ExpenseController::class,"getMonthExpense"])->name("monthlyExpense");
     Route::get("expense/year",[ExpenseController::class,"getYearExpense"])->name("yearlyExpense");
+
+    //Attendance
+    Route::post("attendance/add",[AttendanceController::class,"saveAttendance"])->name("addAttendance");
+    Route::get("attendances",[AttendanceController::class,"getAttendances"])->name("attendances");
+    Route::get("attendance/edit/{date}",[AttendanceController::class,"getAttendance"])->name("getAttendance");
+    Route::post("attendance/update",[AttendanceController::class,"updateAttendance"])->name("updateAttendance");
+
+    //Setting - end of the project
+
+
 
 
 
