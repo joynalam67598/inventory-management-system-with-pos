@@ -28,6 +28,7 @@
       <excludeFolder url="file://$MODULE_DIR$/inventory-management-system-api/vendor/guzzlehttp/promises" />
       <excludeFolder url="file://$MODULE_DIR$/inventory-management-system-api/vendor/guzzlehttp/psr7" />
       <excludeFolder url="file://$MODULE_DIR$/inventory-management-system-api/vendor/hamcrest/hamcrest-php" />
+      <excludeFolder url="file://$MODULE_DIR$/inventory-management-system-api/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/inventory-management-system-api/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/inventory-management-system-api/vendor/laravel/sail" />
       <excludeFolder url="file://$MODULE_DIR$/inventory-management-system-api/vendor/laravel/sanctum" />

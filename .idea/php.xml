@@ -113,6 +113,7 @@
       <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
