@@ -1,13 +1,448 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c323ad77-08ad-4ebb-ac97-5af46ee10bcb" name="Default Changelist" comment="" />
+    <list default="true" id="c323ad77-08ad-4ebb-ac97-5af46ee10bcb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/5-star.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/Component 60 – 1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/TESLA.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/abstract-bg-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/amazon-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/asus-6630.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/avatars/001-man.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/avatars/002-woman.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/avatars/003-man-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/avatars/004-bald.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/avatars/005-man-2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/avatars/006-woman-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/avatars/007-woman-2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-3.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-4.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-5.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-6.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-7.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-8.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/badges/badge-9.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/bg-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/bg-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/bg-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/android.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/apple.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/chrome.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/explorer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/license/license.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/linux.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/mozilla.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/netscape.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/opera.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/safari.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/browsers/windows.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/cancel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/circles.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/contact-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/dashboard-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/debit-card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/demo_all.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/demo_home_one.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/demo_home_two.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/doted-bg-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/dots.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/edit.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/egret-screen.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/egret-screen.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/event-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/event-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/face-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/17.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/faces/9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/file-types/001-pdf.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/file-types/002-psd.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/file-types/003-xls.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/file-types/004-xlsx.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/file-types/005-documents.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/file-types/006-png.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/file-types/007-jpg.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/google-1-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/gr.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/graduate-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/happy-face-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/home-bg-black.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/home-bg-indigo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/home-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/home-bg.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/home-work.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/404.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/announcement.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/baby.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/business_deal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/designer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/dreamer.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/lighthouse.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/mobile-message.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/posting_photo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/illustrations/upgrade.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/laptop-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/laptop-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/laptop-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/laptop-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logo-circle.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logo-circle.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logo-full-old.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logo-full.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logo-text-white.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/angular.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/auth0.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/bootstrap.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/google.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/gulp.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/laravel.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/logo-9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/react.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/sass.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/ui-lib.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/logos/webpack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/microphone.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mobile-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mobile-1.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mobile-2.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mobile-3.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mobile-4.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mock-logo-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mock-logo-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mock-logo-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/mock-logo-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/oc.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/001-paypal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/002-mastercard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/003-american express.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/004-visa.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/005-discover.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/006-western union.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/007-cirrus.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/008-ideal.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/009-jcb.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/010-eway.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/011-wirecard.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/012-solo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/013-hsbc.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/014-ebay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/015-citi.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/016-direct debit.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/017-symbols.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/018-dinners club.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/019-postepay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/020-sage.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/021-switch.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/022-maestro.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/023-paypoint.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/024-pick n pay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/025-worldpay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/026-union pay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/027-better business bureau.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/028-2co.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/029-authorize.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/030-bluepay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/031-clickbank.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/032-wepay.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/maestro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/master-card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/paypal-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/paypal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/visa-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-card/visa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/amazon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/amex.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/cirrus.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/maestro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/master-card.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/paypal.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/shopify.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/skrill.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/visa-electron.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/visa.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/payment-methods/western-union.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/photo-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/photo-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/photo-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/photo-600_220.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/headphone-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/headphone-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/headphone-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/headphone-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/iphone-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/iphone-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/speaker-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/speaker-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/watch-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/products/watch-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/random-9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/react-logo.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/room-9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/scene-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/scene-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/scene-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/calendar.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/dashboard.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/gull-dashboard.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-10.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-11.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-12.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-6.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-7.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-8.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-9.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/landing-intro.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/layout1-blue-customizer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/layout1-customizer-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/layout1-customizer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/layout2-customizer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/layout3-customizer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/layout4-customizer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/layout5-customizer.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/screenshots/login.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sidebar-bg-dark.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sidebar-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sidebar/sidebar-bg-dark.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sidebar/sidebar-bg-light.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/social-dribble.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/social-facebook.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/social-linkedin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/social-twitter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/spotify-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-17.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/sq-face-220.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/star-rating.icons.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-bg-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/study-bg-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/svgIconExample.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/tf.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/public/assets/images/wide-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/App.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/RootRoutes.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/auth/AuthGuard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/auth/authRoles.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/axios.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/AddToCartButton/AddToCartButton.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/Brand/Brand.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/Breadcrumb/Breadcrumb.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/ChatAvatar/ChatAvatar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/ChatHead/ChatHead.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/ConfirmationDialog/ConfirmationDialog.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/Footer/Footer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxCustomizer/BadgeSelected.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxCustomizer/Layout1Customizer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxCustomizer/Layout2Customizer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxCustomizer/MatxCustomizer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxCustomizer/customizerOptions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxDivider/MatxDivider.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxHorizontalNav/MatxHorizontalNav.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLayout/Layout1/Layout1.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLayout/Layout1/Layout1Settings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLayout/Layout1/Layout1Sidenav.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLayout/Layout1/Layout1Topbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLayout/MatxLayout.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLayout/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLayout/settings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxListItem1/MatxListItem1.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLoading/MatxLoading.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxLogo/MatxLogo.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxMenu/MatxMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxProgressBar/MatxProgressBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxSearchBox/MatxSearchBox.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxSidenav/MatxSidenav.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxSidenav/MatxSidenavContainer.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxSidenav/MatxSidenavContent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxSnackbar/MatxSnackbar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxSuspense/MatxSuspense.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/EchartTheme.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/MatxCssVars.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/MatxTheme.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/SecondarySidenavTheme/SecondarySidenavTheme.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/SidenavTheme/SidenavTheme.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/SidenavTheme/SidenavThemeStyles.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/initThemes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/themeColors.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxTheme/themeOptions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxToolbarMenu/MatxToolbarMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxVerticalNav/MatxVerticalNav.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/MatxVerticalNav/MatxVerticalNavExpansionPanel.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/NotificationBar/NotificationBar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/NotificationBar2/NotificationBar2.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/NotificationBar2/NotificationCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/RectangleAvatar/RectangleAvatar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/RichTextEditor/RichTextEditor.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/SecondarySidebar/SecondarySidebar.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/SecondarySidebar/SecondarySidebarContent.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/SecondarySidebar/SecondarySidebarToggle.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/ShoppingCart/ShoppingCart.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/Sidenav/Sidenav.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/TopbarMenu/TopbarMenu.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/cards/SimpleCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/charts/EchartCreator.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/charts/RechartCreator.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/chat-box-2/Chatbox.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/icons/FacebookIcon.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/icons/GoogleIcon.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/components/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/contexts/AppContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/contexts/JWTAuthContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/contexts/NotificationContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/contexts/SettingsContext.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/Analytics.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/Analytics2.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/DashboardRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/InventoryManagement.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/Campaigns.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/ComparisonChart2.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/Doughnut.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/FollowerCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/FollowerCard2.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/GuageProgressCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/InventoryDashboard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/InventoryDoughnutChart.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/InventoryLineChart.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/ModifiedAreaChart.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/RecentUpdateCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/RecentUpdates.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/RowCards.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/StatCard3.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/StatCard4.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/StatCard5.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/StatCards.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/StatCards2.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/TopSellingTable.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/dashboard/shared/UpgradeCard.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/history.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/hooks/useAuth.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/hooks/useNotification.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/hooks/useSettings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/navigations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/services/localStorageService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/sessions/ForgotPassword.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/sessions/NotFound.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/sessions/SessionRoutes.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/sessions/login/JwtLogin.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/sessions/register/JwtRegister.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/GlobalCss.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/VendorCss.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/_variables.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_animations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_border.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_color.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_common.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_landing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_positionings.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_shadows.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_spacing.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/styles/utilities/_typography.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/inventory-management-system-app/src/app/utils.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Inventory Management System with POS.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Inventory Management System with POS.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-management-system-app/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-management-system-app/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-management-system-app/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-management-system-app/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-management-system-app/src/App.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-management-system-app/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-management-system-app/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/inventory-management-system-app/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/inventory-management-system-app/src/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/inventory-management-system-api/composer.json</pharConfigPath>
     <execution />
   </component>
@@ -127,21 +562,39 @@
       <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/symfony/polyfill-php81" />
+      <path value="$PROJECT_DIR$/inventory-management-system-api/vendor/intervention/image" />
     </include_path>
   </component>
   <component name="ProjectId" id="1yZF40bQlHwTGeiytAm2v5CgruA" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/inventory-management-system-api" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Inventory Management System with POS\inventory-management-system-app\src\app" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -152,11 +605,17 @@
       <option name="presentableId" value="Default" />
       <updated>1632451010466</updated>
       <workItem from="1632451013874" duration="633000" />
+      <workItem from="1632811269342" duration="30000" />
+      <workItem from="1632933852049" duration="6261000" />
+      <workItem from="1632941924574" duration="3041000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="578" y="296" key="#Composer" timestamp="1632451933578">
@@ -167,5 +626,32 @@
       <screen x="0" y="0" width="1536" height="834" />
     </state>
     <state x="549" y="172" key="FileChooserDialogImpl/0.0.1536.834@0.0.1536.834" timestamp="1632451946734" />
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom" timestamp="1632941664720">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.bottom/0.0.1536.834@0.0.1536.834" timestamp="1632941664720" />
+    <state width="1493" height="213" key="GridCell.Tab.0.center" timestamp="1632941664720">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.center/0.0.1536.834@0.0.1536.834" timestamp="1632941664720" />
+    <state width="1493" height="213" key="GridCell.Tab.0.left" timestamp="1632941664720">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.left/0.0.1536.834@0.0.1536.834" timestamp="1632941664720" />
+    <state width="1493" height="213" key="GridCell.Tab.0.right" timestamp="1632941664720">
+      <screen x="0" y="0" width="1536" height="834" />
+    </state>
+    <state width="1493" height="213" key="GridCell.Tab.0.right/0.0.1536.834@0.0.1536.834" timestamp="1632941664720" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/inventory-management-system-app/src/app/components/Brand/Brand.jsx</url>
+          <line>1</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
