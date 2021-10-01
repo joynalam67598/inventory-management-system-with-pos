@@ -2,16 +2,36 @@ import { Card, CardContent } from '@material-ui/core'
 import Axios from 'axios'
 import MaterialTable from 'material-table'
 import { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { Breadcrumb } from '../../components'
 
 export default function ManageCategory() {
     const [categories, setCategories] = useState([])
     const [loading, setLoading] = useState(false)
+    const history = useHistory()
     const columns = [
-        { title: 'Serial', field: 'id', editable: 'never' },
+        {
+            title: 'Serial',
+            field: 'id',
+            editable: 'never',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
         {
             title: 'Category Name',
-            field: 'cat_name',
+            field: 'category_name',
+            validate: (rowData) =>
+                rowData.category_name == ''
+                    ? 'Please enter category name.'
+                    : rowData.category_name.length > 3
+                    ? ''
+                    : 'Category Name should be 3 character long.',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
         },
     ]
 
@@ -22,7 +42,6 @@ export default function ManageCategory() {
                 const res = await Axios.get(
                     'http://localhost:8000/api/categories'
                 )
-                console.log(res)
                 if (res.data.status === 200) {
                     setCategories(res.data.categories)
                     setLoading(false)
@@ -33,7 +52,17 @@ export default function ManageCategory() {
         }
         fetchCategories()
     }, [])
-    console.log(categories)
+
+    const updateCategory = async (category) => {
+        try {
+            const res = await Axios.post(
+                'http://localhost:8000/api/category/update',
+                category
+            )
+        } catch (err) {
+            console.log(err.response.data.errors)
+        }
+    }
 
     return (
         <div className="m-sm-30">
@@ -48,23 +77,45 @@ export default function ManageCategory() {
                     <CardContent
                         style={{
                             margin: '0 auto',
-                            padding: '20px 10px',
+                            padding: '15px 35px',
                         }}
                     >
                         {!loading && (
                             <MaterialTable
+                                headerStyle={{
+                                    backgroundColor: '#2abdf7',
+                                    textAlign: 'center',
+                                }}
+                                style={{ textAlign: 'center' }}
                                 title="Category Table"
                                 data={categories}
                                 columns={columns}
                                 options={{
-                                    export: true,
-                                    grouping: true,
-                                    filtering: true,
+                                    actionsColumnIndex: -1,
+                                    headerStyle: {
+                                        backgroundColor: '#2abdf7',
+                                        color: 'white',
+                                        textAlign: 'center',
+                                        fontSize: '1.15rem',
+                                    },
                                 }}
                                 editable={{
-                                    onRowAdd: (newData) =>
+                                    onRowUpdate: (newData) =>
                                         new Promise((resolve, reject) => {
                                             setTimeout(() => {
+                                                updateCategory(newData)
+                                                history.push({
+                                                    pathname:
+                                                        '/category/manageCategory',
+                                                })
+                                                resolve()
+                                            }, 1000)
+                                        }),
+
+                                    onRowDelete: (oldData) =>
+                                        new Promise((resolve, reject) => {
+                                            setTimeout(() => {
+                                                // deleteCategory(oldData);
                                                 resolve()
                                             }, 1000)
                                         }),
