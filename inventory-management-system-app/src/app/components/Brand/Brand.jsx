@@ -1,8 +1,7 @@
-import React from 'react'
-import MatxLogo from "../MatxLogo/MatxLogo";
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
-import useSettings from "../../hooks/useSettings";
+import React from 'react'
+import useSettings from '../../hooks/useSettings'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     brand: {
@@ -24,14 +23,15 @@ const Brand = ({ children }) => {
             className={clsx('flex items-center justify-between', classes.brand)}
         >
             <div className="flex items-center">
-                <MatxLogo />
+                {/* <MatxLogo />*/}
                 <span
                     className={clsx({
                         'text-18 ml-2 font-medium sidenavHoverShow': true,
                         [classes.hideOnCompact]: mode === 'compact',
                     })}
                 >
-                    Matx
+                    {/*Matx*/}
+                    Inventory
                 </span>
             </div>
             <div

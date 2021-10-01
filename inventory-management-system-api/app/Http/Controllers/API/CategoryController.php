@@ -11,15 +11,15 @@ class CategoryController extends Controller
     public function saveCategory(Request $request){
 
         $this->validate($request,[
-            "cat_name" => 'required'
+            "category_name" => 'required|unique:categories'
         ]);
 
         $category = new Category();
-        $category->cat_name =  $request->cat_name;
+        $category->category_name =  $request->category_name;
         $category->save();
         return response()->json([
             "message"=>"Category added successfully!",
-            200
+            "status"=>200
         ]);
     }
 
@@ -27,7 +27,7 @@ class CategoryController extends Controller
         $categories = Category::all();
         return response()->json([
             "categories"=>$categories,
-            200
+            "status"=>200
         ]);
 
     }
@@ -36,7 +36,7 @@ class CategoryController extends Controller
         $category = Category::findOrFail($id);
         return response()->json([
             "category"=>$category,
-            200
+            "status"=>200
         ]);
 
     }
@@ -44,14 +44,14 @@ class CategoryController extends Controller
     public function updateCategory(Request $request){
         $this->validate($request,[
             "cat_id" => 'required|numeric',
-            "cat_name" => 'required'
+            "category_name" => 'required'
         ]);
         $category = Category::findOrFail($request->cat_id);
-        $category->cat_name =  $request->cat_name;
+        $category->category_name =  $request->category_name;
         $category->update();
         return response()->json([
             "message"=>"Category updated successfully!",
-            200
+            "status"=>200
         ]);
     }
 
@@ -60,7 +60,7 @@ class CategoryController extends Controller
         $category->delete();
         return response()->json([
             "message"=>"Category removed successfully!",
-            200
+            "status"=>200
         ]);
 
     }

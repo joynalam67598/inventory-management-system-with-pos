@@ -5,7 +5,7 @@ import React, {
 } from 'react'
 import { Redirect, useLocation } from 'react-router-dom'
 // import AppContext from "app/appContext";
-import useAuth from 'app/hooks/useAuth'
+import useAuth from '../hooks/useAuth'
 
 // const getUserRoleAuthStatus = (pathname, user, routes) => {
 //   const matched = routes.find((r) => r.path === pathname);
