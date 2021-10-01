@@ -1,8 +1,8 @@
-import React from 'react'
-import { ThemeProvider } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
+import { ThemeProvider } from '@material-ui/core/styles'
+import React from 'react'
+import useSettings from '../../hooks/useSettings'
 import MatxCssVars from './MatxCssVars'
-import useSettings from "../../hooks/useSettings";
 
 // import cssVars from "css-vars-ponyfill";
 

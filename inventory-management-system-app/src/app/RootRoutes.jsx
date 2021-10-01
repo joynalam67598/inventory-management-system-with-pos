@@ -1,8 +1,7 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
-
 import dashboardRoutes from './dashboard/DashboardRoutes'
-
+import categoryRoutes from './views/category/CategoryRoutes'
 
 const redirectRoute = [
     {
@@ -20,6 +19,7 @@ const errorRoute = [
 
 const routes = [
     ...dashboardRoutes,
+    ...categoryRoutes,
     ...redirectRoute,
     ...errorRoute,
 ]

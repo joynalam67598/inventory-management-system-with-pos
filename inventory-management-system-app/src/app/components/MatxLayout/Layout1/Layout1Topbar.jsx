@@ -3,7 +3,7 @@ import {
     Icon,
     IconButton,
     MenuItem,
-    Avatar,
+    // Avatar,
     useMediaQuery,
     Hidden,
 } from '@material-ui/core'
@@ -66,7 +66,8 @@ const Layout1Topbar = () => {
     const theme = useTheme()
     const classes = useStyles()
     const { settings, updateSettings } = useSettings()
-    const { logout, user } = useAuth()
+    // const {  user } = useAuth()
+    const { logout } = useAuth()
     const isMdScreen = useMediaQuery(theme.breakpoints.down('md'))
     const fixed = settings?.layout1Settings?.topbar?.fixed
 

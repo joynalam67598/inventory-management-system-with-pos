@@ -1,6 +1,6 @@
-import { themeColors } from './themeColors'
 import { createMuiTheme } from '@material-ui/core/styles'
 import { forEach, merge } from 'lodash'
+import { themeColors } from './themeColors'
 import themeOptions from './themeOptions'
 
 function createMatxThemes() {
