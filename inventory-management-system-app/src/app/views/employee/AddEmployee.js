@@ -21,7 +21,7 @@ export default function AddEmployee() {
         address: '',
         city: '',
         salary: '',
-        vaction: '',
+        vacation: '',
     })
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
@@ -48,8 +48,8 @@ export default function AddEmployee() {
         if ('phone' in fieldValues) {
             errorMessage.phone = !fieldValues.phone
                 ? 'Please enter phone number.'
-                : fieldValues.phone.length > 15 && fieldValues.phone.length < 11
-                ? 'Phone number should be 11 character long.'
+                : fieldValues.phone.length != 11
+                ? 'Phone number should 11 character long.'
                 : ''
         }
         if ('salary' in fieldValues) {
@@ -77,11 +77,11 @@ export default function AddEmployee() {
                 ? 'Please enter address.'
                 : ''
         }
-        // if ('photo' in fieldValues) {
-        //     errorMessage.photo = !fieldValues.photo
-        //         ? 'Please enter a photo.'
-        //         : ''
-        // }
+        if ('photo' in fieldValues) {
+            errorMessage.photo = !fieldValues.photo
+                ? 'Please enter a photo.'
+                : ''
+        }
         setErrors({ ...errorMessage })
         if (fieldValues === employee) {
             return Object.values(errorMessage).every((x) => x === '')
@@ -101,22 +101,21 @@ export default function AddEmployee() {
 
     const saveEmployee = async (e) => {
         e.preventDefault()
-        console.log(employee)
+        const data = new FormData()
+        Object.keys(employee).forEach((key) => data.append(key, employee[key]))
         if (validate()) {
             try {
                 setLoading(true)
                 console.log(employee)
                 const res = await Axios.post(
                     'http://localhost:8000/api/employee/add',
-                    employee
+                    data
                 )
                 if (res.data.status === 200) {
-                    console.log('ok')
+                    Object.keys(employee).forEach((key) => (employee[key] = ''))
                     setLoading(false)
-                    Array.form(employee).map((elm) => (elm = ''))
                 }
             } catch (err) {
-                console.log(err.response.data.errors)
                 setErrors({ ...err.response.data.errors })
                 setLoading(false)
             }
@@ -158,7 +157,7 @@ export default function AddEmployee() {
                         textAlign: 'center',
                     }}
                 >
-                    <form onSubmit={saveEmployee}>
+                    <form onSubmit={saveEmployee} encType="multipart/form-data">
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
@@ -210,7 +209,7 @@ export default function AddEmployee() {
                                     })}
                                 />
                                 <TextField
-                                    type="text"
+                                    type="number"
                                     id="outlined-basic"
                                     label="Phone Number"
                                     variant="outlined"
@@ -307,20 +306,20 @@ export default function AddEmployee() {
                                         helperText: errors['address'],
                                     })}
                                 />
-                                <input
+                                <TextField
                                     type="file"
                                     accept="image/*"
-                                    // id="outlined-basic"
-                                    // variant="outlined"
+                                    id="outlined-basic"
+                                    variant="outlined"
                                     name="photo"
                                     style={{ margin: '0.5rem 0' }}
                                     onChange={handleChange}
-                                    // fullWidth
-                                    // // required
-                                    // {...(errors.photo && {
-                                    //     error: true,
-                                    //     helperText: errors['photo'],
-                                    // })}
+                                    fullWidth
+                                    required
+                                    {...(errors.photo && {
+                                        error: true,
+                                        helperText: errors['photo'],
+                                    })}
                                 />
                             </Grid>
                             <Grid item xs={12} className="text-right">

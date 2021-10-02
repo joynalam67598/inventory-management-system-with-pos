@@ -24,7 +24,7 @@ class EmployeeController extends Controller
 
     public function saveEmployee(SaveEmployeeRequest $request){
 
-        $imageUrl = $this->uploadEmployeeImage($request->photo);
+        $imageUrl = $this->uploadEmployeeImage($request);
         $employee = new Employee();
         $employee->name = $request->name;
         $employee->email = $request->email;
@@ -39,14 +39,14 @@ class EmployeeController extends Controller
         $employee->save();
         return response()->json([
             "message"=>"Employee added successfully!",
-            200,
+            "status"=>200,
         ]);
     }
     public function getEmployees(){
         $employees = Employee::all();
         return response()->json([
             "employees"=>$employees,
-            200
+            "status"=>200,
         ]);
     }
 
@@ -54,7 +54,7 @@ class EmployeeController extends Controller
         $employee = Employee::findOrFail($id);
         return response()->json([
             "employee"=>$employee,
-            200
+            "status"=>200,
         ]);
     }
 
@@ -64,12 +64,13 @@ class EmployeeController extends Controller
         // unlink photo
         return response()->json([
             "message"=>"Employee deleted successfully",
-            200
+            "status"=>200,
         ]);
     }
     public function updateEmployee(UpdateEmployeeRequest $request){
-        $employee = Employee::findOrFail($request->emp_id);;
+        
 //        $request->photo = $this->uploadEmployeeImage($request);
+        $employee = Employee::findOrFail($request->id);;
         $employee->name = $request->name;
         $employee->email = $request->email;
         $employee->nid_no = $request->nid_no;
@@ -83,7 +84,7 @@ class EmployeeController extends Controller
         $employee->update();
         return response()->json([
             "message"=>"Employee updated successfully!",
-            200,
+            "status"=>200,
         ]);
     }
 }
