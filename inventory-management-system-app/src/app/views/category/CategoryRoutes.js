@@ -9,6 +9,10 @@ const categoryRoutes = [
         path: '/category/manageCategory',
         component: React.lazy(() => import('./ManageCategory')),
     },
+    {
+        path: '/category/edit',
+        component: React.lazy(() => import('./EditCategory')),
+    },
 ]
 
 export default categoryRoutes

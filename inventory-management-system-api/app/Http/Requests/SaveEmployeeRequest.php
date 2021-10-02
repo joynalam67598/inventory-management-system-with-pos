@@ -26,7 +26,7 @@ class SaveEmployeeRequest extends FormRequest
         return [
             "name"=> "required|max:150",
             "email"=> "required|email|unique:employees",
-            "phone"=> "required|max:15",
+            "phone"=> "required|max:15|min:11",
             "nid_no"=> "required|max:20|unique:employees",
             "photo"=> "required",
             "address"=> "required|max:500",

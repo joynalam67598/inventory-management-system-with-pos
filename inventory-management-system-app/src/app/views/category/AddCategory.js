@@ -10,22 +10,6 @@ export default function AddCategory() {
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
-    // const validate = () => {
-    //     console.log('callede')
-    //     let errorMessage = {}
-    //     errorMessage.cat_name = category.cat_name.length
-    //         ? ''
-    //         : 'Please enter category name.'
-    //     errorMessage.cat_name =
-    //         category.cat_name.length > 3
-    //             ? ''
-    //             : 'Category Name should be 3 character long.'
-    //     // errorMessage.email = (/$^|.+@.+..+/).test(values.email) ? "" : "Email is not valid";
-    //     // errorMessage.mobile = values.mobile.length > 9 ? "" : "Atleast 9 digit";
-    //     // errorMessage.
-    //     setErrors({ ...errorMessage })
-    //     return Object.values(errorMessage).every((x) => x === '')
-    // }
 
     const validate = (fieldValues = category) => {
         let errorMessage = { ...errors }
