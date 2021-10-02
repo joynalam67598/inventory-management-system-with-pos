@@ -1,14 +1,16 @@
 import { Button, Card, CardContent, Grid, TextField } from '@material-ui/core'
 import axios from 'axios'
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 import { Breadcrumb } from '../../components'
 
-export default function AddCategory() {
-
-    const 
-
+export default function EditCategory() {
+    const history = useHistory()
+    const { location } = history
+    const { state } = location
+    const { oldCategory } = state
     const [category, SetCategory] = useState({
-        category_name: '',
+        category_name: oldCategory.category_name,
     })
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
@@ -34,18 +36,23 @@ export default function AddCategory() {
         validate({ [name]: value })
     }
 
-    const saveCategory = async (e) => {
+    const updateCategory = async (e) => {
         e.preventDefault()
         if (validate()) {
             try {
                 setLoading(true)
+                category.id = oldCategory.id
+                console.log(category)
                 const res = await axios.post(
-                    'http://localhost:8000/api/category/add',
+                    'http://localhost:8000/api/category/update',
                     category
                 )
+                console.log(res)
                 if (res.data.status === 200) {
                     setLoading(false)
-                    SetCategory({ category_name: '' })
+                    history.push({
+                        pathname: '/category/manageCategory',
+                    })
                 }
             } catch (err) {
                 setErrors({ ...err.response.data.errors })
@@ -59,8 +66,12 @@ export default function AddCategory() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        { name: 'Category', path: '/category/addCategory' },
-                        { name: 'Add Category' },
+                        { name: 'Category', path: '/category/editCategory' },
+                        {
+                            name: 'Manage Category',
+                            path: '/category/manageCategory',
+                        },
+                        { name: 'Edit Category' },
                     ]}
                 />
             </div>
@@ -72,7 +83,7 @@ export default function AddCategory() {
                         padding: '20px 10px',
                     }}
                 >
-                    <form onSubmit={saveCategory}>
+                    <form onSubmit={updateCategory}>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
                                 <TextField
@@ -98,7 +109,7 @@ export default function AddCategory() {
                                     variant="contained"
                                     color="secondary"
                                 >
-                                    Save
+                                    Update
                                 </Button>
                             </Grid>
                         </Grid>

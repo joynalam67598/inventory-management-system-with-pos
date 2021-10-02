@@ -24,8 +24,7 @@ class EmployeeController extends Controller
 
     public function saveEmployee(SaveEmployeeRequest $request){
 
-
-        $imageUrl = $this->uploadEmployeeImage($request);
+        $imageUrl = $this->uploadEmployeeImage($request->photo);
         $employee = new Employee();
         $employee->name = $request->name;
         $employee->email = $request->email;
