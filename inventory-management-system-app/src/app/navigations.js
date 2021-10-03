@@ -34,6 +34,54 @@ export const navigations = [
     //         },
     //     ],
     // },
+    {
+        name: 'Employee',
+        icon: 'group',
+        children: [
+            {
+                name: 'Add Employee',
+                path: '/employee/addEmployee',
+                iconText: 'S',
+            },
+            {
+                name: 'All Employee',
+                path: '/employee/manageEmployee',
+                iconText: 'S',
+            },
+        ],
+    },
+    {
+        name: 'Customer',
+        icon: 'sell',
+        children: [
+            {
+                name: 'Add Customer',
+                path: '/customer/addCustomer',
+                iconText: 'S',
+            },
+            {
+                name: 'All Customer',
+                path: '/customer/manageCustomer',
+                iconText: 'S',
+            },
+        ],
+    },
+    {
+        name: 'Supplier',
+        icon: 'person',
+        children: [
+            {
+                name: 'Add Supplier',
+                path: '/supplier/addSupplier',
+                iconText: 'S',
+            },
+            {
+                name: 'All Supplier',
+                path: '/supplier/manageSupplier',
+                iconText: 'S',
+            },
+        ],
+    },
 
     {
         name: 'Category',
@@ -48,22 +96,6 @@ export const navigations = [
                 name: 'All Category',
                 path: '/category/manageCategory',
                 iconText: 'T',
-            },
-        ],
-    },
-    {
-        name: 'Employee',
-        icon: 'group',
-        children: [
-            {
-                name: 'Add Employee',
-                path: '/employee/addEmployee',
-                iconText: 'S',
-            },
-            {
-                name: 'All Employee',
-                path: '/employee/manageEmployee',
-                iconText: 'S',
             },
         ],
     },

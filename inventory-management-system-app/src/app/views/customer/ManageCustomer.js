@@ -4,15 +4,16 @@ import MaterialTable from 'material-table'
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Breadcrumb } from '../../components'
-export default function ManageEmployee() {
-    const [employees, setEmployees] = useState([])
+
+export default function ManageCustomer() {
+    const [customers, setCustomers] = useState([])
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [counter, setCounter] = useState(0)
 
     const columns = [
         {
-            title: 'Employee ID',
+            title: 'Customer ID',
             field: 'id',
             editable: 'never',
             cellStyle: {
@@ -48,7 +49,6 @@ export default function ManageEmployee() {
             title: 'Image',
             field: 'photo',
             render: (item) => (
-                console.log(item.photo),
                 <img
                     src={
                         item.photo
@@ -69,28 +69,28 @@ export default function ManageEmployee() {
     ]
 
     useEffect(() => {
-        async function fetchEmployees() {
+        async function fetchCustomers() {
             if (counter > 1000) setCounter(0)
             try {
                 setLoading(true)
                 const res = await Axios.get(
-                    'http://localhost:8000/api/employees'
+                    'http://localhost:8000/api/customers'
                 )
                 if (res.data.status === 200) {
-                    setEmployees(res.data.employees)
+                    setCustomers(res.data.customers)
                     setLoading(false)
                 }
             } catch (err) {
                 console.log(err.response.data.errors)
             }
         }
-        fetchEmployees()
+        fetchCustomers()
     }, [counter])
 
-    const deleteEmployee = async (employee) => {
+    const deleteCustomer = async (customer) => {
         try {
             const res = await Axios.get(
-                `http://localhost:8000/api/employee/delete/${employee.id}`
+                `http://localhost:8000/api/employee/delete/${customer.id}`
             )
             if (res.data.status === 200) {
                 console.log(res.data.message)
@@ -106,8 +106,8 @@ export default function ManageEmployee() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        { name: 'Employee', path: '/employee/mangeEmployee' },
-                        { name: 'Manage Employee' },
+                        { name: 'Customer', path: '/customer/manageCustomers' },
+                        { name: 'Manage Customers' },
                     ]}
                 />
                 <Card>
@@ -125,8 +125,8 @@ export default function ManageEmployee() {
                                         '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
                                     border: '3px solid #212f52',
                                 }}
-                                title="Employee Table"
-                                data={employees}
+                                title="Customer Table"
+                                data={customers}
                                 columns={columns}
                                 options={{
                                     exportButton: true,
@@ -154,11 +154,11 @@ export default function ManageEmployee() {
                                                 onClick={() =>
                                                     history.push({
                                                         pathname:
-                                                            '/employee/addEmployee',
+                                                            '/customer/addCustomer',
                                                     })
                                                 }
                                             >
-                                                Add Employee
+                                                Add Customer
                                                 <span>
                                                     <i
                                                         className="material-ui-icon"
@@ -173,13 +173,13 @@ export default function ManageEmployee() {
                                     {
                                         icon: 'edit',
                                         color: 'secondary',
-                                        tooltip: 'Edit Employee',
+                                        tooltip: 'Edit Customer',
                                         onClick: (e, rowData) => {
-                                            const oldEmployeeData = rowData
+                                            const oldCustomerData = rowData
                                             history.push({
-                                                pathname: '/employee/edit',
+                                                pathname: '/customer/edit',
                                                 state: {
-                                                    oldEmployeeData,
+                                                    oldCustomerData,
                                                 },
                                             })
                                         },
@@ -190,7 +190,7 @@ export default function ManageEmployee() {
                                     onRowDelete: (oldData) =>
                                         new Promise((resolve, reject) => {
                                             setTimeout(() => {
-                                                deleteEmployee(oldData)
+                                                deleteCustomer(oldData)
                                                 setCounter(
                                                     (prevCounter) =>
                                                         prevCounter + 1

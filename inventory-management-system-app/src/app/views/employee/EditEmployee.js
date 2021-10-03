@@ -42,7 +42,7 @@ export default function EditEmployee() {
         if ('phone' in fieldValues) {
             errorMessage.phone = !fieldValues.phone
                 ? 'Please enter phone number.'
-                : fieldValues.phone.length != 11
+                : fieldValues.phone.length !== 11
                 ? 'Phone number should 11 character long.'
                 : ''
         }
@@ -69,11 +69,6 @@ export default function EditEmployee() {
         if ('address' in fieldValues) {
             errorMessage.address = !fieldValues.address
                 ? 'Please enter address.'
-                : ''
-        }
-        if ('photo' in fieldValues) {
-            errorMessage.photo = !fieldValues.photo
-                ? 'Please enter a photo.'
                 : ''
         }
         setErrors({ ...errorMessage })
@@ -132,12 +127,12 @@ export default function EditEmployee() {
                     backgroundColor: '#212f52',
                     maxWidth: '750px',
                     margin: '0 auto',
-                    padding: '20px 10px',
+                    padding: '0 10px 10px',
                     border: '5px solid',
                 }}
             >
                 <CardHeader
-                    title="Add Employee"
+                    title="Edit Employee"
                     style={{
                         borderRadius: '10px',
                         textAlign: 'center',
@@ -310,15 +305,28 @@ export default function EditEmployee() {
                                     id="outlined-basic"
                                     variant="outlined"
                                     name="photo"
-                                    style={{ margin: '0.5rem 0' }}
+                                    style={{
+                                        margin: '.9rem 0',
+                                        float: 'left',
+                                    }}
                                     onChange={handleChange}
-                                    fullWidth
-                                    required
+                                    maxwidth="400px"
                                     {...(errors.photo && {
                                         error: true,
                                         helperText: errors['photo'],
                                     })}
                                 />
+                                <div>
+                                    <img
+                                        src={
+                                            employee['photo']
+                                                ? `http://localhost:8000/${employee['photo']}`
+                                                : `http://localhost:8000/dummy.png`
+                                        }
+                                        width="100px"
+                                        height="90px"
+                                    />
+                                </div>
                             </Grid>
                             <Grid item xs={12} className="text-right">
                                 <Button

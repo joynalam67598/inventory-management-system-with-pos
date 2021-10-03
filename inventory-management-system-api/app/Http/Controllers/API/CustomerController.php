@@ -20,10 +20,15 @@ class CustomerController extends Controller
         $imageUrl = $directory.$imageName;
         Image::make($customerImage)->save($imageUrl);
         return $imageUrl;
-
     }
 
     public function saveCustomer(SaveCustomerRequest $request){
+
+        $imageUrl='';
+        if($request->hasFile('photo'))
+        {
+            $imageUrl = uploadCustomerImage($request);
+        }
         $customer = new Customer();
         $customer-> name = $request-> name;
         $customer-> email = $request-> email;
@@ -35,29 +40,34 @@ class CustomerController extends Controller
         $customer-> bank_branch = $request-> bank_branch;
         $customer-> account_holder = $request-> account_holder;
         $customer-> account_number = $request-> account_number;
-        $customer-> photo = $request-> photo;
+        $customer-> photo = $imageUrl;
         $customer->save();
         return response()->json([
             "message"=>"Customer added successfully!",
-            200,
+            "status"=>200,
         ]);
 
     }
     public function getCustomers(){
         $customers = Customer::all();
         return response()->json([
-            "customers" =>$customers,200,
+            "customers" =>$customers,"status"=>200,
         ]);
     }
     public function getSupplier($id){
         $customer = Customer::findOrFail($id);
         return response()->json([
-            "customer" =>$customer,200,
+            "customer" =>$customer,"status"=>200,
         ]);
     }
     public function updateCustomer(UpdateCustomerRequest $request){
-        $customer = Customer::findOrFail($request->cust_id);
 
+        $customer = Customer::findOrFail($request->id);
+        if($request->hasFile('photo'))
+        {
+            if($customer->photo) unlink($customer->photo);
+            $customer-> photo = uploadCustomerImage($request);
+        }
         $customer-> name = $request-> name;
         $customer-> email = $request-> email;
         $customer-> phone = $request-> phone;
@@ -68,20 +78,23 @@ class CustomerController extends Controller
         $customer-> bank_branch = $request-> bank_branch;
         $customer-> account_holder = $request-> account_holder;
         $customer-> account_number = $request-> account_number;
-        $customer-> photo = $request-> photo;
         $customer->save();
         return response()->json([
             "message"=>"Customer data updated successfully!",
-            200,
+            "status"=>200,
         ]);
     }
 
 
     public function deleteCustomer($id){
         $customer = Customer::findOrFail($id);
+        if($customer->hasFile('photo'))
+        {
+            if($customer->photo) unlink($customer->photo);
+        }
         return response()->json([
             "message"=>"Customer removed successfully!",
-            200,
+           "status"=>200,
         ]);
 
     }

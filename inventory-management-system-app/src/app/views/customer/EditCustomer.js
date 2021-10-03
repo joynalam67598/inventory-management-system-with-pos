@@ -8,25 +8,19 @@ import {
 } from '@material-ui/core'
 import Axios from 'axios'
 import { useState } from 'react'
+import { useHistory } from 'react-router'
 import { Breadcrumb } from '../../components'
 
-export default function AddEmployee() {
-    const [employee, setEmployee] = useState({
-        name: '',
-        email: '',
-        phone: '',
-        photo: '',
-        nid_no: '',
-        experience: '',
-        address: '',
-        city: '',
-        salary: '',
-        vacation: '',
-    })
+export default function EditCustomer() {
+    const history = useHistory()
+    const { location } = history
+    const { state } = location
+    const { oldCustomerData } = state
+    const [customer, setCustomer] = useState(oldCustomerData)
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
-    const validate = (fieldValues = employee) => {
+    const validate = (fieldValues = customer) => {
         let errorMessage = { ...errors }
         if ('name' in fieldValues) {
             errorMessage.name = !fieldValues.name
@@ -40,31 +34,11 @@ export default function AddEmployee() {
                 ? ''
                 : 'Email is not valid'
         }
-        if ('nid_no' in fieldValues) {
-            errorMessage.nid_no = !fieldValues.nid_no
-                ? 'Please enter national id no.'
-                : ''
-        }
         if ('phone' in fieldValues) {
             errorMessage.phone = !fieldValues.phone
                 ? 'Please enter phone number.'
-                : fieldValues.phone.length != 11
+                : fieldValues.phone.length !== 11
                 ? 'Phone number should 11 character long.'
-                : ''
-        }
-        if ('salary' in fieldValues) {
-            errorMessage.salary = !fieldValues.salary
-                ? 'Please enter monthly salary.'
-                : ''
-        }
-        if ('vacation' in fieldValues) {
-            errorMessage.vacation = !fieldValues.vacation
-                ? 'Please enter yearly vacation.'
-                : ''
-        }
-        if ('experience' in fieldValues) {
-            errorMessage.experience = !fieldValues.experience
-                ? 'Please enter employee experience.'
                 : ''
         }
         if ('city' in fieldValues) {
@@ -77,13 +51,36 @@ export default function AddEmployee() {
                 ? 'Please enter address.'
                 : ''
         }
-        if ('photo' in fieldValues) {
-            errorMessage.photo = !fieldValues.photo
-                ? 'Please enter a photo.'
-                : ''
+        if (
+            'bank_name' in fieldValues ||
+            'bank_branch' in fieldValues ||
+            'account_number' in fieldValues ||
+            'account_holder' in fieldValues
+        ) {
+            if ('bank_name' in fieldValues) {
+                errorMessage.bank_name = !fieldValues.bank_name
+                    ? 'Please enter bank name.'
+                    : ''
+            }
+            if ('bank_branch' in fieldValues) {
+                errorMessage.bank_branch = !fieldValues.bank_branch
+                    ? 'Please enter branch name.'
+                    : ''
+            }
+            if ('account_number' in fieldValues) {
+                errorMessage.account_number = !fieldValues.account_number
+                    ? 'Please enter account number.'
+                    : ''
+            }
+            if ('account_holder' in fieldValues) {
+                errorMessage.account_holder = !fieldValues.account_holder
+                    ? 'Please enter account holder name.'
+                    : ''
+            }
         }
+
         setErrors({ ...errorMessage })
-        if (fieldValues === employee) {
+        if (fieldValues === customer) {
             return Object.values(errorMessage).every((x) => x === '')
         }
     }
@@ -91,29 +88,33 @@ export default function AddEmployee() {
     const handleChange = (e) => {
         const { name, value } = e.target
         if (name === 'photo') {
-            setEmployee({
-                ...employee,
+            setCustomer({
+                ...customer,
                 [name]: e.target.files[0],
             })
-        } else setEmployee({ ...employee, [name]: value })
+        } else setCustomer({ ...customer, [name]: value })
         validate({ [name]: value })
     }
 
-    const saveEmployee = async (e) => {
+    const updateCustomer = async (e) => {
         e.preventDefault()
-        const data = new FormData()
-        Object.keys(employee).forEach((key) => data.append(key, employee[key]))
+        const customerData = new FormData()
+        Object.keys(customer).forEach((key) =>
+            customerData.append(key, customer[key])
+        )
         if (validate()) {
             try {
                 setLoading(true)
-                console.log(employee)
+                console.log(customer)
                 const res = await Axios.post(
-                    'http://localhost:8000/api/employee/add',
-                    data
+                    'http://localhost:8000/api/customer/update',
+                    customerData
                 )
                 if (res.data.status === 200) {
-                    Object.keys(employee).forEach((key) => (employee[key] = ''))
-                    setLoading(false)
+                    Object.keys(customer).forEach((key) => (customer[key] = ''))
+                    history.push({
+                        pathname: '/customer/manageCustomer',
+                    })
                 }
             } catch (err) {
                 setErrors({ ...err.response.data.errors })
@@ -127,8 +128,8 @@ export default function AddEmployee() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        { name: 'Employee', path: '/employee/addEmployee' },
-                        { name: 'Add Employee' },
+                        { name: 'Customer', path: '/customer/editCoustomer' },
+                        { name: 'Edit Customer' },
                     ]}
                 />
             </div>
@@ -142,7 +143,7 @@ export default function AddEmployee() {
                 }}
             >
                 <CardHeader
-                    title="Add Employee"
+                    title="Edit Customer"
                     style={{
                         borderRadius: '10px',
                         textAlign: 'center',
@@ -157,16 +158,19 @@ export default function AddEmployee() {
                         textAlign: 'center',
                     }}
                 >
-                    <form onSubmit={saveEmployee} encType="multipart/form-data">
+                    <form
+                        onSubmit={updateCustomer}
+                        encType="multipart/form-data"
+                    >
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
-                                    label="Employee Name"
+                                    label="Customer Name"
                                     variant="outlined"
                                     name="name"
-                                    value={employee['name']}
+                                    value={customer['name']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -183,7 +187,7 @@ export default function AddEmployee() {
                                     variant="outlined"
                                     name="email"
                                     style={{ margin: '.5rem 0' }}
-                                    value={employee['email']}
+                                    value={customer['email']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -195,27 +199,11 @@ export default function AddEmployee() {
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
-                                    label="National ID Number"
-                                    variant="outlined"
-                                    name="nid_no"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['nid_no']}
-                                    onChange={handleChange}
-                                    fullWidth
-                                    required
-                                    {...(errors.nid_no && {
-                                        error: true,
-                                        helperText: errors['nid_no'],
-                                    })}
-                                />
-                                <TextField
-                                    type="number"
-                                    id="outlined-basic"
                                     label="Phone Number"
                                     variant="outlined"
                                     name="phone"
                                     style={{ margin: '.5rem 0' }}
-                                    value={employee['phone']}
+                                    value={customer['phone']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -225,62 +213,13 @@ export default function AddEmployee() {
                                     })}
                                 />
                                 <TextField
-                                    type="number"
-                                    id="outlined-basic"
-                                    label="Monthly Salary"
-                                    variant="outlined"
-                                    name="salary"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['salary']}
-                                    onChange={handleChange}
-                                    fullWidth
-                                    required
-                                    {...(errors.salary && {
-                                        error: true,
-                                        helperText: errors['salary'],
-                                    })}
-                                />
-                                <TextField
-                                    type="number"
-                                    id="outlined-basic"
-                                    label="Yearly Vcation"
-                                    variant="outlined"
-                                    name="vacation"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['vacation']}
-                                    onChange={handleChange}
-                                    fullWidth
-                                    required
-                                    {...(errors.vacation && {
-                                        error: true,
-                                        helperText: errors['vacation'],
-                                    })}
-                                />
-                                <TextField
-                                    type="textarea"
-                                    rows={4}
-                                    id="outlined-basic"
-                                    label="Work Experience"
-                                    variant="outlined"
-                                    name="experience"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['experience']}
-                                    onChange={handleChange}
-                                    fullWidth
-                                    required
-                                    {...(errors.experience && {
-                                        error: true,
-                                        helperText: errors['experience'],
-                                    })}
-                                />
-                                <TextField
                                     type="text"
                                     id="outlined-basic"
                                     label="City"
                                     variant="outlined"
                                     name="city"
                                     style={{ margin: '.5rem 0' }}
-                                    value={employee['city']}
+                                    value={customer['city']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -297,7 +236,7 @@ export default function AddEmployee() {
                                     variant="outlined"
                                     name="address"
                                     style={{ margin: '0.5rem 0' }}
-                                    value={employee['address']}
+                                    value={customer['address']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -307,20 +246,112 @@ export default function AddEmployee() {
                                     })}
                                 />
                                 <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Shop Name"
+                                    variant="outlined"
+                                    name="shop_name"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={customer['shop_name']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.shop_name && {
+                                        error: true,
+                                        helperText: errors['shop_name'],
+                                    })}
+                                />
+                                <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Bank Name"
+                                    variant="outlined"
+                                    name="bank_name"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={customer['bank_name']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.bank_name && {
+                                        error: true,
+                                        helperText: errors['bank_name'],
+                                    })}
+                                />
+                                <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Account Holder Name"
+                                    variant="outlined"
+                                    name="account_holder"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={customer['account_holder']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.account_holder && {
+                                        error: true,
+                                        helperText: errors['account_holder'],
+                                    })}
+                                />
+                                <TextField
+                                    type="number"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Account Number"
+                                    variant="outlined"
+                                    name="account_number"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={customer['account_number']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.account_number && {
+                                        error: true,
+                                        helperText: errors['account_number'],
+                                    })}
+                                />
+                                <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Branch Name"
+                                    variant="outlined"
+                                    name="bank_branch"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={customer['bank_branch']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.bank_branch && {
+                                        error: true,
+                                        helperText: errors['bank_branch'],
+                                    })}
+                                />
+                                <TextField
                                     type="file"
                                     accept="image/*"
                                     id="outlined-basic"
                                     variant="outlined"
                                     name="photo"
-                                    style={{ margin: '0.5rem 0' }}
                                     onChange={handleChange}
-                                    fullWidth
-                                    required
+                                    style={{
+                                        margin: '.9rem 0',
+                                        float: 'left',
+                                    }}
                                     {...(errors.photo && {
                                         error: true,
                                         helperText: errors['photo'],
                                     })}
                                 />
+                                <div>
+                                    <img
+                                        src={
+                                            customer['photo']
+                                                ? `http://localhost:8000/${customer['photo']}`
+                                                : `http://localhost:8000/dummy.png`
+                                        }
+                                        width="100px"
+                                        height="90px"
+                                    />
+                                </div>
                             </Grid>
                             <Grid item xs={12} className="text-right">
                                 <Button
@@ -335,7 +366,7 @@ export default function AddEmployee() {
                                         fontWeight: 'bold',
                                     }}
                                 >
-                                    Save
+                                    Update
                                 </Button>
                             </Grid>
                         </Grid>

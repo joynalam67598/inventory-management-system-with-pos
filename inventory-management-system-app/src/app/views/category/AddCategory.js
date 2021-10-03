@@ -67,7 +67,7 @@ export default function AddCategory() {
                     style={{
                         maxWidth: '650px',
                         margin: '0 auto',
-                        padding: '20px 10px',
+                        padding: '0 10px 10px',
                     }}
                 >
                     <form onSubmit={saveCategory}>

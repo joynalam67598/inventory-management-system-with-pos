@@ -7,6 +7,7 @@ use App\Http\Requests\SaveSupplierRequest;
 use App\Http\Requests\UpdateSupplierRequest;
 use App\Models\Supplier;
 use Illuminate\Http\Request;
+use Image;
 
 class SupplierController extends Controller
 {
@@ -22,6 +23,12 @@ class SupplierController extends Controller
     }
 
     public function saveSupplier(SaveSupplierRequest $request){
+
+        $imageUrl='';
+        if($request->hasFile('photo'))
+        {
+            $imageUrl = uploadSupplierImage($request);
+        }
         $supplier = new Supplier();
         $supplier-> name = $request-> name;
         $supplier-> email = $request-> email;
@@ -34,29 +41,34 @@ class SupplierController extends Controller
         $supplier-> branch_name = $request-> branch_name;
         $supplier-> account_holder = $request-> account_holder;
         $supplier-> account_number = $request-> account_number;
-        $supplier-> photo = $request-> photo;
+        $supplier-> photo = $imageUrl;
         $supplier->save();
         return response()->json([
             "message"=>"Supplier added successfully!",
-            200,
+            "status"=>200,
         ]);
 
     }
     public function getSuppliers(){
         $suppliers = Supplier::all();
         return response()->json([
-            "suppliers" =>$suppliers,200,
+            "suppliers" =>$suppliers,"status"=>200,
         ]);
     }
     public function getSupplier($id){
         $supplier = Supplier::findOrFail($id);
         return response()->json([
-            "supplier" =>$supplier,200,
+            "supplier" =>$supplier,"status"=>200,
         ]);
     }
 
     public function updateSupplier(UpdateSupplierRequest $request){
-        $supplier = Supplier::findOrFail($request->cust_id);
+        $supplier = Supplier::findOrFail($request->id);
+        if($request->hasFile('photo'))
+        {
+            if($supplier->photo) unlink($supplier->photo);
+            $supplier-> photo = uploadCustomerImage($request);
+        }
         $supplier-> name = $request-> name;
         $supplier-> email = $request-> email;
         $supplier-> phone = $request-> phone;
@@ -68,20 +80,22 @@ class SupplierController extends Controller
         $supplier-> branch_name = $request-> branch_name;
         $supplier-> account_holder = $request-> account_holder;
         $supplier-> account_number = $request-> account_number;
-        $supplier-> photo = $request-> photo;
         $supplier->save();
         return response()->json([
             "message"=>"Supplier data updated successfully!",
-            200,
+            "status"=>200,
         ]);
     }
 
 
     public function deleteCustomer($id){
         $supplier = Supplier::findOrFail($id);
+        
+        if($supplier->photo) unlink($supplier->photo);
+            
         return response()->json([
             "message"=>"Supplier removed successfully!",
-            200,
+            "status"=>200,
         ]);
 
     }
