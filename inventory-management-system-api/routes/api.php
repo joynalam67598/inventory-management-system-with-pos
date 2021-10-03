@@ -39,7 +39,7 @@ use App\Http\Controllers\API\AttendanceController;
     Route::get("customer/view/{id}",[CustomerController::class,"showCustomer"])->name("customer");
     Route::get("customer/delete/{id}",[CustomerController::class,"deleteCustomer"])->name("delete-customer");
 
-    //Supply
+    //Supplier
     Route::post("supplier/add",[SupplierController::class,"saveSupplier"])->name("add-supplier");
     Route::get("suppliers",[SupplierController::class,"getSuppliers"])->name("all-suppliers");
     Route::get("supplier/view/{id}",[SupplierController::class,"getSupplier"])->name("customer");

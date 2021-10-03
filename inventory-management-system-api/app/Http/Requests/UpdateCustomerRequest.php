@@ -28,9 +28,9 @@ class UpdateCustomerRequest extends FormRequest
         return [
             "name"=> "required|max:150",
             'email'=>['email','required',
-                Rule::unique('customers')->ignore($this->cust_id)],
+                Rule::unique('customers')->ignore($this->id)],
             "phone"=> ['required','max:15',
-                Rule::unique('customers')->ignore($this->cust_id)],
+                Rule::unique('customers')->ignore($this->id)],
 //            "photo"=> "required",
             "address"=> "required|max:500",
             "city"=> "required|max:100",

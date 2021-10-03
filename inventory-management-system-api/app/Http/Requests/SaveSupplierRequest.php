@@ -30,7 +30,7 @@ class SaveSupplierRequest extends FormRequest
 //            "photo"=> "required",
             "address"=> "required|max:500",
             "type"=> "required",
-            "city"=> "required|max:100",
+            "city"=> "required|max:50",
             "shop_name"=> "required",
 //            "bank_name"=> "required",
 //            "account_holder"=> "max:20",

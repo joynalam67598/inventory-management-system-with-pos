@@ -60,8 +60,8 @@ class EmployeeController extends Controller
 
     public function deleteEmployee($id){
         $employee = Employee::findOrFail($id);
+        unlink($employee->photo);
         $employee->delete();
-        // unlink photo
         return response()->json([
             "message"=>"Employee deleted successfully",
             "status"=>200,
@@ -69,8 +69,13 @@ class EmployeeController extends Controller
     }
     public function updateEmployee(UpdateEmployeeRequest $request){
         
-//        $request->photo = $this->uploadEmployeeImage($request);
-        $employee = Employee::findOrFail($request->id);;
+        $employee = Employee::findOrFail($request->id);
+        if($request->hasFile('photo'))
+        {
+            unlink($employee->photo);
+            $imageUrl = uploadEmployeeImage($request);
+            $request->photo = $imageUrl;
+        }
         $employee->name = $request->name;
         $employee->email = $request->email;
         $employee->nid_no = $request->nid_no;
@@ -80,7 +85,6 @@ class EmployeeController extends Controller
         $employee->vacation = $request->vacation;
         $employee->salary = $request->salary;
         $employee->experience = $request->experience;
-        $employee->photo = "add later";
         $employee->update();
         return response()->json([
             "message"=>"Employee updated successfully!",

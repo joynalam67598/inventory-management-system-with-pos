@@ -4,67 +4,55 @@ import {
     CardContent,
     CardHeader,
     Grid,
+    Select,
     TextField,
 } from '@material-ui/core'
 import Axios from 'axios'
 import { useState } from 'react'
 import { Breadcrumb } from '../../components'
 
-export default function AddEmployee() {
-    const [employee, setEmployee] = useState({
+export default function AddSupplier() {
+    const [supplier, setSupplier] = useState({
         name: '',
         email: '',
         phone: '',
         photo: '',
-        nid_no: '',
-        experience: '',
+        type: '',
+        shop_name: '',
+        account_holder: '',
         address: '',
         city: '',
-        salary: '',
-        vacation: '',
+        bank_branch: '',
+        account_number: '',
+        bank_name: '',
     })
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
-    const validate = (fieldValues = employee) => {
+    const validate = (fieldValues = supplier) => {
         let errorMessage = { ...errors }
         if ('name' in fieldValues) {
             errorMessage.name = !fieldValues.name
-                ? 'Please enter employee name.'
+                ? 'Please enter supplier name.'
                 : fieldValues.name.length > 2
                 ? ''
-                : 'Employee Name should be 3 character long.'
+                : 'Supplier Name should be 3 character long.'
         }
         if ('email' in fieldValues) {
             errorMessage.email = /$^|.+@.+..+/.test(fieldValues.email)
                 ? ''
                 : 'Email is not valid'
         }
-        if ('nid_no' in fieldValues) {
-            errorMessage.nid_no = !fieldValues.nid_no
-                ? 'Please enter national id no.'
-                : ''
+        if ('type' in fieldValues) {
+            errorMessage.type = fieldValues.type
+                ? ''
+                : 'Please enter supplier type'
         }
         if ('phone' in fieldValues) {
             errorMessage.phone = !fieldValues.phone
                 ? 'Please enter phone number.'
-                : fieldValues.phone.length != 11
+                : fieldValues.phone.length !== 11
                 ? 'Phone number should 11 character long.'
-                : ''
-        }
-        if ('salary' in fieldValues) {
-            errorMessage.salary = !fieldValues.salary
-                ? 'Please enter monthly salary.'
-                : ''
-        }
-        if ('vacation' in fieldValues) {
-            errorMessage.vacation = !fieldValues.vacation
-                ? 'Please enter yearly vacation.'
-                : ''
-        }
-        if ('experience' in fieldValues) {
-            errorMessage.experience = !fieldValues.experience
-                ? 'Please enter employee experience.'
                 : ''
         }
         if ('city' in fieldValues) {
@@ -77,13 +65,36 @@ export default function AddEmployee() {
                 ? 'Please enter address.'
                 : ''
         }
-        if ('photo' in fieldValues) {
-            errorMessage.photo = !fieldValues.photo
-                ? 'Please enter a photo.'
-                : ''
+        if (
+            'bank_name' in fieldValues ||
+            'bank_branch' in fieldValues ||
+            'account_number' in fieldValues ||
+            'account_holder' in fieldValues
+        ) {
+            if ('bank_name' in fieldValues) {
+                errorMessage.bank_name = !fieldValues.bank_name
+                    ? 'Please enter bank name.'
+                    : ''
+            }
+            if ('bank_branch' in fieldValues) {
+                errorMessage.bank_branch = !fieldValues.bank_branch
+                    ? 'Please enter branch name.'
+                    : ''
+            }
+            if ('account_number' in fieldValues) {
+                errorMessage.account_number = !fieldValues.account_number
+                    ? 'Please enter account number.'
+                    : ''
+            }
+            if ('account_holder' in fieldValues) {
+                errorMessage.account_holder = !fieldValues.account_holder
+                    ? 'Please enter account holder name.'
+                    : ''
+            }
         }
+
         setErrors({ ...errorMessage })
-        if (fieldValues === employee) {
+        if (fieldValues === supplier) {
             return Object.values(errorMessage).every((x) => x === '')
         }
     }
@@ -91,28 +102,29 @@ export default function AddEmployee() {
     const handleChange = (e) => {
         const { name, value } = e.target
         if (name === 'photo') {
-            setEmployee({
-                ...employee,
+            setSupplier({
+                ...supplier,
                 [name]: e.target.files[0],
             })
-        } else setEmployee({ ...employee, [name]: value })
+        } else setSupplier({ ...supplier, [name]: value })
         validate({ [name]: value })
     }
 
-    const saveEmployee = async (e) => {
+    const saveSupplier = async (e) => {
         e.preventDefault()
-        const data = new FormData()
-        Object.keys(employee).forEach((key) => data.append(key, employee[key]))
+        const supplierData = new FormData()
+        Object.keys(supplier).forEach((key) =>
+            supplierData.append(key, supplier[key])
+        )
         if (validate()) {
             try {
                 setLoading(true)
-                console.log(employee)
                 const res = await Axios.post(
-                    'http://localhost:8000/api/employee/add',
-                    data
+                    'http://localhost:8000/api/supplier/add',
+                    supplierData
                 )
                 if (res.data.status === 200) {
-                    Object.keys(employee).forEach((key) => (employee[key] = ''))
+                    Object.keys(supplier).forEach((key) => (supplier[key] = ''))
                     setLoading(false)
                 }
             } catch (err) {
@@ -127,8 +139,8 @@ export default function AddEmployee() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        { name: 'Employee', path: '/employee/addEmployee' },
-                        { name: 'Add Employee' },
+                        { name: 'Supplier', path: '/Supplier/addCoustomer' },
+                        { name: 'Add Supplier' },
                     ]}
                 />
             </div>
@@ -142,7 +154,7 @@ export default function AddEmployee() {
                 }}
             >
                 <CardHeader
-                    title="Add Employee"
+                    title="Add Supplier"
                     style={{
                         borderRadius: '10px',
                         textAlign: 'center',
@@ -157,16 +169,16 @@ export default function AddEmployee() {
                         textAlign: 'center',
                     }}
                 >
-                    <form onSubmit={saveEmployee} encType="multipart/form-data">
+                    <form onSubmit={saveSupplier} encType="multipart/form-data">
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
-                                    label="Employee Name"
+                                    label="Supplier Name"
                                     variant="outlined"
                                     name="name"
-                                    value={employee['name']}
+                                    value={supplier['name']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -183,7 +195,7 @@ export default function AddEmployee() {
                                     variant="outlined"
                                     name="email"
                                     style={{ margin: '.5rem 0' }}
-                                    value={employee['email']}
+                                    value={supplier['email']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -195,27 +207,11 @@ export default function AddEmployee() {
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
-                                    label="National ID Number"
-                                    variant="outlined"
-                                    name="nid_no"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['nid_no']}
-                                    onChange={handleChange}
-                                    fullWidth
-                                    required
-                                    {...(errors.nid_no && {
-                                        error: true,
-                                        helperText: errors['nid_no'],
-                                    })}
-                                />
-                                <TextField
-                                    type="number"
-                                    id="outlined-basic"
                                     label="Phone Number"
                                     variant="outlined"
                                     name="phone"
                                     style={{ margin: '.5rem 0' }}
-                                    value={employee['phone']}
+                                    value={supplier['phone']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -224,55 +220,42 @@ export default function AddEmployee() {
                                         helperText: errors['phone'],
                                     })}
                                 />
-                                <TextField
-                                    type="number"
-                                    id="outlined-basic"
-                                    label="Monthly Salary"
-                                    variant="outlined"
-                                    name="salary"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['salary']}
-                                    onChange={handleChange}
-                                    fullWidth
+                                {/* <FormControl
+                                //     required
+                                //     fullWidth
+                                //     variant="outlined"
+                                // >
+                                //     <InputLabel htmlFor="supplierType">
+                                //         {'Supplier Type'}
+                                //     </InputLabel>*/}
+                                <Select
+                                    native
+                                    style={{
+                                        margin: '.5rem 0',
+                                        textAlign: 'left',
+                                    }}
                                     required
-                                    {...(errors.salary && {
-                                        error: true,
-                                        helperText: errors['salary'],
-                                    })}
-                                />
-                                <TextField
-                                    type="number"
-                                    id="outlined-basic"
-                                    label="Yearly Vcation"
-                                    variant="outlined"
-                                    name="vacation"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['vacation']}
-                                    onChange={handleChange}
                                     fullWidth
-                                    required
-                                    {...(errors.vacation && {
-                                        error: true,
-                                        helperText: errors['vacation'],
-                                    })}
-                                />
-                                <TextField
-                                    type="textarea"
-                                    rows={4}
-                                    id="outlined-basic"
-                                    label="Work Experience"
                                     variant="outlined"
-                                    name="experience"
-                                    style={{ margin: '.5rem 0' }}
-                                    value={employee['experience']}
+                                    name="type"
                                     onChange={handleChange}
-                                    fullWidth
-                                    required
-                                    {...(errors.experience && {
+                                    value={supplier['type']}
+                                    {...(errors.type && {
                                         error: true,
-                                        helperText: errors['experience'],
+                                        helperText: errors['type'],
                                     })}
-                                />
+                                >
+                                    <option value="" disabled>
+                                        {'Please, select supplier type!'}
+                                    </option>
+                                    <option value="Distributor">
+                                        {'Distributor'}
+                                    </option>
+                                    <option value="Wholeseller">
+                                        {'Wholeseller'}
+                                    </option>
+                                    <option value="impoter">{'Impoter'}</option>
+                                </Select>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -280,7 +263,7 @@ export default function AddEmployee() {
                                     variant="outlined"
                                     name="city"
                                     style={{ margin: '.5rem 0' }}
-                                    value={employee['city']}
+                                    value={supplier['city']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
@@ -297,13 +280,93 @@ export default function AddEmployee() {
                                     variant="outlined"
                                     name="address"
                                     style={{ margin: '0.5rem 0' }}
-                                    value={employee['address']}
+                                    value={supplier['address']}
                                     onChange={handleChange}
                                     fullWidth
                                     required
                                     {...(errors.address && {
                                         error: true,
                                         helperText: errors['address'],
+                                    })}
+                                />
+                                <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Shop Name"
+                                    variant="outlined"
+                                    name="shop_name"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={supplier['shop_name']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.shop_name && {
+                                        error: true,
+                                        helperText: errors['shop_name'],
+                                    })}
+                                />
+                                <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Bank Name"
+                                    variant="outlined"
+                                    name="bank_name"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={supplier['bank_name']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.bank_name && {
+                                        error: true,
+                                        helperText: errors['bank_name'],
+                                    })}
+                                />
+                                <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Account Holder Name"
+                                    variant="outlined"
+                                    name="account_holder"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={supplier['account_holder']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.account_holder && {
+                                        error: true,
+                                        helperText: errors['account_holder'],
+                                    })}
+                                />
+                                <TextField
+                                    type="number"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Account Number"
+                                    variant="outlined"
+                                    name="account_number"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={supplier['account_number']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.account_number && {
+                                        error: true,
+                                        helperText: errors['account_number'],
+                                    })}
+                                />
+                                <TextField
+                                    type="text"
+                                    rows="4"
+                                    id="outlined-basic"
+                                    label="Branch Name"
+                                    variant="outlined"
+                                    name="bank_branch"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={supplier['bank_branch']}
+                                    onChange={handleChange}
+                                    fullWidth
+                                    {...(errors.bank_branch && {
+                                        error: true,
+                                        helperText: errors['bank_branch'],
                                     })}
                                 />
                                 <TextField
@@ -315,7 +378,6 @@ export default function AddEmployee() {
                                     style={{ margin: '0.5rem 0' }}
                                     onChange={handleChange}
                                     fullWidth
-                                    required
                                     {...(errors.photo && {
                                         error: true,
                                         helperText: errors['photo'],
