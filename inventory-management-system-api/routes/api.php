@@ -48,8 +48,8 @@ use App\Http\Controllers\API\AttendanceController;
     Route::get("supplier/delete/{id}",[SupplierController::class,"deleteSupplier"])->name("delete-supplier");
 
     //AdvancedSalary
-    Route::post("advanced-salary/add",[SalaryController::class,"saveAdvancedSalary"])->name("addAdvancedSalary");
-    Route::get("advanced-salaries",[SalaryController::class,"getAdvancedSalaries"])->name("advanced-salaries");
+    Route::post("advanced/salary/add",[SalaryController::class,"saveAdvancedSalary"])->name("addAdvancedSalary");
+    Route::get("advanced/salaries",[SalaryController::class,"getAdvancedSalaries"])->name("advanced-salaries");
 
     //Salary
     Route::get("salary/payable",[SalaryController::class,"getPayableSalary"])->name("payableSalary");

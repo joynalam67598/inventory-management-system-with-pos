@@ -22,7 +22,7 @@ export default function AddSupplier() {
         account_holder: '',
         address: '',
         city: '',
-        bank_branch: '',
+        branch_name: '',
         account_number: '',
         bank_name: '',
     })
@@ -67,7 +67,7 @@ export default function AddSupplier() {
         }
         if (
             'bank_name' in fieldValues ||
-            'bank_branch' in fieldValues ||
+            'branch_name' in fieldValues ||
             'account_number' in fieldValues ||
             'account_holder' in fieldValues
         ) {
@@ -76,8 +76,8 @@ export default function AddSupplier() {
                     ? 'Please enter bank name.'
                     : ''
             }
-            if ('bank_branch' in fieldValues) {
-                errorMessage.bank_branch = !fieldValues.bank_branch
+            if ('branch_name' in fieldValues) {
+                errorMessage.branch_name = !fieldValues.branch_name
                     ? 'Please enter branch name.'
                     : ''
             }
@@ -139,7 +139,7 @@ export default function AddSupplier() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        { name: 'Supplier', path: '/Supplier/addCoustomer' },
+                        { name: 'Supplier', path: '/Supplier/addSupplier' },
                         { name: 'Add Supplier' },
                     ]}
                 />
@@ -359,14 +359,14 @@ export default function AddSupplier() {
                                     id="outlined-basic"
                                     label="Branch Name"
                                     variant="outlined"
-                                    name="bank_branch"
+                                    name="branch_name"
                                     style={{ margin: '0.5rem 0' }}
-                                    value={supplier['bank_branch']}
+                                    value={supplier['branch_name']}
                                     onChange={handleChange}
                                     fullWidth
-                                    {...(errors.bank_branch && {
+                                    {...(errors.branch_name && {
                                         error: true,
-                                        helperText: errors['bank_branch'],
+                                        helperText: errors['branch_name'],
                                     })}
                                 />
                                 <TextField
@@ -397,7 +397,7 @@ export default function AddSupplier() {
                                         fontWeight: 'bold',
                                     }}
                                 >
-                                    Save
+                                    Update
                                 </Button>
                             </Grid>
                         </Grid>

@@ -5,22 +5,14 @@ import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Breadcrumb } from '../../components'
 
-export default function ManageSupplier() {
-    const [suppliers, setSuppliers] = useState([])
+export default function ManageAdvancedSalary() {
+    const [advanceSalaries, setAdvanceSalaries] = useState([])
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [counter, setCounter] = useState(0)
+    console.log(advanceSalaries)
 
     const columns = [
-        {
-            title: 'ID',
-            field: 'id',
-            editable: 'never',
-            cellStyle: {
-                textAlign: 'center',
-                fontSize: '1rem',
-            },
-        },
         {
             title: 'Name',
             field: 'name',
@@ -30,16 +22,32 @@ export default function ManageSupplier() {
             },
         },
         {
-            title: 'Phone',
-            field: 'phone',
+            title: 'Salary',
+            field: 'salary',
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',
             },
         },
         {
-            title: 'Type',
-            field: 'type',
+            title: 'Month',
+            field: 'month',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
+            title: 'Year',
+            field: 'year',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
+            title: 'Advanced Salary',
+            field: 'advance_salary',
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',
@@ -69,28 +77,28 @@ export default function ManageSupplier() {
     ]
 
     useEffect(() => {
-        async function fetchSupplier() {
+        async function fetchAdvanceSalaries() {
             if (counter > 1000) setCounter(0)
             try {
                 setLoading(true)
                 const res = await Axios.get(
-                    'http://localhost:8000/api/suppliers'
+                    'http://localhost:8000/api/advanced/salaries'
                 )
                 if (res.data.status === 200) {
-                    setSuppliers(res.data.suppliers)
+                    setAdvanceSalaries(res.data.advanceSalaries)
                     setLoading(false)
                 }
             } catch (err) {
                 console.log(err.response.data.errors)
             }
         }
-        fetchSupplier()
+        fetchAdvanceSalaries()
     }, [counter])
 
-    const deleteSupplier = async (supplier) => {
+    const deleteAdvanceSalary = async (advanceSalary) => {
         try {
             const res = await Axios.get(
-                `http://localhost:8000/api/supplier/delete/${supplier.id}`
+                `http://localhost:8000/api/supplier/delete/${advanceSalary.id}`
             )
             if (res.data.status === 200) {
                 console.log(res.data.message)
@@ -106,8 +114,11 @@ export default function ManageSupplier() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        { name: 'Supplier', path: '/supplier/manageSupplier' },
-                        { name: 'Manage Supplier' },
+                        {
+                            name: 'Advance Salaries',
+                            path: '/salary/advanced-salary/manage',
+                        },
+                        { name: 'Manage Salary' },
                     ]}
                 />
                 <Card>
@@ -125,8 +136,8 @@ export default function ManageSupplier() {
                                         '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
                                     border: '3px solid #212f52',
                                 }}
-                                title="Supplier Table"
-                                data={suppliers}
+                                title="Advance Salary Table"
+                                data={advanceSalaries}
                                 columns={columns}
                                 options={{
                                     exportButton: true,
@@ -154,11 +165,11 @@ export default function ManageSupplier() {
                                                 onClick={() =>
                                                     history.push({
                                                         pathname:
-                                                            '/supplier/addSupplier',
+                                                            '/salary/advanced-salary/add',
                                                     })
                                                 }
                                             >
-                                                Add Supplier
+                                                Pay Advanced Salray
                                                 <span>
                                                     <i
                                                         className="material-ui-icon"
@@ -175,11 +186,12 @@ export default function ManageSupplier() {
                                         color: 'secondary',
                                         tooltip: 'Edit Supplier',
                                         onClick: (e, rowData) => {
-                                            const oldSupplierData = rowData
+                                            const oldAdvanceSalaryData = rowData
                                             history.push({
-                                                pathname: '/supplier/edit',
+                                                pathname:
+                                                    '/salary/advanced-salary/edit',
                                                 state: {
-                                                    oldSupplierData,
+                                                    oldAdvanceSalaryData,
                                                 },
                                             })
                                         },
@@ -190,7 +202,7 @@ export default function ManageSupplier() {
                                     onRowDelete: (oldData) =>
                                         new Promise((resolve, reject) => {
                                             setTimeout(() => {
-                                                deleteSupplier(oldData)
+                                                deleteAdvanceSalary(oldData)
                                                 setCounter(
                                                     (prevCounter) =>
                                                         prevCounter + 1

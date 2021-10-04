@@ -36,7 +36,7 @@ export const navigations = [
     // },
     {
         name: 'Employee',
-        icon: 'group',
+        icon: 'work',
         children: [
             {
                 name: 'Add Employee',
@@ -52,7 +52,7 @@ export const navigations = [
     },
     {
         name: 'Customer',
-        icon: 'sell',
+        icon: 'shopping_bag',
         children: [
             {
                 name: 'Add Customer',
@@ -68,7 +68,7 @@ export const navigations = [
     },
     {
         name: 'Supplier',
-        icon: 'person',
+        icon: 'add_shopping_cart',
         children: [
             {
                 name: 'Add Supplier',
@@ -99,6 +99,23 @@ export const navigations = [
             },
         ],
     },
+    {
+        name: 'Salary',
+        icon: 'payment',
+        children: [
+            {
+                name: 'Advance Salary',
+                path: '/salary/advanced-salary/add',
+                iconText: 'T',
+            },
+            {
+                name: 'All Advanced Salary',
+                path: '/salary/advanced-salary/manage',
+                iconText: 'T',
+            },
+        ],
+    },
+
     {
         name: 'Documentation',
         icon: 'launch',
