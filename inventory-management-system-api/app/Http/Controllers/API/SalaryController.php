@@ -24,7 +24,7 @@ class SalaryController extends Controller
         {
             return response()->json([
                 "message"=>"Oops! Already advanced paid for this month!",
-                400,
+                "status"=>400,
             ]);
         }
 
@@ -36,19 +36,19 @@ class SalaryController extends Controller
         $salary->save();
         return response()->json([
             "message"=>"Advance Salary given successfully!",
-            200,
+            "status"=>200,
         ]);
     }
 
     public function getAdvancedSalaries(){
-        $salaries = DB::table("advanced_salaries")
+        $advanceSalaries = DB::table("advanced_salaries")
             ->join("employees","employees.id",'=','advanced_salaries.employee_id')
             ->select("advanced_salaries.*","employees.name","employees.salary","employees.photo")
             ->orderBy("id","DESC")
             ->get();
         return response()->json([
-            "salaries"=>$salaries,
-            200,
+            "advanceSalaries"=>$advanceSalaries,
+            "status"=>200,
         ]);
     }
 
@@ -66,7 +66,7 @@ class SalaryController extends Controller
             ->get();
         return response()->json([
             "payableSalaries"=>$payableSalaries,
-            200,
+            "status"=>200,
         ]);
     }
 }
