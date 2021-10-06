@@ -20,14 +20,14 @@ class ExpenseController extends Controller
         $expense->year = date("Y");
         $expense->save();
         return response()->json([
-            "message"=>"Expense data saved successfully!",200
+            "message"=>"Expense data saved successfully!",'status'=>200,
         ]);
     }
 
     public function getExpense($id){
         $expense = Expense::findOrFail($id);
         return response()->json([
-            "expense"=>$expense,200
+            "expense"=>$expense,'status'=>200
         ]);
     }
 
@@ -37,7 +37,7 @@ class ExpenseController extends Controller
         $expense->exp_amount = $request->exp_amount;
         $expense->update();
         return response()->json([
-            "message"=>"Expense data updated successfully!",200
+            "message"=>"Expense data updated successfully!",'status'=>200
         ]);
 
     }
@@ -45,7 +45,7 @@ class ExpenseController extends Controller
     public function getExpenses(){
         $expenses = Expense::all();
         return response()->json([
-            "expenses"=>$expenses,200
+            "expenses"=>$expenses,'status'=>200
         ]);
     }
 
@@ -55,19 +55,18 @@ class ExpenseController extends Controller
             ->where('date','=',$date)
             ->get();
         return response()->json([
-            "todayExpense"=>$todayExpense,200
+            "todayExpense"=>$todayExpense,'status'=>200
         ]);
     }
 
-    public function getMonthExpense(){
-        $month = date("F");
+    public function getMonthExpense($month){
         $year = date("Y");
         $monthExpense = DB::table('expenses')
             ->where('month','=',$month)
             ->where('year','=',$year)
             ->get();
         return response()->json([
-            "monthExpense"=>$monthExpense,200
+            "monthExpense"=>$monthExpense,'status'=>200
         ]);
     }
 
@@ -77,7 +76,7 @@ class ExpenseController extends Controller
             ->where('year','=',$year)
             ->get();
         return response()->json([
-            "yearExpense"=>$yearExpense,200
+            "yearExpense"=>$yearExpense,'status'=>200
         ]);
     }
 
@@ -85,7 +84,7 @@ class ExpenseController extends Controller
         $expense = Expense::findOrFail($id);
         $expense->delete();
         return response()->json([
-            "message"=>"Expense data deleted successfully!",200
+            "message"=>"Expense data deleted successfully!",'status'=>200
         ]);
     }
 }

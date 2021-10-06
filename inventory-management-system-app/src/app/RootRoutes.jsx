@@ -6,6 +6,7 @@ import customerRoutes from './views/customer/CustomerRoutes'
 import employeeRoutes from './views/employee/EmployeeRoutes'
 import salaryRoutes from './views/salary/SalaryRoutes'
 import supplierRoutes from './views/supplier/SupplierRoutes'
+import expenseRoutes from './views/expense/ExpenseRoutes'
 
 const redirectRoute = [
     {
@@ -28,6 +29,7 @@ const routes = [
     ...customerRoutes,
     ...supplierRoutes,
     ...salaryRoutes,
+    ...expenseRoutes,
 
     ...redirectRoute,
     ...errorRoute,

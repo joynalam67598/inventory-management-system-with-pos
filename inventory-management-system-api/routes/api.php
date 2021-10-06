@@ -77,7 +77,7 @@ use App\Http\Controllers\API\AttendanceController;
     Route::get("expense/edit/{id}",[ExpenseController::class,"getExpense"])->name("Expenses");
     Route::post("expense/update",[ExpenseController::class,"updateExpense"])->name("updateExpense");
     Route::get("expense/today",[ExpenseController::class,"getTodayExpense"])->name("todayExpense");
-    Route::get("expense/month",[ExpenseController::class,"getMonthExpense"])->name("monthlyExpense");
+    Route::get("expense/month/{month}",[ExpenseController::class,"getMonthExpense"])->name("monthlyExpense");
     Route::get("expense/year",[ExpenseController::class,"getYearExpense"])->name("yearlyExpense");
 
     //Attendance
