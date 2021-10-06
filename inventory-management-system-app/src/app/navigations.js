@@ -100,17 +100,38 @@ export const navigations = [
         ],
     },
     {
+        name: 'Expense',
+        icon: 'event_note',
+        children: [
+            {
+                name: 'Add Expense',
+                path: '/expense/addExpense',
+                iconText: 'T',
+            },
+            {
+                name: 'All Expense',
+                path: '/expense/manageExpense',
+                iconText: 'T',
+            },
+        ],
+    },
+    {
         name: 'Salary',
         icon: 'payment',
         children: [
             {
-                name: 'Advance Salary',
+                name: 'Pay Advance Salary',
                 path: '/salary/advanced-salary/add',
                 iconText: 'T',
             },
             {
                 name: 'All Advanced Salary',
                 path: '/salary/advanced-salary/manage',
+                iconText: 'T',
+            },
+            {
+                name: 'Pay Salary',
+                path: '/salary/manage',
                 iconText: 'T',
             },
         ],

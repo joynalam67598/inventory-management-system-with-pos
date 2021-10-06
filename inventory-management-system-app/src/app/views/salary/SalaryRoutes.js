@@ -13,6 +13,10 @@ const salaryRoutes = [
         path: '/salary/advanced-salary/edit',
         component: React.lazy(() => import('./EditAdvancedSalary')),
     },
+    {
+        path: '/salary/manage',
+        component: React.lazy(() => import('./PaySalary')),
+    },
 ]
 
 export default salaryRoutes
