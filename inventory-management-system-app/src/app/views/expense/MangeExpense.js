@@ -1,13 +1,8 @@
-import {
-    Card,
-    CardContent,
-    FormControl,
-    InputLabel,
-    Select,
-} from '@material-ui/core'
+import { Card, CardContent } from '@material-ui/core'
 import Axios from 'axios'
 import MaterialTable, { MTableToolbar } from 'material-table'
 import { useEffect, useState } from 'react'
+import DatePicker from 'react-datepicker'
 import { useHistory } from 'react-router-dom'
 import { Breadcrumb } from '../../components'
 
@@ -17,6 +12,8 @@ export default function ManageSupplier() {
     const history = useHistory()
     const [counter, setCounter] = useState(0)
     const [month, setMonth] = useState('')
+    const [expenseDate, setExpenseDate] = useState([new Date(), new Date()])
+    const [startDate, endDate] = expenseDate
 
     const columns = [
         {
@@ -34,7 +31,7 @@ export default function ManageSupplier() {
             field: 'expense_details',
             cellStyle: {
                 textAlign: 'center',
-                maxWidth: '325px',
+                maxWidth: '425px',
                 fontSize: '1rem',
                 borderRight: '2px solid #e5e5e5',
             },
@@ -121,175 +118,129 @@ export default function ManageSupplier() {
                     ]}
                 />
                 <Card>
+                    <DatePicker
+                        selectsRange={true}
+                        todayButton="Today"
+                        startDate={startDate}
+                        endDate={endDate}
+                        showMonthDropdown
+                        showYearDropdown
+                        dropdownMode="select"
+                        maxDate={new Date()}
+                        onChange={(date) => {
+                            setExpenseDate(date)
+                            console.log(date)
+                        }}
+                        withPortal
+                    />
                     <CardContent
                         style={{
                             margin: '0 auto',
                             padding: '25px 35px',
                         }}
                     >
-                        {!loading && (
-                            <MaterialTable
-                                style={{
-                                    boxShadow:
-                                        '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
-                                    border: '3px solid #212f52',
-                                }}
-                                title={
-                                    'Expenses Table'
-                                    //     (' +
-                                    // new Date().toLocaleString('en-US', {
-                                    //     day: '2-digit',
-                                    // }) +
-                                    // ' ' +
-                                    // new Date().toLocaleString('en-US', {
-                                    //     month: 'long',
-                                    // }) +
-                                    // ' ' +
-                                    // new Date().getFullYear() +
-                                    // ' )'
-                                }
-                                data={expenses}
-                                columns={columns}
-                                options={{
-                                    exportButton: true,
-                                    actionsColumnIndex: -1,
-                                    pageSize: 10,
-                                    maxBodyHeight: '500px',
-                                    headerStyle: {
-                                        borderRight: '2px solid #e5e5e5',
-                                        backgroundColor: '#212f52',
-                                        color: 'white',
-                                        textAlign: 'center',
-                                        fontSize: '1.15rem',
+                        <MaterialTable
+                            style={{
+                                boxShadow: '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
+                                border: '3px solid #212f52',
+                            }}
+                            title={
+                                'Expenses Table'
+                                //     (' +
+                                // new Date().toLocaleString('en-US', {
+                                //     day: '2-digit',
+                                // }) +
+                                // ' ' +
+                                // new Date().toLocaleString('en-US', {
+                                //     month: 'long',
+                                // }) +
+                                // ' ' +
+                                // new Date().getFullYear() +
+                                // ' )'
+                            }
+                            data={expenses}
+                            columns={columns}
+                            options={{
+                                exportButton: true,
+                                actionsColumnIndex: -1,
+                                pageSize: 10,
+                                maxBodyHeight: '500px',
+                                headerStyle: {
+                                    borderRight: '2px solid #e5e5e5',
+                                    backgroundColor: '#212f52',
+                                    color: 'white',
+                                    textAlign: 'center',
+                                    fontSize: '1.15rem',
+                                },
+                            }}
+                            icons={{
+                                Add: (props) => (
+                                    <div>
+                                        <button
+                                            style={{
+                                                padding: '7px 5px',
+                                                fontSize: '1.1rem',
+                                                borderRadius: '12px',
+                                                backgroundColor: '#910cc2',
+                                                boxShadow:
+                                                    '2px 4px 8px 2px rgba(0, 0, 0, 0.2)',
+                                                color: 'white',
+                                            }}
+                                            onClick={() =>
+                                                history.push({
+                                                    pathname:
+                                                        '/expense/addExpense',
+                                                })
+                                            }
+                                        >
+                                            {'Add Expense'}
+                                            <span>
+                                                <i
+                                                    className="material-ui-icon"
+                                                    name="add_box"
+                                                ></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                ),
+                            }}
+                            actions={[
+                                {
+                                    icon: 'edit',
+                                    color: 'secondary',
+                                    tooltip: 'Edit Supplier',
+                                    onClick: (e, rowData) => {
+                                        const oldExpenseData = rowData
+                                        history.push({
+                                            pathname: '/expense/editExpense',
+                                            state: {
+                                                oldExpenseData,
+                                            },
+                                        })
                                     },
-                                }}
-                                icons={{
-                                    Add: (props) => (
-                                        <div>
-                                            <button
-                                                style={{
-                                                    padding: '7px 5px',
-                                                    fontSize: '1.1rem',
-                                                    borderRadius: '12px',
-                                                    backgroundColor: '#910cc2',
-                                                    boxShadow:
-                                                        '2px 4px 8px 2px rgba(0, 0, 0, 0.2)',
-                                                    color: 'white',
-                                                }}
-                                                onClick={() =>
-                                                    history.push({
-                                                        pathname:
-                                                            '/expense/addExpense',
-                                                    })
-                                                }
-                                            >
-                                                {'Add Expense'}
-                                                <span>
-                                                    <i
-                                                        className="material-ui-icon"
-                                                        name="add_box"
-                                                    ></i>
-                                                </span>
-                                            </button>
-                                        </div>
-                                    ),
-                                }}
-                                actions={[
-                                    {
-                                        icon: 'edit',
-                                        color: 'secondary',
-                                        tooltip: 'Edit Supplier',
-                                        onClick: (e, rowData) => {
-                                            const oldExpenseData = rowData
-                                            history.push({
-                                                pathname:
-                                                    '/expense/editExpense',
-                                                state: {
-                                                    oldExpenseData,
-                                                },
-                                            })
-                                        },
-                                    },
-                                ]}
-                                editable={{
-                                    onRowAdd: {},
-                                    onRowDelete: (oldData) =>
-                                        new Promise((resolve, reject) => {
-                                            setTimeout(() => {
-                                                deleteExpense(oldData)
-                                                setCounter(
-                                                    (prevCounter) =>
-                                                        prevCounter + 1
-                                                )
-                                                resolve()
-                                            }, 1000)
-                                        }),
-                                }}
-                                components={{
-                                    Toolbar: (props) => (
-                                        <div>
-                                            <MTableToolbar {...props} />
-                                            <FormControl
-                                                variant="outlined"
-                                                maxWidth="800px"
-                                                maxBodyHeight="100px"
-                                            >
-                                                <InputLabel htmlFor="advanceSalarymonth">
-                                                    {'Expense Month'}
-                                                </InputLabel>
-                                                <Select
-                                                    native
-                                                    style={{
-                                                        textAlign: 'left',
-                                                        margin: '0.7rem',
-                                                    }}
-                                                    name="month"
-                                                    value={month}
-                                                    onChange={(e) =>
-                                                        setMonth(e.target.value)
-                                                    }
-                                                >
-                                                    <option disabled />
-                                                    <option value="January">
-                                                        {'January'}
-                                                    </option>
-                                                    <option value="February">
-                                                        {'February'}
-                                                    </option>
-                                                    <option value="March">
-                                                        {'March'}
-                                                    </option>
-                                                    <option value="May">
-                                                        {'May'}
-                                                    </option>
-                                                    <option value="June">
-                                                        {'June'}
-                                                    </option>
-                                                    <option value="July">
-                                                        {'July'}
-                                                    </option>
-                                                    <option value="August">
-                                                        {'August'}
-                                                    </option>
-                                                    <option value="September">
-                                                        {'September'}
-                                                    </option>
-                                                    <option value="October">
-                                                        {'October'}
-                                                    </option>
-                                                    <option value="November">
-                                                        {'November'}
-                                                    </option>
-                                                    <option value="December">
-                                                        {'December'}
-                                                    </option>
-                                                </Select>
-                                            </FormControl>
-                                        </div>
-                                    ),
-                                }}
-                            />
-                        )}
+                                },
+                            ]}
+                            editable={{
+                                onRowAdd: {},
+                                onRowDelete: (oldData) =>
+                                    new Promise((resolve, reject) => {
+                                        setTimeout(() => {
+                                            deleteExpense(oldData)
+                                            setCounter(
+                                                (prevCounter) => prevCounter + 1
+                                            )
+                                            resolve()
+                                        }, 1000)
+                                    }),
+                            }}
+                            components={{
+                                Toolbar: (props) => (
+                                    <div>
+                                        <MTableToolbar {...props} />
+                                    </div>
+                                ),
+                            }}
+                        />
                     </CardContent>
                 </Card>
             </div>
