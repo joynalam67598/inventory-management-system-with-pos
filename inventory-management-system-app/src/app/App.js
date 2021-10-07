@@ -1,4 +1,5 @@
 import React from 'react'
+import 'react-datepicker/dist/react-datepicker.css'
 import { BrowserRouter, Route, Router, Switch } from 'react-router-dom'
 import { GlobalCss, MatxLayout, MatxSuspense, MatxTheme } from './components'
 import AppContext from './contexts/AppContext'
@@ -25,7 +26,7 @@ const App = () => {
                                             component={item.component}
                                         />
                                     ))}
-                                     <MatxLayout />{' '}
+                                    <MatxLayout />{' '}
                                 </Switch>
                             </MatxSuspense>
                         </Router>
