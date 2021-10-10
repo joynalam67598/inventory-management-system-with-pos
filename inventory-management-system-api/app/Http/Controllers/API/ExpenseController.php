@@ -7,7 +7,7 @@ use App\Http\Requests\SaveExpenseRequest;
 use App\Http\Requests\UpdateExpenseRequest;
 use App\Models\Expense;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class ExpenseController extends Controller
 {
@@ -15,7 +15,7 @@ class ExpenseController extends Controller
         $expense = new Expense();
         $expense->expense_details = $request->expense_details;
         $expense->exp_amount = $request->exp_amount;
-        $expense->date = date("d/m/yy");
+        $expense->date = date("d-m-Y");
         $expense->month = date("F");
         $expense->year = date("Y");
         $expense->save();
@@ -42,43 +42,57 @@ class ExpenseController extends Controller
 
     }
 
-    public function getExpenses(){
-        $expenses = Expense::all();
+    // public function getExpenses(){
+    //     $expenses = Expense::all();
+    //     return response()->json([
+    //         "expenses"=>$expenses,'status'=>200
+    //     ]);
+    // }
+
+    // public function getTodayExpense(){
+    //     $date = date("d/m/yy");
+    //     $todayExpense = DB::table('expenses')
+    //         ->where('date','=',$date)
+    //         ->get();
+    //     return response()->json([
+    //         "todayExpense"=>$todayExpense,'status'=>200
+    //     ]);
+    // }
+
+    // public function getMonthExpense($month){
+    //     $year = date("Y");
+    //     $monthExpense = DB::table('expenses')
+    //         ->where('month','=',$month)
+    //         ->where('year','=',$year)
+    //         ->get();
+    //     return response()->json([
+    //         "monthExpense"=>$monthExpense,'status'=>200
+    //     ]);
+    // }
+
+    public function getExpenseInRange($formDate,$toDate){
+
+        $formDate = date_format(date_create($formDate),"d-m-Y");
+        $toDate = date_format(date_create($toDate),"d-m-Y");
+
+        $expensesInRange = Expense::select(DB::raw('sum(exp_amount) as total_expense'), 'expenses.*')            ->whereBetween('date', [$formDate, $toDate])
+                        ->get();
+        return $expensesInRange;
+
         return response()->json([
-            "expenses"=>$expenses,'status'=>200
+            "expensesInRange"=>$expensesInRange,'status'=>200
         ]);
     }
 
-    public function getTodayExpense(){
-        $date = date("d/m/yy");
-        $todayExpense = DB::table('expenses')
-            ->where('date','=',$date)
-            ->get();
-        return response()->json([
-            "todayExpense"=>$todayExpense,'status'=>200
-        ]);
-    }
-
-    public function getMonthExpense($month){
-        $year = date("Y");
-        $monthExpense = DB::table('expenses')
-            ->where('month','=',$month)
-            ->where('year','=',$year)
-            ->get();
-        return response()->json([
-            "monthExpense"=>$monthExpense,'status'=>200
-        ]);
-    }
-
-    public function getYearExpense(){
-        $year = date("Y");
-        $yearExpense = DB::table('expenses')
-            ->where('year','=',$year)
-            ->get();
-        return response()->json([
-            "yearExpense"=>$yearExpense,'status'=>200
-        ]);
-    }
+    // public function getYearExpense(){
+    //     $year = date("Y");
+    //     $yearExpense = DB::table('expenses')
+    //         ->where('year','=',$year)
+    //         ->get();
+    //     return response()->json([
+    //         "yearExpense"=>$yearExpense,'status'=>200
+    //     ]);
+    // }
 
     public function delete($id){
         $expense = Expense::findOrFail($id);

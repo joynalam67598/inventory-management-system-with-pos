@@ -73,12 +73,13 @@ use App\Http\Controllers\API\AttendanceController;
 
     //Expense
     Route::post("expense/add",[ExpenseController::class,"saveExpense"])->name("addExpense");
-    Route::get("expenses",[ExpenseController::class,"getExpenses"])->name("Expenses");
+    // Route::get("expenses",[ExpenseController::class,"getExpenses"])->name("Expenses");
     Route::get("expense/edit/{id}",[ExpenseController::class,"getExpense"])->name("Expenses");
     Route::post("expense/update",[ExpenseController::class,"updateExpense"])->name("updateExpense");
-    Route::get("expense/today",[ExpenseController::class,"getTodayExpense"])->name("todayExpense");
-    Route::get("expense/month/{month}",[ExpenseController::class,"getMonthExpense"])->name("monthlyExpense");
-    Route::get("expense/year",[ExpenseController::class,"getYearExpense"])->name("yearlyExpense");
+    Route::get("expenses/{formDate}/{toDate}",[ExpenseController::class,"getExpenseInRange"])->name("expenseInRange");
+    // Route::get("expense/today",[ExpenseController::class,"getTodayExpense"])->name("todayExpense");
+    // Route::get("expense/month/{month}",[ExpenseController::class,"getMonthExpense"])->name("monthlyExpense");
+    // Route::get("expense/year",[ExpenseController::class,"getYearExpense"])->name("yearlyExpense");
 
     //Attendance
     Route::post("attendance/add",[AttendanceController::class,"saveAttendance"])->name("addAttendance");
