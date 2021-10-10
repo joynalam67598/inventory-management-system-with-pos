@@ -58,41 +58,57 @@ export default function ManageSupplier() {
 
     useEffect(() => {
         async function fetchExpenses() {
-            if (counter > 1000) setCounter(0)
-            try {
-                setLoading(true)
-                const res = await Axios.get(
-                    `http://localhost:8000/api/expenses/${month}`
-                )
-                if (res.data.status === 200) {
-                    setExpenses(res.data.expenses)
-                    setLoading(false)
-                }
-            } catch (err) {
-                console.log(err.response.data.errors)
-            }
-        }
-        fetchExpenses()
-    }, [month])
+            if (expenseDate[0] && expenseDate[1]) {
+                const formDate =
+                    expenseDate[0].getDate() +
+                    '-' +
+                    (expenseDate[0].getMonth() + 1) +
+                    '-' +
+                    expenseDate[0].getFullYear()
+                const toDate =
+                    expenseDate[1].getDate() +
+                    '-' +
+                    (expenseDate[1].getMonth() + 1) +
+                    '-' +
+                    expenseDate[1].getFullYear()
 
-    useEffect(() => {
-        async function fetchExpenses() {
-            if (counter > 1000) setCounter(0)
-            try {
-                setLoading(true)
-                const res = await Axios.get(
-                    'http://localhost:8000/api/expenses'
-                )
-                if (res.data.status === 200) {
-                    setExpenses(res.data.expenses)
-                    setLoading(false)
+                console.log(formDate, toDate)
+                try {
+                    setLoading(true)
+                    const res = await Axios.get(
+                        `http://localhost:8000/api/expenses/${formDate}/${toDate}`
+                    )
+                    console.log(res)
+                    if (res.data.status === 200) {
+                        setExpenses(res.data.expensesInRange)
+                        setLoading(false)
+                    }
+                } catch (err) {
+                    console.log(err.response.data.errors)
                 }
-            } catch (err) {
-                console.log(err.response.data.errors)
             }
         }
         fetchExpenses()
-    }, [counter])
+    }, [expenseDate])
+
+    // useEffect(() => {
+    //     async function fetchExpenses() {
+    //         if (counter > 1000) setCounter(0)
+    //         try {
+    //             setLoading(true)
+    //             const res = await Axios.get(
+    //                 'http://localhost:8000/api/expenses'
+    //             )
+    //             if (res.data.status === 200) {
+    //                 setExpenses(res.data.expenses)
+    //                 setLoading(false)
+    //             }
+    //         } catch (err) {
+    //             console.log(err.response.data.errors)
+    //         }
+    //     }
+    //     fetchExpenses()
+    // }, [counter])
 
     const deleteExpense = async (expense) => {
         try {
@@ -118,21 +134,30 @@ export default function ManageSupplier() {
                     ]}
                 />
                 <Card>
-                    <DatePicker
-                        selectsRange={true}
-                        todayButton="Today"
-                        startDate={startDate}
-                        endDate={endDate}
-                        showMonthDropdown
-                        showYearDropdown
-                        dropdownMode="select"
-                        maxDate={new Date()}
-                        onChange={(date) => {
-                            setExpenseDate(date)
-                            console.log(date)
+                    <div
+                        style={{
+                            textAlign: 'center',
+                            borderRadius: '10px',
+                            boxShadow: '0 6px 12px rgba(27, 37, 86, 0.16)',
+                            overflow: 'hidden',
                         }}
-                        withPortal
-                    />
+                    >
+                        <DatePicker
+                            maxWidth="500px"
+                            selectsRange={true}
+                            todayButton="Today"
+                            startDate={startDate}
+                            endDate={endDate}
+                            showMonthDropdown
+                            showYearDropdown
+                            dropdownMode="select"
+                            maxDate={new Date()}
+                            onChange={(date) => {
+                                setExpenseDate(date)
+                            }}
+                            withPortal
+                        />
+                    </div>
                     <CardContent
                         style={{
                             margin: '0 auto',
@@ -180,10 +205,11 @@ export default function ManageSupplier() {
                                             style={{
                                                 padding: '7px 5px',
                                                 fontSize: '1.1rem',
-                                                borderRadius: '12px',
                                                 backgroundColor: '#910cc2',
+                                                borderRadius: '10px',
                                                 boxShadow:
-                                                    '2px 4px 8px 2px rgba(0, 0, 0, 0.2)',
+                                                    '0 6px 12px rgba(27, 37, 86, 0.16)',
+                                                overflow: 'hidden',
                                                 color: 'white',
                                             }}
                                             onClick={() =>
