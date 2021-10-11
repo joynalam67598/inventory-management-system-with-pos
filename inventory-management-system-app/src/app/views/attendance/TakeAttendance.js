@@ -91,8 +91,6 @@ export default function TakeAttendance() {
         )
         try {
             setLoading(true)
-            console.log(employeesAttendance)
-            console.log(data)
             const res = await Axios.post(
                 'http://localhost:8000/api/attendance/add',
                 data

@@ -9,6 +9,10 @@ const attendanceRoutes = [
         path: '/attendance/manage',
         component: React.lazy(() => import('./ManageAttendance')),
     },
+    {
+        path: '/attendance/edit',
+        component: React.lazy(() => import('./EditAttendance')),
+    },
 ]
 
 export default attendanceRoutes
