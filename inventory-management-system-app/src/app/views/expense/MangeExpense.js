@@ -8,6 +8,7 @@ import { Breadcrumb } from '../../components'
 
 export default function ManageSupplier() {
     const [expenses, setExpenses] = useState([])
+    const [total_expenses, setTotalExpenses] = useState(0)
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [counter, setCounter] = useState(0)
@@ -71,8 +72,6 @@ export default function ManageSupplier() {
                     (expenseDate[1].getMonth() + 1) +
                     '-' +
                     expenseDate[1].getFullYear()
-
-                console.log(formDate, toDate)
                 try {
                     setLoading(true)
                     const res = await Axios.get(
@@ -81,6 +80,7 @@ export default function ManageSupplier() {
                     console.log(res)
                     if (res.data.status === 200) {
                         setExpenses(res.data.expensesInRange)
+                        setTotalExpenses(res.data.total_expense)
                         setLoading(false)
                     }
                 } catch (err) {
@@ -90,25 +90,6 @@ export default function ManageSupplier() {
         }
         fetchExpenses()
     }, [expenseDate])
-
-    // useEffect(() => {
-    //     async function fetchExpenses() {
-    //         if (counter > 1000) setCounter(0)
-    //         try {
-    //             setLoading(true)
-    //             const res = await Axios.get(
-    //                 'http://localhost:8000/api/expenses'
-    //             )
-    //             if (res.data.status === 200) {
-    //                 setExpenses(res.data.expenses)
-    //                 setLoading(false)
-    //             }
-    //         } catch (err) {
-    //             console.log(err.response.data.errors)
-    //         }
-    //     }
-    //     fetchExpenses()
-    // }, [counter])
 
     const deleteExpense = async (expense) => {
         try {
@@ -134,55 +115,74 @@ export default function ManageSupplier() {
                     ]}
                 />
                 <Card>
-                    <div
-                        style={{
-                            textAlign: 'center',
-                            borderRadius: '10px',
-                            boxShadow: '0 6px 12px rgba(27, 37, 86, 0.16)',
-                            overflow: 'hidden',
-                        }}
-                    >
-                        <DatePicker
-                            maxWidth="500px"
-                            selectsRange={true}
-                            todayButton="Today"
-                            startDate={startDate}
-                            endDate={endDate}
-                            showMonthDropdown
-                            showYearDropdown
-                            dropdownMode="select"
-                            maxDate={new Date()}
-                            onChange={(date) => {
-                                setExpenseDate(date)
-                            }}
-                            withPortal
-                        />
-                    </div>
                     <CardContent
                         style={{
                             margin: '0 auto',
                             padding: '25px 35px',
                         }}
                     >
+                        <div
+                            style={{
+                                border: '3px solid #212f52',
+                                borderRadius: '5px',
+                                boxShadow: '0 0 12px rgba(27, 37, 0, 0.16)',
+                                overflow: 'hidden',
+                                margin: '6px 0 8px 0',
+                            }}
+                        >
+                            <div
+                                style={{
+                                    display: 'flex',
+                                    float: 'left',
+                                    margin: '.7rem',
+                                }}
+                            >
+                                <h4
+                                    style={{
+                                        color: 'blue',
+                                        margin: '0 .5rem 0 0',
+                                    }}
+                                >
+                                    {'Date Range: '}
+                                </h4>
+                                <DatePicker
+                                    maxWidth="500px"
+                                    selectsRange={true}
+                                    todayButton="Today"
+                                    startDate={startDate}
+                                    endDate={endDate}
+                                    showMonthDropdown
+                                    showYearDropdown
+                                    dropdownMode="select"
+                                    maxDate={new Date()}
+                                    onChange={(date) => {
+                                        setExpenseDate(date)
+                                    }}
+                                    withPortal
+                                />
+                            </div>
+                            <div
+                                style={{
+                                    float: 'right',
+                                    margin: '.7rem',
+                                    textAlign: 'center',
+                                }}
+                            >
+                                <h4
+                                    style={{
+                                        color: 'red',
+                                        textShadow:
+                                            '0 6px 12px rgba(27, 37, 86, 0.16)',
+                                    }}
+                                >{`Total Expense: ${total_expenses}`}</h4>
+                            </div>
+                        </div>
                         <MaterialTable
                             style={{
                                 boxShadow: '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
                                 border: '3px solid #212f52',
                             }}
-                            title={
-                                'Expenses Table'
-                                //     (' +
-                                // new Date().toLocaleString('en-US', {
-                                //     day: '2-digit',
-                                // }) +
-                                // ' ' +
-                                // new Date().toLocaleString('en-US', {
-                                //     month: 'long',
-                                // }) +
-                                // ' ' +
-                                // new Date().getFullYear() +
-                                // ' )'
-                            }
+                            title={'Expenses Table'}
                             data={expenses}
                             columns={columns}
                             options={{

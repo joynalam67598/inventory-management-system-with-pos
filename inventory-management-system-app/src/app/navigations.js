@@ -41,12 +41,29 @@ export const navigations = [
             {
                 name: 'Add Employee',
                 path: '/employee/addEmployee',
-                iconText: 'S',
+                icon: 'add_box',
             },
             {
                 name: 'All Employee',
                 path: '/employee/manageEmployee',
-                iconText: 'S',
+                icon: 'table_chart',
+            },
+        ],
+    },
+
+    {
+        name: 'Supplier',
+        icon: 'add_shopping_cart',
+        children: [
+            {
+                name: 'Add Supplier',
+                path: '/supplier/addSupplier',
+                icon: 'add_box',
+            },
+            {
+                name: 'All Supplier',
+                path: '/supplier/manageSupplier',
+                icon: 'table_chart',
             },
         ],
     },
@@ -57,28 +74,12 @@ export const navigations = [
             {
                 name: 'Add Customer',
                 path: '/customer/addCustomer',
-                iconText: 'S',
+                icon: 'add_box',
             },
             {
                 name: 'All Customer',
                 path: '/customer/manageCustomer',
-                iconText: 'S',
-            },
-        ],
-    },
-    {
-        name: 'Supplier',
-        icon: 'add_shopping_cart',
-        children: [
-            {
-                name: 'Add Supplier',
-                path: '/supplier/addSupplier',
-                iconText: 'S',
-            },
-            {
-                name: 'All Supplier',
-                path: '/supplier/manageSupplier',
-                iconText: 'S',
+                icon: 'table_chart',
             },
         ],
     },
@@ -90,12 +91,12 @@ export const navigations = [
             {
                 name: 'Add Category',
                 path: '/category/addCategory',
-                iconText: 'T',
+                icon: 'add_box',
             },
             {
                 name: 'All Category',
                 path: '/category/manageCategory',
-                iconText: 'T',
+                icon: 'table_chart',
             },
         ],
     },
@@ -106,12 +107,12 @@ export const navigations = [
             {
                 name: 'Add Expense',
                 path: '/expense/addExpense',
-                iconText: 'T',
+                icon: 'add_box',
             },
             {
                 name: 'All Expense',
                 path: '/expense/manageExpense',
-                iconText: 'T',
+                icon: 'table_chart',
             },
         ],
     },
@@ -122,17 +123,33 @@ export const navigations = [
             {
                 name: 'Pay Advance Salary',
                 path: '/salary/advanced-salary/add',
-                iconText: 'T',
+                icon: 'add_box',
             },
             {
                 name: 'All Advanced Salary',
                 path: '/salary/advanced-salary/manage',
-                iconText: 'T',
+                icon: 'table_chart',
             },
             {
                 name: 'Pay Salary',
                 path: '/salary/manage',
                 iconText: 'T',
+            },
+        ],
+    },
+    {
+        name: 'Attendance',
+        icon: 'fingerprint',
+        children: [
+            {
+                name: 'Take Advance',
+                path: '/attendance/take',
+                icon: 'add_box',
+            },
+            {
+                name: 'Manage Attendance',
+                path: '/attendance/manage',
+                icon: 'table_chart',
             },
         ],
     },

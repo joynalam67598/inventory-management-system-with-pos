@@ -1,4 +1,11 @@
-import { Button, Card, CardContent, Grid, TextField } from '@material-ui/core'
+import {
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    Grid,
+    TextField,
+} from '@material-ui/core'
 import axios from 'axios'
 import { useState } from 'react'
 import { Breadcrumb } from '../../components'
@@ -9,7 +16,6 @@ export default function AddCategory() {
     })
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
-
 
     const validate = (fieldValues = category) => {
         let errorMessage = { ...errors }
@@ -62,12 +68,28 @@ export default function AddCategory() {
                     ]}
                 />
             </div>
-            <Card>
+            <Card
+                style={{
+                    backgroundColor: '#212f52',
+                    maxWidth: '750px',
+                    margin: '0 auto',
+                    padding: '0 10px 10px',
+                    border: '5px solid',
+                }}
+            >
+                <CardHeader
+                    title="Add Category"
+                    style={{
+                        borderRadius: '10px',
+                        textAlign: 'center',
+                        color: 'white',
+                    }}
+                />
                 <CardContent
                     style={{
-                        maxWidth: '650px',
-                        margin: '0 auto',
-                        padding: '0 10px 10px',
+                        backgroundColor: '#fcfdff',
+                        borderRadius: '10px',
+                        textAlign: 'center',
                     }}
                 >
                     <form onSubmit={saveCategory}>
@@ -89,12 +111,18 @@ export default function AddCategory() {
                                     })}
                                 />
                             </Grid>
-                            <Grid item xs={12} className="text-right">
+                            <Grid item xs={12}>
                                 <Button
                                     disabled={loading}
                                     type="submit"
                                     variant="contained"
                                     color="secondary"
+                                    fullWidth
+                                    style={{
+                                        fontSize: '1.1rem',
+                                        marginTop: '2px',
+                                        fontWeight: 'bold',
+                                    }}
                                 >
                                     Save
                                 </Button>
