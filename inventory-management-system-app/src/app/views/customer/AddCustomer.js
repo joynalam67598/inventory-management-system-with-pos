@@ -4,7 +4,7 @@ import {
     CardContent,
     CardHeader,
     Grid,
-    TextField,
+    TextField
 } from '@material-ui/core'
 import Axios from 'axios'
 import { useState } from 'react'
@@ -109,10 +109,11 @@ export default function AddCustomer() {
         Object.keys(customer).forEach((key) =>
             customerData.append(key, customer[key])
         )
+        console.log(customer)
+        console.log(customerData)
         if (validate()) {
             try {
                 setLoading(true)
-                console.log(customer)
                 const res = await Axios.post(
                     'http://localhost:8000/api/customer/add',
                     customerData
@@ -165,7 +166,7 @@ export default function AddCustomer() {
                 >
                     <form onSubmit={saveCustomer} encType="multipart/form-data">
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -182,6 +183,8 @@ export default function AddCustomer() {
                                         helperText: errors['name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="email"
                                     id="outlined-basic"
@@ -198,6 +201,8 @@ export default function AddCustomer() {
                                         helperText: errors['email'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
@@ -214,6 +219,8 @@ export default function AddCustomer() {
                                         helperText: errors['phone'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -230,6 +237,8 @@ export default function AddCustomer() {
                                         helperText: errors['city'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="textarea"
                                     rows="4"
@@ -247,6 +256,8 @@ export default function AddCustomer() {
                                         helperText: errors['address'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -263,6 +274,8 @@ export default function AddCustomer() {
                                         helperText: errors['shop_name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -279,6 +292,8 @@ export default function AddCustomer() {
                                         helperText: errors['bank_name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -295,6 +310,8 @@ export default function AddCustomer() {
                                         helperText: errors['account_holder'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     rows="4"
@@ -311,6 +328,8 @@ export default function AddCustomer() {
                                         helperText: errors['account_number'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -327,6 +346,8 @@ export default function AddCustomer() {
                                         helperText: errors['bank_branch'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="file"
                                     accept="image/*"
@@ -342,7 +363,7 @@ export default function AddCustomer() {
                                     })}
                                 />
                             </Grid>
-                            <Grid item xs={12} className="text-right">
+                            <Grid item xs={6} className="text-right">
                                 <Button
                                     disabled={loading}
                                     type="submit"
@@ -350,8 +371,9 @@ export default function AddCustomer() {
                                     color="secondary"
                                     fullWidth
                                     style={{
-                                        fontSize: '1.1rem',
-                                        marginTop: '2px',
+                                        fontSize: '1.6rem',
+                                        marginTop: '5px',
+                                        padding: '5px',
                                         fontWeight: 'bold',
                                     }}
                                 >

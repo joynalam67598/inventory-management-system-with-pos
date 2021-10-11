@@ -75,12 +75,14 @@ class ExpenseController extends Controller
         $formDate = date_format(date_create($formDate),"d-m-Y");
         $toDate = date_format(date_create($toDate),"d-m-Y");
 
-        $expensesInRange = Expense::select(DB::raw('sum(exp_amount) as total_expense'), 'expenses.*')            ->whereBetween('date', [$formDate, $toDate])
+        $total_expense = Expense::whereBetween('date', [$formDate, $toDate])
+                        ->sum('exp_amount');
+
+        $expensesInRange = Expense::whereBetween('date', [$formDate, $toDate])
                         ->get();
-        return $expensesInRange;
 
         return response()->json([
-            "expensesInRange"=>$expensesInRange,'status'=>200
+            "expensesInRange"=>$expensesInRange,"total_expense"=>$total_expense,'status'=>200
         ]);
     }
 

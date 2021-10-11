@@ -147,7 +147,7 @@ export default function AddSupplier() {
             <Card
                 style={{
                     backgroundColor: '#212f52',
-                    maxWidth: '750px',
+                    // maxWidth: '900px',
                     margin: '0 auto',
                     padding: '0 10px 10px',
                     border: '5px solid',
@@ -171,7 +171,7 @@ export default function AddSupplier() {
                 >
                     <form onSubmit={saveSupplier} encType="multipart/form-data">
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -188,6 +188,8 @@ export default function AddSupplier() {
                                         helperText: errors['name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="email"
                                     id="outlined-basic"
@@ -204,6 +206,8 @@ export default function AddSupplier() {
                                         helperText: errors['email'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
@@ -220,14 +224,8 @@ export default function AddSupplier() {
                                         helperText: errors['phone'],
                                     })}
                                 />
-                                {/* <FormControl
-                                //     required
-                                //     fullWidth
-                                //     variant="outlined"
-                                // >
-                                //     <InputLabel htmlFor="supplierType">
-                                //         {'Supplier Type'}
-                                //     </InputLabel>*/}
+                            </Grid>
+                            <Grid item xs={6}>
                                 <Select
                                     native
                                     style={{
@@ -256,6 +254,8 @@ export default function AddSupplier() {
                                     </option>
                                     <option value="impoter">{'Impoter'}</option>
                                 </Select>
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -272,6 +272,8 @@ export default function AddSupplier() {
                                         helperText: errors['city'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="textarea"
                                     rows="4"
@@ -289,6 +291,8 @@ export default function AddSupplier() {
                                         helperText: errors['address'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -305,6 +309,8 @@ export default function AddSupplier() {
                                         helperText: errors['shop_name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -321,6 +327,8 @@ export default function AddSupplier() {
                                         helperText: errors['bank_name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -337,6 +345,8 @@ export default function AddSupplier() {
                                         helperText: errors['account_holder'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     rows="4"
@@ -353,6 +363,8 @@ export default function AddSupplier() {
                                         helperText: errors['account_number'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     rows="4"
@@ -369,6 +381,8 @@ export default function AddSupplier() {
                                         helperText: errors['branch_name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="file"
                                     accept="image/*"
@@ -397,7 +411,7 @@ export default function AddSupplier() {
                                         fontWeight: 'bold',
                                     }}
                                 >
-                                    Update
+                                    Save
                                 </Button>
                             </Grid>
                         </Grid>

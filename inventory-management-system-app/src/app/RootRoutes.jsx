@@ -1,12 +1,13 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import dashboardRoutes from './dashboard/DashboardRoutes'
+import attendanceRoutes from './views/attendance/AttendanceRoutes'
 import categoryRoutes from './views/category/CategoryRoutes'
 import customerRoutes from './views/customer/CustomerRoutes'
 import employeeRoutes from './views/employee/EmployeeRoutes'
+import expenseRoutes from './views/expense/ExpenseRoutes'
 import salaryRoutes from './views/salary/SalaryRoutes'
 import supplierRoutes from './views/supplier/SupplierRoutes'
-import expenseRoutes from './views/expense/ExpenseRoutes'
 
 const redirectRoute = [
     {
@@ -30,6 +31,7 @@ const routes = [
     ...supplierRoutes,
     ...salaryRoutes,
     ...expenseRoutes,
+    ...attendanceRoutes,
 
     ...redirectRoute,
     ...errorRoute,

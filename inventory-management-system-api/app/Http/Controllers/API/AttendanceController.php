@@ -11,28 +11,40 @@ use DB;
 class AttendanceController extends Controller
 {
 
-    public function saveAttendance(SaveAttendanceRequest $request){
+    public function saveAttendance(Request $request){
 
-        $edit_date = date('d/m/Y');
-        $edit_date =str_replace('/','-',$edit_date);
-        $attendance = new Attendance();
-        $attendance->employee_id = $request->employee_id;
-        $attendance->attendance = $request->attendance;
-        $attendance->att_date = date('d/m/Y');
-        $attendance->edit_date = $edit_date;
-        $attendance->att_month = date('F');
-        $attendance->att_year = date("Y");
-        $attendance->save();
+        $edit_date = date('d-m-Y');
+        $attendanceTaken = Attendance::where('att_date','=',$edit_date)->first();
 
-        return response()->json([
-            "message"=>"Attendance taken successfully!",200
-        ]);
+        if($attendanceTaken){
+            return response()->json([
+            "message"=>"Today attendance already taken!","status"=>400
+          ]);
+        }
+        else{
+
+           for($i=0;$i<count($request->all());$i++)
+            {
+                $attendance = new Attendance();
+                $attendance->employee_id = $request[$i][0];
+                $attendance->attendance =  $request[$i][1];
+                $attendance->att_date = date('d-m-Y');
+                $attendance->edit_date = $edit_date;
+                $attendance->att_month = date('F');
+                $attendance->att_year = date("Y");
+                $attendance->save();
+            }
+            
+            return response()->json([
+                "message"=>"Attendance taken sucessfully!","status"=>200
+            ]);
+        }
     }
     public function getAttendances(){
         $attendances = DB::table('attendances')
             ->select('edit_date')->groupBy('edit_date')->get();
         return response()->json([
-            'attendances'=>$attendances,200
+            'attendances'=>$attendances,"status"=>200
         ]);
     }
 
@@ -43,7 +55,7 @@ class AttendanceController extends Controller
             ->where('attendances.edit_date','=',$date)
             ->get();
         return response()->json([
-            'attendance'=>$attendance,200
+            'attendance'=>$attendance,"status"=>200
         ]);
     }
 

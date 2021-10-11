@@ -135,7 +135,7 @@ export default function AddEmployee() {
             <Card
                 style={{
                     backgroundColor: '#212f52',
-                    maxWidth: '750px',
+                    // maxWidth: '750px',
                     margin: '0 auto',
                     padding: '0 10px 10px',
                     border: '5px solid',
@@ -154,12 +154,12 @@ export default function AddEmployee() {
                     style={{
                         backgroundColor: '#fcfdff',
                         borderRadius: '10px',
-                        textAlign: 'center',
+                        // textAlign: 'center',
                     }}
                 >
                     <form onSubmit={saveEmployee} encType="multipart/form-data">
                         <Grid container spacing={2}>
-                            <Grid item xs={12}>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -176,6 +176,8 @@ export default function AddEmployee() {
                                         helperText: errors['name'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="email"
                                     id="outlined-basic"
@@ -192,6 +194,8 @@ export default function AddEmployee() {
                                         helperText: errors['email'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
@@ -208,6 +212,8 @@ export default function AddEmployee() {
                                         helperText: errors['nid_no'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
@@ -224,6 +230,8 @@ export default function AddEmployee() {
                                         helperText: errors['phone'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
@@ -240,6 +248,8 @@ export default function AddEmployee() {
                                         helperText: errors['salary'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="number"
                                     id="outlined-basic"
@@ -256,6 +266,8 @@ export default function AddEmployee() {
                                         helperText: errors['vacation'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="textarea"
                                     rows={4}
@@ -273,6 +285,8 @@ export default function AddEmployee() {
                                         helperText: errors['experience'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -289,6 +303,8 @@ export default function AddEmployee() {
                                         helperText: errors['city'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="textarea"
                                     rows="4"
@@ -306,6 +322,8 @@ export default function AddEmployee() {
                                         helperText: errors['address'],
                                     })}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
                                 <TextField
                                     type="file"
                                     accept="image/*"
@@ -322,22 +340,22 @@ export default function AddEmployee() {
                                     })}
                                 />
                             </Grid>
-                            <Grid item xs={12} className="text-right">
-                                <Button
-                                    disabled={loading}
-                                    type="submit"
-                                    variant="contained"
-                                    color="secondary"
-                                    fullWidth
-                                    style={{
-                                        fontSize: '1.1rem',
-                                        marginTop: '2px',
-                                        fontWeight: 'bold',
-                                    }}
-                                >
-                                    Save
-                                </Button>
-                            </Grid>
+                        </Grid>
+                        <Grid item xs={12} className="text-right">
+                            <Button
+                                disabled={loading}
+                                type="submit"
+                                variant="contained"
+                                color="secondary"
+                                fullWidth
+                                style={{
+                                    fontSize: '1.1rem',
+                                    marginTop: '2px',
+                                    fontWeight: 'bold',
+                                }}
+                            >
+                                Save
+                            </Button>
                         </Grid>
                     </form>
                 </CardContent>
