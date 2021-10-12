@@ -69,7 +69,7 @@ use App\Http\Controllers\API\AttendanceController;
     Route::get("product/edit/{id}",[ProductController::class,"getProduct"])->name("editProduct");
     Route::get("product/view/{id}",[ProductController::class,"getProduct"])->name("viewProduct");
     Route::post("product/update",[ProductController::class,"updateProduct"])->name("updateProduct");
-    Route::get("delete/product//{id}",[ProductController::class,"deleteProduct"])->name("deleteProduct");
+    Route::get("product/delete/{id}",[ProductController::class,"deleteProduct"])->name("deleteProduct");
 
     //Expense
     Route::post("expense/add",[ExpenseController::class,"saveExpense"])->name("addExpense");

@@ -27,7 +27,7 @@ class CustomerController extends Controller
         $imageUrl='';
         if($request->hasFile('photo'))
         {
-            $imageUrl = uploadCustomerImage($request);
+            $imageUrl = $this->uploadCustomerImage($request);
         }
         $customer = new Customer();
         $customer-> name = $request-> name;
@@ -62,11 +62,11 @@ class CustomerController extends Controller
     }
     public function updateCustomer(UpdateCustomerRequest $request){
 
-        $customer = Customer::findOrFail($request->id);
+        $customer = Customer::findOrFail($request->cust_id);
         if($request->hasFile('photo'))
         {
-            if($customer->photo) unlink($customer->photo);
-            $customer-> photo = uploadCustomerImage($request);
+            unlink($customer->photo);
+            $customer-> photo = $this->uploadCustomerImage($request);
         }
         $customer-> name = $request-> name;
         $customer-> email = $request-> email;
@@ -90,7 +90,7 @@ class CustomerController extends Controller
         $customer = Customer::findOrFail($id);
         if($customer->hasFile('photo'))
         {
-            if($customer->photo) unlink($customer->photo);
+            unlink($customer->photo);
         }
         return response()->json([
             "message"=>"Customer removed successfully!",

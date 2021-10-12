@@ -27,7 +27,7 @@ class ProductController extends Controller
 
     public function saveProduct(SaveProductRequest $request){
 
-//        $imageUrl  = $this->uploadProductImage($request);
+        $imageUrl  = $this->uploadProductImage($request);
         $product = new Product();
         $product->cat_id = $request->cat_id;
         $product->sup_id = $request->sup_id;
@@ -35,7 +35,7 @@ class ProductController extends Controller
         $product->product_code = $request->product_code;
         $product->product_garage = $request->product_garage;
         $product->product_route = $request->product_route;
-        $product->product_image = 'add later';
+        $product->product_image = $imageUrl;
         $product->buy_date = $request->buy_date;
         $product->expire_date = $request->expire_date;
         $product->buying_price = $request->buying_price;
@@ -43,7 +43,7 @@ class ProductController extends Controller
         $product->save();
         return response()->json([
             "message"=>"Product added successfully!",
-            200,
+            "status"=>200,
         ]);
 
     }
@@ -52,7 +52,7 @@ class ProductController extends Controller
         $products = Product::all();
         return response()->json([
             "products"=>$products,
-            200,
+            "status"=>200,
         ]);
     }
 
@@ -66,7 +66,7 @@ class ProductController extends Controller
             ->first();
         return response()->json([
             "product"=>$product,
-            200,
+            "status"=>200,
         ]);
     }
 
@@ -88,7 +88,7 @@ class ProductController extends Controller
 
         return response()->json([
             "message"=>"Product data updated successfully!",
-            200,
+            "status"=>200,
         ]);
 
     }
@@ -98,7 +98,7 @@ class ProductController extends Controller
         $product->delete();
         return response()->json([
             "message"=>"Product removed successfully!",
-            200,
+            "status"=>200,
         ]);
 
 

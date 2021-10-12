@@ -4,48 +4,100 @@ import MaterialTable from 'material-table'
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Breadcrumb } from '../../components'
-
-export default function ManageAttendance() {
-    const [attendances, setAttendances] = useState([])
+export default function ManageProduct() {
+    const [products, setProducts] = useState([])
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [counter, setCounter] = useState(0)
-    console.log(attendances)
 
     const columns = [
         {
-            title: 'Attendace Date',
-            field: 'att_date',
+            title: 'Product ID',
+            field: 'product_code',
+            editable: 'never',
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',
             },
         },
+        {
+            title: 'Product Name',
+            field: 'product_name',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
+            title: 'Selling Price',
+            field: 'selling_price',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
+            title: 'Godown',
+            field: 'product_garage',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
+            title: 'Route',
+            field: 'product_route',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
+            title: 'Image',
+            field: 'photo',
+            render: (item) => (
+                <img
+                    src={
+                        item.product_image
+                            ? `http://localhost:8000/${item.product_image}`
+                            : `http://localhost:8000/dummy.png`
+                    }
+                    alt=""
+                    border="3"
+                    height="70"
+                    width="80"
+                    border="0"
+                />
+            ),
+            cellStyle: {
+                textAlign: 'center',
+            },
+        },
     ]
 
     useEffect(() => {
-        async function fetchAttendances() {
+        async function fetchEmployees() {
             if (counter > 1000) setCounter(0)
             try {
                 setLoading(true)
                 const res = await Axios.get(
-                    'http://localhost:8000/api/attendances'
+                    'http://localhost:8000/api/products'
                 )
                 if (res.data.status === 200) {
-                    setAttendances(res.data.attendances)
+                    setProducts(res.data.products)
                     setLoading(false)
                 }
             } catch (err) {
                 console.log(err.response.data.errors)
             }
         }
-        fetchAttendances()
+        fetchEmployees()
     }, [counter])
 
-    const deleteAttendance = async (attendance) => {
+    const deleteProduct = async (product) => {
         try {
             const res = await Axios.get(
-                `http://localhost:8000/api/attendance/delete/${attendance.id}`
+                `http://localhost:8000/api/product/delete/${product.id}`
             )
             if (res.data.status === 200) {
                 console.log(res.data.message)
@@ -61,14 +113,13 @@ export default function ManageAttendance() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        { name: 'Attendance', path: '/attendance/manage' },
-                        { name: 'Manage Attendance' },
+                        { name: 'Product', path: '/manageProduct' },
+                        { name: 'Manage Product' },
                     ]}
                 />
                 <Card>
                     <CardContent
                         style={{
-                            maxWidth: '900px',
                             margin: '0 auto',
                             padding: '25px 35px',
                         }}
@@ -81,8 +132,8 @@ export default function ManageAttendance() {
                                         '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
                                     border: '3px solid #212f52',
                                 }}
-                                title="Attendance Table"
-                                data={attendances}
+                                title="Products Table"
+                                data={products}
                                 columns={columns}
                                 options={{
                                     exportButton: true,
@@ -109,12 +160,11 @@ export default function ManageAttendance() {
                                                 }}
                                                 onClick={() =>
                                                     history.push({
-                                                        pathname:
-                                                            '/attendance/take',
+                                                        pathname: '/addProduct',
                                                     })
                                                 }
                                             >
-                                                Take Attendance
+                                                Add Product
                                                 <span>
                                                     <i
                                                         className="material-ui-icon"
@@ -129,14 +179,14 @@ export default function ManageAttendance() {
                                     {
                                         icon: 'edit',
                                         color: 'secondary',
-                                        tooltip: 'Edit Attendance',
+                                        tooltip: 'Edit Employee',
                                         onClick: (e, rowData) => {
-                                            const attendanceDate =
-                                                rowData.att_date
+                                            const oldProductData = rowData
+
                                             history.push({
-                                                pathname: '/attendance/edit',
+                                                pathname: '/editProduct',
                                                 state: {
-                                                    attendanceDate,
+                                                    oldProductData,
                                                 },
                                             })
                                         },
@@ -147,7 +197,8 @@ export default function ManageAttendance() {
                                     onRowDelete: (oldData) =>
                                         new Promise((resolve, reject) => {
                                             setTimeout(() => {
-                                                deleteAttendance(oldData)
+                                                console.log(oldData)
+                                                deleteProduct(oldData)
                                                 setCounter(
                                                     (prevCounter) =>
                                                         prevCounter + 1

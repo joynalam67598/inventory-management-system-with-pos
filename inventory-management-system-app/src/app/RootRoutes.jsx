@@ -6,6 +6,7 @@ import categoryRoutes from './views/category/CategoryRoutes'
 import customerRoutes from './views/customer/CustomerRoutes'
 import employeeRoutes from './views/employee/EmployeeRoutes'
 import expenseRoutes from './views/expense/ExpenseRoutes'
+import productRotues from './views/product/ProductRoutes'
 import salaryRoutes from './views/salary/SalaryRoutes'
 import supplierRoutes from './views/supplier/SupplierRoutes'
 
@@ -32,6 +33,7 @@ const routes = [
     ...salaryRoutes,
     ...expenseRoutes,
     ...attendanceRoutes,
+    ...productRotues,
 
     ...redirectRoute,
     ...errorRoute,

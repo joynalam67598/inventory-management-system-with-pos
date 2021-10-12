@@ -16,7 +16,6 @@ class Setting extends Model
         'company_city',
         'company_country',
         'company_postal_code',
-        
         'company_address',
     ]
 }
