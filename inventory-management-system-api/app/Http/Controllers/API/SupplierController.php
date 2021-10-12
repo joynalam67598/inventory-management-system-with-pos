@@ -27,7 +27,7 @@ class SupplierController extends Controller
         $imageUrl='';
         if($request->hasFile('photo'))
         {
-            $imageUrl = uploadSupplierImage($request);
+            $imageUrl = $this->uploadSupplierImage($request);
         }
         $supplier = new Supplier();
         $supplier-> name = $request-> name;
@@ -67,7 +67,7 @@ class SupplierController extends Controller
         if($request->hasFile('photo'))
         {
             if($supplier->photo) unlink($supplier->photo);
-            $supplier-> photo = uploadCustomerImage($request);
+            $supplier-> photo = $this->uploadCustomerImage($request);
         }
         $supplier-> name = $request-> name;
         $supplier-> email = $request-> email;

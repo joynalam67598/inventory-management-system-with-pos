@@ -1,8 +1,6 @@
 import {
     Button,
-    Card,
     CardContent,
-    CardHeader,
     FormControlLabel,
     Grid,
     Radio,
@@ -10,13 +8,16 @@ import {
     Table,
     TableBody,
     TableCell,
+    TableHead,
     TableRow,
 } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 import Axios from 'axios'
+import clsx from 'clsx'
 import _ from 'lodash'
 import { useEffect, useReducer, useState } from 'react'
 import { useHistory } from 'react-router'
-import { Breadcrumb } from '../../components'
+import { Breadcrumb, SimpleCard } from '../../components'
 
 const initialState = null
 
@@ -40,12 +41,31 @@ const reducer = (state, action) => {
     }
 }
 
+const useStyles = makeStyles(({ palette, ...theme }) => ({
+    attendanceTable: {
+        '& small': {
+            height: 15,
+            width: 50,
+            borderRadius: 500,
+            boxShadow:
+                '0 0 2px 0 rgba(0, 0, 0, 0.12), 0 2px 2px 0 rgba(0, 0, 0, 0.24)',
+        },
+        '& td': {
+            borderBottom: 'none',
+        },
+        '& td:first-child': {
+            paddingLeft: '16px !important',
+        },
+    },
+}))
+
 export default function TakeAttendance() {
     const [employeesAttendance, dispatch] = useReducer(reducer, initialState)
     const [employees, setEmployees] = useState([])
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
     const history = useHistory()
+    const classes = useStyles()
 
     useEffect(() => {
         async function fetchEmployees() {
@@ -117,55 +137,69 @@ export default function TakeAttendance() {
                     ]}
                 />
             </div>
-            <Card
-                style={{
-                    backgroundColor: '#212f52',
-                    maxWidth: '750px',
-                    margin: '0 auto',
-                    padding: '0 5px 5px',
-                    border: '5px solid',
-                }}
-            >
-                <CardHeader
-                    title="Take Attendance"
-                    style={{
-                        borderRadius: '10px',
-                        textAlign: 'center',
-                        color: 'white',
-                    }}
-                />
-
+            <SimpleCard>
                 <CardContent
                     style={{
-                        backgroundColor: '#fcfdff',
+                        backgroundColor: '#191a38',
                         borderRadius: '10px',
                         textAlign: 'center',
+                        border: '3px solid #425df5',
                     }}
                 >
+                    <div className="flex justify-between items-center px-6 mb-3">
+                        <span className="card-title">Employee Attendance</span>
+                        <h4>{new Date().toLocaleString('en-US')}</h4>
+                    </div>
                     <form onSubmit={saveAttendance}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Table
-                                    style={{
-                                        border: '1px solid',
-                                        tableLayout: 'auto',
-                                    }}
+                                    className={clsx(
+                                        'whitespace-pre min-w-400',
+                                        classes.attendanceTable
+                                    )}
                                 >
-                                    <TableBody>
+                                    <TableHead>
                                         <TableRow>
-                                            <TableCell>Employee Name</TableCell>
-                                            <TableCell>
+                                            <TableCell
+                                                className="px-0 capitalize"
+                                                colSpan={2}
+                                                align="left"
+                                            >
+                                                Employee Name
+                                            </TableCell>
+                                            <TableCell
+                                                className="px-0 capitalize"
+                                                colSpan={2}
+                                                align="center"
+                                            >
                                                 Employee Image
                                             </TableCell>
-                                            <TableCell>Status</TableCell>
+                                            <TableCell
+                                                className="px-0 capitalize"
+                                                colSpan={2}
+                                                align="left"
+                                            >
+                                                Status
+                                            </TableCell>
                                         </TableRow>
+                                    </TableHead>
+                                    <TableBody>
                                         {!loading &&
-                                            employees.map((employee) => (
-                                                <TableRow>
-                                                    <TableCell>
+                                            employees.map((employee, index) => (
+                                                <TableRow key={index} hover>
+                                                    <TableCell
+                                                        className="px-0 capitalize"
+                                                        colSpan={2}
+                                                        align="left"
+                                                    >
                                                         {employee.name}
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell
+                                                        className="px-0 capitalize"
+                                                        colSpan={2}
+                                                        align="center"
+                                                    >
                                                         <img
                                                             src={
                                                                 employee[
@@ -178,7 +212,11 @@ export default function TakeAttendance() {
                                                             height="90px"
                                                         />
                                                     </TableCell>
-                                                    <TableCell>
+                                                    <TableCell
+                                                        className="px-0 capitalize"
+                                                        colSpan={2}
+                                                        align="center"
+                                                    >
                                                         <RadioGroup
                                                             name={employee.id}
                                                             defaultValue={
@@ -242,7 +280,7 @@ export default function TakeAttendance() {
                         </Grid>
                     </form>
                 </CardContent>
-            </Card>
+            </SimpleCard>
         </div>
     )
 }

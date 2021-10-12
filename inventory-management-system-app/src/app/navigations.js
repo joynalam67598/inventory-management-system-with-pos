@@ -10,7 +10,7 @@ export const navigations = [
         icon: 'receipt',
     },
     {
-        label: 'Pages',
+        label: '----------------------Pages----------------------',
         type: 'label',
     },
     // {
@@ -39,6 +39,39 @@ export const navigations = [
     //         },
     //     ],
     // },
+
+    {
+        name: 'Category',
+        icon: 'category',
+        children: [
+            {
+                name: 'Add Category',
+                path: '/category/addCategory',
+                iconText: 'CA',
+            },
+            {
+                name: 'All Category',
+                path: '/category/manageCategory',
+                iconText: 'CM',
+            },
+        ],
+    },
+    {
+        name: 'Product',
+        icon: 'widgets',
+        children: [
+            {
+                name: 'Add Product',
+                path: '/addProduct',
+                iconText: 'PA',
+            },
+            {
+                name: 'All Category',
+                path: '/manageProduct',
+                iconText: 'PL',
+            },
+        ],
+    },
     {
         name: 'Employee',
         icon: 'work',
@@ -46,12 +79,12 @@ export const navigations = [
             {
                 name: 'Add Employee',
                 path: '/employee/addEmployee',
-                icon: 'add_box',
+                iconText: 'EA',
             },
             {
                 name: 'All Employee',
                 path: '/employee/manageEmployee',
-                icon: 'table_chart',
+                iconText: 'EM',
             },
         ],
     },
@@ -63,12 +96,12 @@ export const navigations = [
             {
                 name: 'Add Supplier',
                 path: '/supplier/addSupplier',
-                icon: 'add_box',
+                iconText: 'SA',
             },
             {
                 name: 'All Supplier',
                 path: '/supplier/manageSupplier',
-                icon: 'table_chart',
+                iconText: 'SM',
             },
         ],
     },
@@ -79,32 +112,16 @@ export const navigations = [
             {
                 name: 'Add Customer',
                 path: '/customer/addCustomer',
-                icon: 'add_box',
+                iconText: 'CA',
             },
             {
                 name: 'All Customer',
                 path: '/customer/manageCustomer',
-                icon: 'table_chart',
+                iconText: 'CM',
             },
         ],
     },
 
-    {
-        name: 'Category',
-        icon: 'category',
-        children: [
-            {
-                name: 'Add Category',
-                path: '/category/addCategory',
-                icon: 'add_box',
-            },
-            {
-                name: 'All Category',
-                path: '/category/manageCategory',
-                icon: 'table_chart',
-            },
-        ],
-    },
     {
         name: 'Expense',
         icon: 'event_note',
@@ -112,12 +129,12 @@ export const navigations = [
             {
                 name: 'Add Expense',
                 path: '/expense/addExpense',
-                icon: 'add_box',
+                iconText: 'EA',
             },
             {
                 name: 'All Expense',
                 path: '/expense/manageExpense',
-                icon: 'table_chart',
+                iconText: 'EM',
             },
         ],
     },
@@ -128,17 +145,17 @@ export const navigations = [
             {
                 name: 'Pay Advance Salary',
                 path: '/salary/advanced-salary/add',
-                icon: 'add_box',
+                iconText: 'ASP',
             },
             {
                 name: 'All Advanced Salary',
                 path: '/salary/advanced-salary/manage',
-                icon: 'table_chart',
+                iconText: 'SM',
             },
             {
                 name: 'Pay Salary',
                 path: '/salary/manage',
-                iconText: 'T',
+                iconText: 'SP',
             },
         ],
     },
@@ -149,12 +166,12 @@ export const navigations = [
             {
                 name: 'Take Advance',
                 path: '/attendance/take',
-                icon: 'add_box',
+                iconText: 'AA',
             },
             {
                 name: 'Manage Attendance',
                 path: '/attendance/manage',
-                icon: 'table_chart',
+                iconText: 'AM',
             },
         ],
     },
@@ -165,12 +182,12 @@ export const navigations = [
             {
                 name: 'Take Advance',
                 path: '/attendance/take',
-                icon: 'add_box',
+                iconText: 'AA',
             },
             {
                 name: 'Manage Attendance',
                 path: '/attendance/manage',
-                icon: 'table_chart',
+                iconText: 'AM',
             },
         ],
     },

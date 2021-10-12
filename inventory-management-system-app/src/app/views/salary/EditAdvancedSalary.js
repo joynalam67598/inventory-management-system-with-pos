@@ -112,7 +112,7 @@ export default function EditAdvancedSalary() {
 
                 <CardContent
                     style={{
-                        backgroundColor: '#fcfdff',
+                        backgroundColor: '#191a38',
                         borderRadius: '10px',
                         textAlign: 'center',
                     }}
