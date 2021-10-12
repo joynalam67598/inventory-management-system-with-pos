@@ -154,6 +154,9 @@ export default function TakeAttendance() {
                                     <TableBody>
                                         <TableRow>
                                             <TableCell>Employee Name</TableCell>
+                                            <TableCell>
+                                                Employee Image
+                                            </TableCell>
                                             <TableCell>Status</TableCell>
                                         </TableRow>
                                         {!loading &&
@@ -161,6 +164,19 @@ export default function TakeAttendance() {
                                                 <TableRow>
                                                     <TableCell>
                                                         {employee.name}
+                                                    </TableCell>
+                                                    <TableCell>
+                                                        <img
+                                                            src={
+                                                                employee[
+                                                                    'photo'
+                                                                ]
+                                                                    ? `http://localhost:8000/${employee['photo']}`
+                                                                    : `http://localhost:8000/dummy.png`
+                                                            }
+                                                            width="100px"
+                                                            height="90px"
+                                                        />
                                                     </TableCell>
                                                     <TableCell>
                                                         <RadioGroup

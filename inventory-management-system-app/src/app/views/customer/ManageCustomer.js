@@ -123,7 +123,7 @@ export default function ManageCustomer() {
                                     textAlign: 'center',
                                     boxShadow:
                                         '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
-                                    border: '3px solid #212f52',
+                                    border: '1px solid #425df5',
                                 }}
                                 title="Customer Table"
                                 data={customers}
@@ -132,7 +132,7 @@ export default function ManageCustomer() {
                                     exportButton: true,
                                     actionsColumnIndex: -1,
                                     headerStyle: {
-                                        backgroundColor: '#2abdf7',
+                                        backgroundColor: '#425df5',
                                         color: 'white',
                                         textAlign: 'center',
                                         fontSize: '1.15rem',

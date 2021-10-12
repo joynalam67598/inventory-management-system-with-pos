@@ -16,7 +16,7 @@ class ProductController extends Controller
     protected function uploadProductImage($request){
         $productImage = $request->file('product_image');
         $imageType = $productImage->getClientOriginalExtension();
-        $imageName = rand(100,100000).$request->name.'.'.$imageType;
+        $imageName = rand(100,100000).$request->product_name.'.'.$imageType;
         $directory = 'inventory/product-images/';
         $imageUrl = $directory.$imageName;
         Image::make($productImage)->save($imageUrl);

@@ -5,6 +5,11 @@ export const navigations = [
         icon: 'dashboard',
     },
     {
+        name: 'POS',
+        path: '/dashboard',
+        icon: 'receipt',
+    },
+    {
         label: 'Pages',
         type: 'label',
     },
@@ -140,6 +145,22 @@ export const navigations = [
     {
         name: 'Attendance',
         icon: 'fingerprint',
+        children: [
+            {
+                name: 'Take Advance',
+                path: '/attendance/take',
+                icon: 'add_box',
+            },
+            {
+                name: 'Manage Attendance',
+                path: '/attendance/manage',
+                icon: 'table_chart',
+            },
+        ],
+    },
+    {
+        name: 'Sales Report',
+        icon: 'assessment',
         children: [
             {
                 name: 'Take Advance',

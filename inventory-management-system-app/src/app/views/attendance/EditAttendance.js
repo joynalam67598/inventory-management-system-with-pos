@@ -170,6 +170,19 @@ export default function EditAttendance() {
                                                         {employee.name}
                                                     </TableCell>
                                                     <TableCell>
+                                                        <img
+                                                            src={
+                                                                employee[
+                                                                    'photo'
+                                                                ]
+                                                                    ? `http://localhost:8000/${employee['photo']}`
+                                                                    : `http://localhost:8000/dummy.png`
+                                                            }
+                                                            width="100px"
+                                                            height="90px"
+                                                        />
+                                                    </TableCell>
+                                                    <TableCell>
                                                         <RadioGroup
                                                             name={
                                                                 employee.employee_id
