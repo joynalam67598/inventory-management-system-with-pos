@@ -52,7 +52,7 @@ class AttendanceController extends Controller
         $employees = DB::table('attendances')
             ->join('employees','employees.id','=','attendances.employee_id')
             ->select('attendances.*','employees.name','employees.photo')
-            ->where('attendances.edit_date','=',$date)
+            ->where('attendances.att_date','=',$date)
             ->get();
         return response()->json([
             'employees'=>$employees,"status"=>200

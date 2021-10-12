@@ -1,6 +1,5 @@
 import {
     Button,
-    Card,
     CardContent,
     CardHeader,
     Grid,
@@ -8,7 +7,7 @@ import {
 } from '@material-ui/core'
 import axios from 'axios'
 import { useState } from 'react'
-import { Breadcrumb } from '../../components'
+import { Breadcrumb, SimpleCard } from '../../components'
 
 export default function AddCategory() {
     const [category, SetCategory] = useState({
@@ -68,30 +67,23 @@ export default function AddCategory() {
                     ]}
                 />
             </div>
-            <Card
-                style={{
-                    backgroundColor: '#212f52',
-                    maxWidth: '750px',
-                    margin: '0 auto',
-                    padding: '0 10px 10px',
-                    border: '5px solid',
-                }}
-            >
-                <CardHeader
-                    title="Add Category"
-                    style={{
-                        borderRadius: '10px',
-                        textAlign: 'center',
-                        color: 'white',
-                    }}
-                />
+            <SimpleCard>
                 <CardContent
                     style={{
-                        backgroundColor: '#fcfdff',
+                        backgroundColor: '#191a38',
                         borderRadius: '10px',
                         textAlign: 'center',
+                        border: '2px solid #425df5',
                     }}
                 >
+                    <CardHeader
+                        title="Add Category"
+                        style={{
+                            borderRadius: '10px',
+                            textAlign: 'center',
+                            color: 'white',
+                        }}
+                    />
                     <form onSubmit={saveCategory}>
                         <Grid container spacing={1}>
                             <Grid item xs={12}>
@@ -130,7 +122,7 @@ export default function AddCategory() {
                         </Grid>
                     </form>
                 </CardContent>
-            </Card>
+            </SimpleCard>
         </div>
     )
 }

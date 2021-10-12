@@ -1,7 +1,7 @@
-import React from 'react'
-import ModifiedAreaChart from './ModifiedAreaChart'
 import { Card, Icon } from '@material-ui/core'
 import { useTheme } from '@material-ui/core/styles'
+import React from 'react'
+import ModifiedAreaChart from './ModifiedAreaChart'
 
 const FollowerCard2 = () => {
     const { palette } = useTheme()

@@ -1,14 +1,13 @@
 import {
     Button,
-    Card,
     CardContent,
     CardHeader,
     Grid,
-    TextField
+    TextField,
 } from '@material-ui/core'
 import Axios from 'axios'
 import { useState } from 'react'
-import { Breadcrumb } from '../../components'
+import { Breadcrumb, SimpleCard } from '../../components'
 
 export default function AddCustomer() {
     const [customer, setCustomer] = useState({
@@ -139,31 +138,23 @@ export default function AddCustomer() {
                     ]}
                 />
             </div>
-            <Card
-                style={{
-                    backgroundColor: '#212f52',
-                    maxWidth: '750px',
-                    margin: '0 auto',
-                    padding: '0 10px 10px',
-                    border: '5px solid',
-                }}
-            >
-                <CardHeader
-                    title="Add Customer"
-                    style={{
-                        borderRadius: '10px',
-                        textAlign: 'center',
-                        color: 'white',
-                    }}
-                />
-
+            <SimpleCard>
                 <CardContent
                     style={{
-                        backgroundColor: '#fcfdff',
+                        backgroundColor: '#191a38',
                         borderRadius: '10px',
                         textAlign: 'center',
+                        border: '3px solid #425df5',
                     }}
                 >
+                    <CardHeader
+                        title="Add Customer"
+                        style={{
+                            borderRadius: '10px',
+                            textAlign: 'center',
+                            color: '#5871fc',
+                        }}
+                    />
                     <form onSubmit={saveCustomer} encType="multipart/form-data">
                         <Grid container spacing={2}>
                             <Grid item xs={6}>
@@ -383,7 +374,7 @@ export default function AddCustomer() {
                         </Grid>
                     </form>
                 </CardContent>
-            </Card>
+            </SimpleCard>
         </div>
     )
 }
