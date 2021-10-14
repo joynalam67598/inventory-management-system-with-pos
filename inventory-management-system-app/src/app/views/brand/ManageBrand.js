@@ -1,20 +1,28 @@
-import { Avatar, Card, CardContent } from '@material-ui/core'
+import { Card, CardContent } from '@material-ui/core'
 import Axios from 'axios'
 import MaterialTable from 'material-table'
 import { useEffect, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Breadcrumb } from '../../components'
 
-export default function ManageAdvancedSalary() {
-    const [advanceSalaries, setAdvanceSalaries] = useState([])
+export default function ManageBrand() {
+    const [brands, setBrands] = useState([])
     const [loading, setLoading] = useState(false)
     const history = useHistory()
     const [counter, setCounter] = useState(0)
-    console.log(advanceSalaries)
 
     const columns = [
         {
-            title: 'Name',
+            title: 'brand ID',
+            field: 'id',
+            editable: 'never',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
+            title: 'Brand Name',
             field: 'name',
             cellStyle: {
                 textAlign: 'center',
@@ -22,78 +30,44 @@ export default function ManageAdvancedSalary() {
             },
         },
         {
-            title: 'Salary',
-            field: 'salary',
+            title: 'Supplier Name',
+            field: 'sup_name',
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',
             },
         },
         {
-            title: 'Month',
-            field: 'month',
+            title: 'Supplier Phone',
+            field: 'phone',
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',
-            },
-        },
-        {
-            title: 'Year',
-            field: 'year',
-            cellStyle: {
-                textAlign: 'center',
-                fontSize: '1rem',
-            },
-        },
-        {
-            title: 'Advanced Salary',
-            field: 'advance_salary',
-            cellStyle: {
-                textAlign: 'center',
-                fontSize: '1rem',
-            },
-        },
-        {
-            title: 'Image',
-            field: 'photo',
-            render: (item) => (
-                <Avatar
-                    src={
-                        item.photo
-                            ? `http://localhost:8000/${item.photo}`
-                            : `http://localhost:8000/dummy.png`
-                    }
-                />
-            ),
-            cellStyle: {
-                align: 'center',
             },
         },
     ]
 
     useEffect(() => {
-        async function fetchAdvanceSalaries() {
+        async function fetchBrands() {
             if (counter > 1000) setCounter(0)
             try {
                 setLoading(true)
-                const res = await Axios.get(
-                    'http://localhost:8000/api/advanced/salaries'
-                )
+                const res = await Axios.get('http://localhost:8000/api/brands')
                 if (res.data.status === 200) {
-                    setAdvanceSalaries(res.data.advanceSalaries)
+                    setBrands(res.data.customers)
                     setLoading(false)
                 }
             } catch (err) {
                 console.log(err.response.data.errors)
             }
         }
-        fetchAdvanceSalaries()
+        fetchBrands()
     }, [counter])
 
-    const deleteAdvanceSalary = async (advanceSalary) => {
+    const deleteBrand = async (brand) => {
         try {
             const res = await Axios.get(
-                `http://localhost:8000/api/supplier/delete/${advanceSalary.id}`
+                `http://localhost:8000/api/employee/delete/${brand.id}`
             )
             if (res.data.status === 200) {
                 console.log(res.data.message)
@@ -109,11 +83,8 @@ export default function ManageAdvancedSalary() {
             <div className="mb-sm-30">
                 <Breadcrumb
                     routeSegments={[
-                        {
-                            name: 'Advance Salaries',
-                            path: '/salary/advanced-salary/manage',
-                        },
-                        { name: 'Manage Salary' },
+                        { name: 'Brand', path: '/manageBrand' },
+                        { name: 'Manage Brand' },
                     ]}
                 />
                 <Card>
@@ -129,16 +100,16 @@ export default function ManageAdvancedSalary() {
                                     textAlign: 'center',
                                     boxShadow:
                                         '5px 6px 6px 5px rgba(0, 0, 0, 0.2)',
-                                    border: '3px solid #212f52',
+                                    border: '1px solid #425df5',
                                 }}
-                                title="Advance Salary Table"
-                                data={advanceSalaries}
+                                title="Brand Table"
+                                data={brands}
                                 columns={columns}
                                 options={{
                                     exportButton: true,
                                     actionsColumnIndex: -1,
                                     headerStyle: {
-                                        backgroundColor: '#2abdf7',
+                                        backgroundColor: '#425df5',
                                         color: 'white',
                                         textAlign: 'center',
                                         fontSize: '1.15rem',
@@ -160,11 +131,11 @@ export default function ManageAdvancedSalary() {
                                                 onClick={() =>
                                                     history.push({
                                                         pathname:
-                                                            '/salary/advanced-salary/add',
+                                                            '/addBrand',
                                                     })
                                                 }
                                             >
-                                                Pay Advanced Salray
+                                                Add Customer
                                                 <span>
                                                     <i
                                                         className="material-ui-icon"
@@ -179,14 +150,13 @@ export default function ManageAdvancedSalary() {
                                     {
                                         icon: 'edit',
                                         color: 'secondary',
-                                        tooltip: 'Edit Supplier',
+                                        tooltip: 'Edit Customer',
                                         onClick: (e, rowData) => {
-                                            const oldAdvanceSalaryData = rowData
+                                            const oldBrandData = rowData
                                             history.push({
-                                                pathname:
-                                                    '/salary/advanced-salary/edit',
+                                                pathname: '/editBrand',
                                                 state: {
-                                                    oldAdvanceSalaryData,
+                                                    oldBrandData,
                                                 },
                                             })
                                         },
@@ -197,7 +167,7 @@ export default function ManageAdvancedSalary() {
                                     onRowDelete: (oldData) =>
                                         new Promise((resolve, reject) => {
                                             setTimeout(() => {
-                                                deleteAdvanceSalary(oldData)
+                                                deleteBrand(oldData)
                                                 setCounter(
                                                     (prevCounter) =>
                                                         prevCounter + 1

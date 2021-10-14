@@ -71,15 +71,21 @@ class ProductController extends Controller
     }
 
     public function updateProduct(UpdateProductRequest $request){
-        //        $imageUrl  = $this->uploadProductImage($request);
-        $product = Product::findOrNot($request->prod_id);
+        
+        $imageUrl='';
+
+        $product = Product::findOrFail($request->id);
+        if($request->hasFile('product_image'))
+        {
+             $imageUrl  = $this->uploadProductImage($request);
+              $product->product_image = $imageUrl;
+        }
         $product->cat_id = $request->cat_id;
         $product->sup_id = $request->sup_id;
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->product_garage = $request->product_garage;
         $product->product_route = $request->product_route;
-        $product->product_image = 'add later';
         $product->buy_date = $request->buy_date;
         $product->expire_date = $request->expire_date;
         $product->buying_price = $request->buying_price;

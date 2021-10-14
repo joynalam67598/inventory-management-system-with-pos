@@ -3,7 +3,7 @@ import {
     CardContent,
     CardHeader,
     Grid,
-    TextField,
+    TextField
 } from '@material-ui/core'
 import Axios from 'axios'
 import { useState } from 'react'
@@ -150,7 +150,6 @@ export default function AddCustomer() {
                     <CardHeader
                         title="Add Customer"
                         style={{
-                            borderRadius: '10px',
                             textAlign: 'center',
                             color: '#5871fc',
                         }}
@@ -168,7 +167,6 @@ export default function AddCustomer() {
                                     onChange={handleChange}
                                     fullWidth
                                     required
-                                    style={{ margin: '.5rem 0' }}
                                     {...(errors.name && {
                                         error: true,
                                         helperText: errors['name'],
@@ -182,7 +180,6 @@ export default function AddCustomer() {
                                     label="Email"
                                     variant="outlined"
                                     name="email"
-                                    style={{ margin: '.5rem 0' }}
                                     value={customer['email']}
                                     onChange={handleChange}
                                     fullWidth
@@ -200,7 +197,6 @@ export default function AddCustomer() {
                                     label="Phone Number"
                                     variant="outlined"
                                     name="phone"
-                                    style={{ margin: '.5rem 0' }}
                                     value={customer['phone']}
                                     onChange={handleChange}
                                     fullWidth
@@ -218,7 +214,6 @@ export default function AddCustomer() {
                                     label="City"
                                     variant="outlined"
                                     name="city"
-                                    style={{ margin: '.5rem 0' }}
                                     value={customer['city']}
                                     onChange={handleChange}
                                     fullWidth
@@ -237,7 +232,6 @@ export default function AddCustomer() {
                                     label="Address"
                                     variant="outlined"
                                     name="address"
-                                    style={{ margin: '0.5rem 0' }}
                                     value={customer['address']}
                                     onChange={handleChange}
                                     fullWidth
@@ -256,7 +250,6 @@ export default function AddCustomer() {
                                     label="Shop Name"
                                     variant="outlined"
                                     name="shop_name"
-                                    style={{ margin: '0.5rem 0' }}
                                     value={customer['shop_name']}
                                     onChange={handleChange}
                                     fullWidth
@@ -274,7 +267,6 @@ export default function AddCustomer() {
                                     label="Bank Name"
                                     variant="outlined"
                                     name="bank_name"
-                                    style={{ margin: '0.5rem 0' }}
                                     value={customer['bank_name']}
                                     onChange={handleChange}
                                     fullWidth
@@ -292,7 +284,6 @@ export default function AddCustomer() {
                                     label="Account Holder Name"
                                     variant="outlined"
                                     name="account_holder"
-                                    style={{ margin: '0.5rem 0' }}
                                     value={customer['account_holder']}
                                     onChange={handleChange}
                                     fullWidth
@@ -310,7 +301,6 @@ export default function AddCustomer() {
                                     label="Account Number"
                                     variant="outlined"
                                     name="account_number"
-                                    style={{ margin: '0.5rem 0' }}
                                     value={customer['account_number']}
                                     onChange={handleChange}
                                     fullWidth
@@ -328,7 +318,6 @@ export default function AddCustomer() {
                                     label="Branch Name"
                                     variant="outlined"
                                     name="bank_branch"
-                                    style={{ margin: '0.5rem 0' }}
                                     value={customer['bank_branch']}
                                     onChange={handleChange}
                                     fullWidth
@@ -345,7 +334,6 @@ export default function AddCustomer() {
                                     id="outlined-basic"
                                     variant="outlined"
                                     name="photo"
-                                    style={{ margin: '0.5rem 0' }}
                                     onChange={handleChange}
                                     fullWidth
                                     {...(errors.photo && {
@@ -363,8 +351,7 @@ export default function AddCustomer() {
                                     fullWidth
                                     style={{
                                         fontSize: '1.6rem',
-                                        marginTop: '5px',
-                                        padding: '5px',
+                                        padding: '4px',
                                         fontWeight: 'bold',
                                     }}
                                 >

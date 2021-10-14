@@ -1,5 +1,5 @@
+import { Hidden, Icon, IconButton } from '@material-ui/core'
 import React, { useState } from 'react'
-import { Icon, IconButton, Hidden } from '@material-ui/core'
 import { classList } from 'Utils'
 
 const TopbarMenu = (props) => {

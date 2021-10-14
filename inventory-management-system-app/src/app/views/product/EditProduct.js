@@ -7,11 +7,11 @@ import {
     Grid,
     InputLabel,
     Select,
-    TextField
+    TextField,
 } from '@material-ui/core'
 import {
     KeyboardDatePicker,
-    MuiPickersUtilsProvider
+    MuiPickersUtilsProvider,
 } from '@material-ui/pickers'
 import Axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -157,25 +157,9 @@ export default function AddProduct() {
     const updateProduct = async (e) => {
         e.preventDefault()
         if (validate()) {
-            const buyDate =
-                product.buy_date.getDate() +
-                '/' +
-                (product.buy_date.getMonth() + 1) +
-                '/' +
-                product.buy_date.getFullYear()
-            const expireDate =
-                product.expire_date.getDate() +
-                '/' +
-                (product.expire_date.getMonth() + 1) +
-                '/' +
-                product.expire_date.getFullYear()
-
             const productData = new FormData()
             Object.keys(product).forEach((key) => {
-                if (key.includes('buy_date')) productData.append(key, buyDate)
-                else if (key.includes('expire_date'))
-                    productData.append(key, expireDate)
-                else productData.append(key, product[key])
+                productData.append(key, product[key])
             })
             console.log(productData)
             try {
@@ -185,9 +169,8 @@ export default function AddProduct() {
                     productData
                 )
                 if (res.data.status === 200) {
-                    Object.keys(product).forEach((key) => {
-                        if (key.includes('date')) product[key] = new Date()
-                        else product[key] = ''
+                    history.push({
+                        pathname:'/manageProduct'
                     })
                     setLoading(false)
                 }

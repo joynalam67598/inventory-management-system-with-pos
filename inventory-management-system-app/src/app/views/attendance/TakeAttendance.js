@@ -1,4 +1,5 @@
 import {
+    Avatar,
     Button,
     CardContent,
     FormControlLabel,
@@ -171,7 +172,7 @@ export default function TakeAttendance() {
                                             <TableCell
                                                 className="px-0 capitalize"
                                                 colSpan={2}
-                                                align="center"
+                                                align="left"
                                             >
                                                 Employee Image
                                             </TableCell>
@@ -200,7 +201,7 @@ export default function TakeAttendance() {
                                                         colSpan={2}
                                                         align="center"
                                                     >
-                                                        <img
+                                                        <Avatar
                                                             src={
                                                                 employee[
                                                                     'photo'
@@ -208,8 +209,6 @@ export default function TakeAttendance() {
                                                                     ? `http://localhost:8000/${employee['photo']}`
                                                                     : `http://localhost:8000/dummy.png`
                                                             }
-                                                            width="100px"
-                                                            height="90px"
                                                         />
                                                     </TableCell>
                                                     <TableCell
