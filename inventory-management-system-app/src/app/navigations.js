@@ -6,7 +6,7 @@ export const navigations = [
     },
     {
         name: 'POS',
-        path: '/dashboard',
+        path: '/pos',
         icon: 'receipt',
     },
     {
@@ -39,7 +39,22 @@ export const navigations = [
     //         },
     //     ],
     // },
-
+    {
+        name: 'Supplier',
+        icon: 'add_shopping_cart',
+        children: [
+            {
+                name: 'Add Supplier',
+                path: '/supplier/addSupplier',
+                iconText: 'SA',
+            },
+            {
+                name: 'All Supplier',
+                path: '/supplier/manageSupplier',
+                iconText: 'SM',
+            },
+        ],
+    },
     {
         name: 'Category',
         icon: 'category',
@@ -56,6 +71,24 @@ export const navigations = [
             },
         ],
     },
+
+    {
+        name: 'Brand',
+        icon: 'branding_watermark',
+        children: [
+            {
+                name: 'Add Brand',
+                path: '/addBrand',
+                iconText: 'BA',
+            },
+            {
+                name: 'All Brand',
+                path: '/manageBrand',
+                iconText: 'BM',
+            },
+        ],
+    },
+
     {
         name: 'Product',
         icon: 'widgets',
@@ -89,22 +122,6 @@ export const navigations = [
         ],
     },
 
-    {
-        name: 'Supplier',
-        icon: 'add_shopping_cart',
-        children: [
-            {
-                name: 'Add Supplier',
-                path: '/supplier/addSupplier',
-                iconText: 'SA',
-            },
-            {
-                name: 'All Supplier',
-                path: '/supplier/manageSupplier',
-                iconText: 'SM',
-            },
-        ],
-    },
     {
         name: 'Customer',
         icon: 'shopping_bag',

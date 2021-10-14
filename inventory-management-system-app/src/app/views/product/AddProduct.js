@@ -144,25 +144,9 @@ export default function AddProduct() {
     const saveProduct = async (e) => {
         e.preventDefault()
         if (validate()) {
-            // const buyDate =
-            //     product.buy_date.getDate() +
-            //     '/' +
-            //     (product.buy_date.getMonth() + 1) +
-            //     '/' +
-            //     product.buy_date.getFullYear()
-            // const expireDate =
-            //     product.expire_date.getDate() +
-            //     '/' +
-            //     (product.expire_date.getMonth() + 1) +
-            //     '/' +
-            //     product.expire_date.getFullYear()
-
+           
             const productData = new FormData()
             Object.keys(product).forEach((key) => {
-                // if (key.includes('buy_date')) productData.append(key, buyDate)
-                // else if (key.includes('expire_date'))
-                //     productData.append(key, expireDate)
-                // else
                     productData.append(key, product[key])
             })
             try {

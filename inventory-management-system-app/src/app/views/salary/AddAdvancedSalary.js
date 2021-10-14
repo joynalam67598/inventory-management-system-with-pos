@@ -176,11 +176,10 @@ export default function AddAdvancedSalary() {
                                                 value={employee.id}
                                                 key={employee.id}
                                             >
-                                                {'name: ' +
-                                                    employee.name +
-                                                    ', ' +
-                                                    'NID: ' +
-                                                    employee.nid_no}
+                                                {employee.name +
+                                                    ' ( ' +
+                                                    employee.shop_name +
+                                                    ' )'}
                                             </option>
                                         ))}
                                     </Select>

@@ -25,7 +25,6 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             "cat_id" => "required",
-            "prod_id" => "required",
             "sup_id" => "required",
             "product_name" => "required",
             "product_code" => "required",

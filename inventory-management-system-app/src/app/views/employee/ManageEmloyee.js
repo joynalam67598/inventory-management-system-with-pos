@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@material-ui/core'
+import { Avatar, Card, CardContent } from '@material-ui/core'
 import Axios from 'axios'
 import MaterialTable from 'material-table'
 import { useEffect, useState } from 'react'
@@ -48,19 +48,11 @@ export default function ManageEmployee() {
             title: 'Image',
             field: 'photo',
             render: (item) => (
-                console.log(item.photo),
-                <img
-                    src={
+                <Avatar  src={
                         item.photo
                             ? `http://localhost:8000/${item.photo}`
                             : `http://localhost:8000/dummy.png`
-                    }
-                    alt=""
-                    border="3"
-                    height="70"
-                    width="80"
-                    border="0"
-                />
+                    }/>
             ),
             cellStyle: {
                 textAlign: 'center',

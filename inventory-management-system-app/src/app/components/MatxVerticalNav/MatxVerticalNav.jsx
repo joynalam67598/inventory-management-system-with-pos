@@ -1,11 +1,11 @@
-import React, { Fragment } from 'react'
-import { NavLink } from 'react-router-dom'
 import { Icon } from '@material-ui/core'
 import TouchRipple from '@material-ui/core/ButtonBase'
-import MatxVerticalNavExpansionPanel from './MatxVerticalNavExpansionPanel'
 import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
-import useSettings from "../../hooks/useSettings";
+import React, { Fragment } from 'react'
+import { NavLink } from 'react-router-dom'
+import useSettings from '../../hooks/useSettings'
+import MatxVerticalNavExpansionPanel from './MatxVerticalNavExpansionPanel'
 
 const useStyles = makeStyles(({ palette, ...theme }) => ({
     navItem: {
