@@ -23,29 +23,11 @@ export default function AddProduct() {
     const { location } = history
     const { state } = location
     const { oldProductData } = state
-    // let tempBuyDate = oldProductData.buy_date
-    // tempBuyDate = tempBuyDate.split('/')
-
-    // console.log(tempBuyDate)
-    // oldProductData.buy_date = new Date(
-    //     parseInt(tempBuyDate[0]) ,
-    //     parseInt(tempBuyDate[1])-1,
-    //     parseInt(tempBuyDate[2])
-    // ).toISOString()
-    // console.log(oldProductData.buy_date)
-
-    // let tempExpireDate = oldProductData.expire_date
-    // tempExpireDate = tempExpireDate.split('/')
-    // oldProductData.expire_date = new Date(
-    //     parseInt(tempExpireDate[0]) ,
-    //     parseInt(tempExpireDate[1])-1,
-    //     parseInt(tempExpireDate[2])
-    // ).toISOString()
-    // console.log(oldProductData.expire_date)
 
     const [product, setProduct] = useState(oldProductData)
     const [suppliers, setSuppliers] = useState([])
     const [categories, setCategories] = useState([])
+    const [brands, setBrands] = useState([])
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
@@ -59,9 +41,15 @@ export default function AddProduct() {
                 const res2 = await Axios.get(
                     'http://localhost:8000/api/categories'
                 )
-                if (res1.data.status === 200 && res2.data.status === 200) {
+                const res3 = await Axios.get('http://localhost:8000/api/brands')
+                if (
+                    res1.data.status === 200 &&
+                    res2.data.status === 200 &&
+                    res3.data.status === 200
+                ) {
                     setSuppliers(res1.data.suppliers)
                     setCategories(res2.data.categories)
+                    setBrands(res3.data.brands)
                     setLoading(false)
                 }
             } catch (err) {
@@ -89,6 +77,11 @@ export default function AddProduct() {
         if ('cat_id' in fieldValues) {
             errorMessage.cat_id = !fieldValues.cat_id
                 ? 'Please select a category.'
+                : ''
+        }
+        if ('brand_id' in fieldValues) {
+            errorMessage.brand_id = !fieldValues.brand_id
+                ? 'Please select a Brand.'
                 : ''
         }
         if ('sup_id' in fieldValues) {
@@ -170,7 +163,7 @@ export default function AddProduct() {
                 )
                 if (res.data.status === 200) {
                     history.push({
-                        pathname:'/manageProduct'
+                        pathname: '/manageProduct',
                     })
                     setLoading(false)
                 }
@@ -284,6 +277,44 @@ export default function AddProduct() {
                                                 key={category.id}
                                             >
                                                 {category.category_name}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControl
+                                    required
+                                    fullWidth
+                                    variant="outlined"
+                                >
+                                    <InputLabel htmlFor="brand">
+                                        {'Brand'}
+                                    </InputLabel>
+                                    <Select
+                                        native
+                                        style={{
+                                            margin: '.7rem 0',
+                                            textAlign: 'left',
+                                        }}
+                                        required
+                                        fullWidth
+                                        variant="outlined"
+                                        name="brand_id"
+                                        onChange={handleChange}
+                                        value={product['brand_id']}
+                                        {...(errors.brand_id && {
+                                            error: true,
+                                            helperText: errors['brand_id'],
+                                        })}
+                                    >
+                                        <option disabled />
+                                        {brands.map((brand) => (
+                                            <option
+                                                value={brand.id}
+                                                key={brand.id}
+                                            >
+                                                {brand.name}
                                             </option>
                                         ))}
                                     </Select>

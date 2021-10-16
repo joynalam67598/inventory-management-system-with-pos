@@ -21,6 +21,7 @@ export default function AddProduct() {
     const [product, setProduct] = useState({
         cat_id: '',
         sup_id: '',
+        brand_id: '',
         product_name: '',
         product_code: '',
         product_garage: '',
@@ -33,6 +34,7 @@ export default function AddProduct() {
     })
     const [suppliers, setSuppliers] = useState([])
     const [categories, setCategories] = useState([])
+    const [brands, setBrands] = useState([])
     const [loading, setLoading] = useState(false)
     const [errors, setErrors] = useState({})
 
@@ -46,9 +48,13 @@ export default function AddProduct() {
                 const res2 = await Axios.get(
                     'http://localhost:8000/api/categories'
                 )
-                if (res1.data.status === 200 && res2.data.status === 200) {
+                const res3 = await Axios.get(
+                    'http://localhost:8000/api/brands'
+                )
+                if (res1.data.status === 200 && res2.data.status === 200 && res3.data.status === 200) {
                     setSuppliers(res1.data.suppliers)
                     setCategories(res2.data.categories)
+                    setBrands(res3.data.brands)
                     setLoading(false)
                 }
             } catch (err) {
@@ -71,6 +77,11 @@ export default function AddProduct() {
         if ('product_code' in fieldValues) {
             errorMessage.product_code = !fieldValues.product_code
                 ? 'Please enter product code.'
+                : ''
+        }
+        if ('brand_id' in fieldValues) {
+            errorMessage.brand_id = !fieldValues.brand_id
+                ? 'Please select a brand.'
                 : ''
         }
         if ('cat_id' in fieldValues) {
@@ -267,6 +278,44 @@ export default function AddProduct() {
                                                 key={category.id}
                                             >
                                                 {category.category_name}
+                                            </option>
+                                        ))}
+                                    </Select>
+                                </FormControl>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <FormControl
+                                    required
+                                    fullWidth
+                                    variant="outlined"
+                                >
+                                    <InputLabel htmlFor="brand">
+                                        {'Brand'}
+                                    </InputLabel>
+                                    <Select
+                                        native
+                                        style={{
+                                            margin: '.7rem 0',
+                                            textAlign: 'left',
+                                        }}
+                                        required
+                                        fullWidth
+                                        variant="outlined"
+                                        name="brand_id"
+                                        onChange={handleChange}
+                                        value={product['brand_id']}
+                                        {...(errors.brand_id && {
+                                            error: true,
+                                            helperText: errors['brand_id'],
+                                        })}
+                                    >
+                                        <option disabled />
+                                        {brands.map((brand) => (
+                                            <option
+                                                value={brand.id}
+                                                key={brand.id}
+                                            >
+                                                {brand.name}
                                             </option>
                                         ))}
                                     </Select>

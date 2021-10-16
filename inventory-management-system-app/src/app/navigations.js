@@ -99,7 +99,7 @@ export const navigations = [
                 iconText: 'PA',
             },
             {
-                name: 'All Category',
+                name: 'All Product',
                 path: '/manageProduct',
                 iconText: 'PL',
             },

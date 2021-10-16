@@ -58,13 +58,12 @@ export default function AddBrand() {
                 : ''
         }
         if ('name' in fieldValues) {
-            errorMessage.name = fieldValues.name
+            errorMessage.name = !fieldValues.name
                 ? 'Please enter brand name.'
-                : fieldValues.category_name.length > 3
+                : fieldValues.name.length > 3
                 ? ''
                 : 'Brand Name should be 3 character long.'
         }
-
         setErrors({ ...errorMessage })
         if (fieldValues === brand) {
             return Object.values(errorMessage).every((x) => x === '')
@@ -79,24 +78,21 @@ export default function AddBrand() {
 
     const saveBrand = async (e) => {
         e.preventDefault()
-
-        console.log(brand)
         if (validate()) {
-            // try {
-            //     setLoading(true)
-            //     console.log(brand)
-            //     const res = await Axios.post(
-            //         'http://localhost:8000/api/brand/add',
-            //         brand
-            //     )
-            //     if (res.data.status === 200) {
-            //         Object.keys(brand).forEach((key) => (brand[key] = ''))
-            //         setLoading(false)
-            //     }
-            // } catch (err) {
-            //     setErrors({ ...err.response.data.errors })
-            //     setLoading(false)
-            // }
+            try {
+                setLoading(true)
+                const res = await Axios.post(
+                    'http://localhost:8000/api/brand/add',
+                    brand
+                )
+                if (res.data.status === 200) {
+                    Object.keys(brand).forEach((key) => (brand[key] = ''))
+                    setLoading(false)
+                }
+            } catch (err) {
+                setErrors({ ...err.response.data.errors })
+                setLoading(false)
+            }
         }
     }
 
@@ -135,16 +131,18 @@ export default function AddBrand() {
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
                                 <Autocomplete
-                                    getOptionSelected={(value) =>
-                                        brand.cat_id === value.id
-                                    }
                                     getOptionLabel={(option) =>
                                         option.category_name
                                     }
                                     getOptionValue={(option) => option.id}
                                     style={{ margin: '.8rem 0' }}
                                     name="cat_id"
-                                    onInputChange={handleChange}
+                                    onChange={(e, option) =>
+                                        setBrand({
+                                            ...brand,
+                                            cat_id: option.id,
+                                        })
+                                    }
                                     options={categories}
                                     loading={loading}
                                     renderInput={(params) => (
@@ -175,19 +173,23 @@ export default function AddBrand() {
                                     )}
                                 />
                                 <Autocomplete
-                                    getOptionSelected={(option, value) =>
-                                        option.name === value.id
-                                    }
                                     getOptionLabel={(option) =>
                                         option.name +
                                         ' ( ' +
                                         option.shop_name +
                                         ' )'
                                     }
+                                    getoptionValue={(option) => option.id}
                                     name="sup_id"
                                     style={{ margin: '.8rem 0' }}
                                     options={suppliers}
                                     loading={loading}
+                                    onChange={(e, option) =>
+                                        setBrand({
+                                            ...brand,
+                                            sup_id: option.id,
+                                        })
+                                    }
                                     renderInput={(params) => (
                                         <TextField
                                             {...params}
@@ -225,7 +227,7 @@ export default function AddBrand() {
                                     onChange={handleChange}
                                     fullWidth
                                     required
-                                    {...(errors.brand && {
+                                    {...(errors.name && {
                                         error: true,
                                         helperText: errors['name'],
                                     })}

@@ -31,6 +31,7 @@ class ProductController extends Controller
         $product = new Product();
         $product->cat_id = $request->cat_id;
         $product->sup_id = $request->sup_id;
+        $product->brand_id = $request->sup_id;
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->product_garage = $request->product_garage;
@@ -60,8 +61,8 @@ class ProductController extends Controller
         $product  = DB::table('products')
             ->join('categories','categories.id','=','products.cat_id')
             ->join('suppliers','suppliers.id','=','products.sup_id')
-            ->select('products.*','suppliers.name as sup_name','suppliers.id as sup_id',
-                        'categories.cat_name','categories.id as cat_id')
+            ->join('brands','brands.id','=','products.brand_id')
+            ->select('products.*','brands.name as brand_name','suppliers.name as sup_name','suppliers.id as sup_id','categories.category_name','categories.id as cat_id')
             ->where('products.id','=',$id)
             ->first();
         return response()->json([
@@ -82,6 +83,7 @@ class ProductController extends Controller
         }
         $product->cat_id = $request->cat_id;
         $product->sup_id = $request->sup_id;
+        $product->brand_id = $request->brand_id;
         $product->product_name = $request->product_name;
         $product->product_code = $request->product_code;
         $product->product_garage = $request->product_garage;
