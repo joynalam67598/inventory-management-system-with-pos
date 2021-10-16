@@ -10,6 +10,7 @@ use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ExpenseController;
 use App\Http\Controllers\API\AttendanceController;
+use App\Http\Controllers\API\BrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,13 @@ use App\Http\Controllers\API\AttendanceController;
     Route::get("category/edit/{id}",[CategoryController::class,"editCategory"])->name("editCategory");
     Route::post("category/update",[CategoryController::class,"updateCategory"])->name("updateCategory");
     Route::get("category/delete/{id}",[CategoryController::class,"deleteCategory"])->name("deleteCategory");
+
+    //Brand
+    Route::post("brand/add",[BrandController::class,"saveBrand"])->name("addBrand");
+    Route::get("brands",[BrandController::class,"getBrands"])->name("brands");
+    Route::post("brand/update",[BrandController::class,"updateBrand"])->name("updateBrand");
+    Route::get("brand/delete/{id}",[BrandController::class,"deleteBrand"])->name("deleteBrands");
+
 
     //Product
     Route::post("product/add",[ProductController::class,"saveProduct"])->name("addProduct");

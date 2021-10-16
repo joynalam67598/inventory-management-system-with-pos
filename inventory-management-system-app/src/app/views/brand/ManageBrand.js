@@ -30,6 +30,14 @@ export default function ManageBrand() {
             },
         },
         {
+            title: 'Category',
+            field: 'category_name',
+            cellStyle: {
+                textAlign: 'center',
+                fontSize: '1rem',
+            },
+        },
+        {
             title: 'Supplier Name',
             field: 'sup_name',
             cellStyle: {
@@ -54,7 +62,7 @@ export default function ManageBrand() {
                 setLoading(true)
                 const res = await Axios.get('http://localhost:8000/api/brands')
                 if (res.data.status === 200) {
-                    setBrands(res.data.customers)
+                    setBrands(res.data.brands)
                     setLoading(false)
                 }
             } catch (err) {

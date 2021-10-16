@@ -17,14 +17,12 @@ export default function PointOfSale() {
         async function fetchSuppliersAndCategoris() {
             try {
                 setLoading(true)
-                const res1 = await Axios.get(
-                    'http://localhost:8000/api/suppliers'
-                )
+                const res1 = await Axios.get('http://localhost:8000/api/brands')
                 const res2 = await Axios.get(
                     'http://localhost:8000/api/categories'
                 )
                 if (res1.data.status === 200 && res2.data.status === 200) {
-                    setSuppliers(res1.data.suppliers)
+                    setBrands(res1.data.brands)
                     setCategories(res2.data.categories)
                     setLoading(false)
                 }
@@ -39,7 +37,6 @@ export default function PointOfSale() {
     const handleChange = (e) => {
         const { name, value } = e.target
         setProduct({ ...product, [name]: value })
-
     }
 
     return (
@@ -90,11 +87,9 @@ export default function PointOfSale() {
                             <Autocomplete
                                 id="asynchronous-demo"
                                 getOptionSelected={(option, value) =>
-                                    option.category_name === value.id
+                                    option.name === value.id
                                 }
-                                getOptionLabel={(option) =>
-                                    option.category_name
-                                }
+                                getOptionLabel={(option) => option.name}
                                 options={brands}
                                 loading={loading}
                                 renderInput={(params) => (
@@ -120,23 +115,6 @@ export default function PointOfSale() {
                                                 </Fragment>
                                             ),
                                         }}
-                                    />
-                                )}
-                            />
-                            <Autocomplete
-                                className="mb-4"
-                                options={suppliers}
-                                getOptionLabel={(option) =>
-                                    option.name +
-                                    ' ( ' +
-                                    option.shop_name +
-                                    ' )'
-                                }
-                                renderInput={(params) => (
-                                    <TextField
-                                        {...params}
-                                        label="Category"
-                                        variant="outlined"
                                     />
                                 )}
                             />

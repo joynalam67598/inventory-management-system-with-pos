@@ -2,14 +2,13 @@ import {
     Button,
     CardContent,
     CardHeader,
-    FormControl,
+    CircularProgress,
     Grid,
-    InputLabel,
-    Select,
     TextField,
 } from '@material-ui/core'
+import { Autocomplete } from '@material-ui/lab'
 import Axios from 'axios'
-import { useEffect, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { useHistory } from 'react-router'
 import { Breadcrumb, SimpleCard } from '../../components'
 
@@ -109,7 +108,7 @@ export default function EditBrand() {
                             name: 'Brand',
                             path: '/addBrand',
                         },
-                        { name: 'Add Brand' },
+                        { name: 'Edit Brand' },
                     ]}
                 />
             </div>
@@ -134,45 +133,93 @@ export default function EditBrand() {
                     <form onSubmit={updateBrand}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
-                                <FormControl
-                                    required
-                                    fullWidth
-                                    variant="outlined"
-                                >
-                                    <InputLabel htmlFor="advanceSalarymonth">
-                                        {'Employee'}
-                                    </InputLabel>
-                                    <Select
-                                        native
-                                        style={{
-                                            margin: '.7rem 0',
-                                            textAlign: 'left',
-                                        }}
-                                        required
-                                        fullWidth
-                                        variant="outlined"
-                                        name="sup_id"
-                                        onChange={handleChange}
-                                        value={brand['sup_id']}
-                                        {...(errors.sup_id && {
-                                            error: true,
-                                            helperText: errors['sup_id'],
-                                        })}
-                                    >
-                                        <option disabled />
-                                        {suppliers.map((supplier) => (
-                                            <option
-                                                value={supplier.id}
-                                                key={supplier.id}
-                                            >
-                                                {supplier.name +
-                                                    ' ( ' +
-                                                    supplier.shop_name +
-                                                    ' )'}
-                                            </option>
-                                        ))}
-                                    </Select>
-                                </FormControl>
+                                <Autocomplete
+                                    getOptionLabel={(option) =>
+                                        option.category_name
+                                    }
+                                    getOptionValue={(option) => option.id}
+                                    style={{ margin: '.8rem 0' }}
+                                    name="cat_id"
+                                    onChange={(e, option) =>
+                                        setBrand({
+                                            ...brand,
+                                            cat_id: option.id,
+                                        })
+                                    }
+                                    options={categories}
+                                    loading={loading}
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label="Category"
+                                            fullWidth
+                                            variant="outlined"
+                                            required
+                                            InputProps={{
+                                                ...params.InputProps,
+                                                endAdornment: (
+                                                    <Fragment>
+                                                        {loading ? (
+                                                            <CircularProgress
+                                                                color="inherit"
+                                                                size={20}
+                                                            />
+                                                        ) : null}
+                                                        {
+                                                            params.InputProps
+                                                                .endAdornment
+                                                        }
+                                                    </Fragment>
+                                                ),
+                                            }}
+                                        />
+                                    )}
+                                />
+                                <Autocomplete
+                                    getOptionLabel={(option) =>
+                                        option.name +
+                                        ' ( ' +
+                                        option.shop_name +
+                                        ' )'
+                                    }
+                                    getOptionValue={(option) => option.id}
+                                    name="sup_id"
+                                    style={{ margin: '.8rem 0' }}
+                                    options={suppliers}
+                                    loading={loading}
+                                    onChange={(e, option) =>
+                                        setBrand({
+                                            ...brand,
+                                            sup_id: option.id,
+                                        })
+                                    }
+                                    renderInput={(params) => (
+                                        <TextField
+                                            {...params}
+                                            label="Supplier"
+                                            fullWidth
+                                            variant="outlined"
+                                            required
+                                            InputProps={{
+                                                ...params.InputProps,
+                                                endAdornment: (
+                                                    <Fragment>
+                                                        {loading ? (
+                                                            <CircularProgress
+                                                                color="inherit"
+                                                                size={20}
+                                                            />
+                                                        ) : null}
+                                                        {
+                                                            params.InputProps
+                                                                .endAdornment
+                                                        }
+                                                    </Fragment>
+                                                ),
+                                            }}
+                                        />
+                                    )}
+                                />
                                 <TextField
                                     type="text"
                                     id="outlined-basic"
@@ -202,7 +249,7 @@ export default function EditBrand() {
                                         fontWeight: 'bold',
                                     }}
                                 >
-                                    Save
+                                    Update
                                 </Button>
                             </Grid>
                         </Grid>
