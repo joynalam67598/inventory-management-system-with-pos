@@ -40,7 +40,7 @@ class ProductController extends Controller
         $product->buy_date = $request->buy_date;
         $product->expire_date = $request->expire_date;
         $product->buying_price = $request->buying_price;
-        $product->selling_price = $request->selling_price;
+        $product->price = $request->price;
         $product->save();
         return response()->json([
             "message"=>"Product added successfully!",
@@ -91,7 +91,7 @@ class ProductController extends Controller
         $product->buy_date = $request->buy_date;
         $product->expire_date = $request->expire_date;
         $product->buying_price = $request->buying_price;
-        $product->selling_price = $request->selling_price;
+        $product->price = $request->price;
         $product->update();
 
         return response()->json([

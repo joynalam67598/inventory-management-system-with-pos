@@ -19,7 +19,7 @@ class Product extends Model
         "buy_date",
         "expire_date",
         "buying_price",
-        "selling_price",
+        "price",
 
     ];
 }

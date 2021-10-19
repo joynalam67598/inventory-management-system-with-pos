@@ -25,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->string("buy_date");
             $table->string("expire_date");
             $table->string("buying_price");
-            $table->string("selling_price");
+            $table->string("price");
 
             $table->timestamps();
         });

@@ -30,7 +30,7 @@ export default function ManageProduct() {
         },
         {
             title: 'Selling Price',
-            field: 'selling_price',
+            field: 'price',
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',

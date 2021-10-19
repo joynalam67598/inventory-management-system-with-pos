@@ -143,7 +143,7 @@ export default function ManageBrand() {
                                                     })
                                                 }
                                             >
-                                                Add Customer
+                                                {"Add Brand"}
                                                 <span>
                                                     <i
                                                         className="material-ui-icon"

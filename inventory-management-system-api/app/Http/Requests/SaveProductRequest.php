@@ -35,7 +35,7 @@ class SaveProductRequest extends FormRequest
             "buy_date"=> "required",
             "expire_date"=> "required",
             "buying_price"=> "required",
-            "selling_price"=> "required",
+            "price"=> "required",
         ];
     }
 }
