@@ -124,8 +124,8 @@ export default function AddProduct() {
                 ? 'Please enter buying price.'
                 : ''
         }
-        if ('selling_price' in fieldValues) {
-            errorMessage.selling_price = !fieldValues.selling_price
+        if ('price' in fieldValues) {
+            errorMessage.price = !fieldValues.price
                 ? 'Please enter selling price.'
                 : ''
         }
@@ -475,15 +475,15 @@ export default function AddProduct() {
                                     id="outlined-basic"
                                     label="Selling Price"
                                     variant="outlined"
-                                    name="selling_price"
+                                    name="price"
                                     style={{ margin: '0.5rem 0' }}
-                                    value={product['selling_price']}
+                                    value={product['price']}
                                     onChange={handleChange}
                                     required
                                     fullWidth
-                                    {...(errors.selling_price && {
+                                    {...(errors.price && {
                                         error: true,
-                                        helperText: errors['selling_price'],
+                                        helperText: errors['price'],
                                     })}
                                 />
                             </Grid>
