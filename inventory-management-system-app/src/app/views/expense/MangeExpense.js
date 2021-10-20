@@ -20,7 +20,6 @@ export default function ManageSupplier() {
         {
             title: 'ID',
             field: 'id',
-            editable: 'never',
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',
@@ -32,7 +31,7 @@ export default function ManageSupplier() {
             field: 'expense_details',
             cellStyle: {
                 textAlign: 'center',
-                maxWidth: '425px',
+                maxWidth: '600px',
                 fontSize: '1rem',
                 borderRight: '2px solid #e5e5e5',
             },

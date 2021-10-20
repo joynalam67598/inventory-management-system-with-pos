@@ -11,6 +11,7 @@ use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ExpenseController;
 use App\Http\Controllers\API\AttendanceController;
 use App\Http\Controllers\API\BrandController;
+use App\Http\Controllers\API\POSController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +97,13 @@ use App\Http\Controllers\API\BrandController;
     Route::post("attendance/update",[AttendanceController::class,"updateAttendance"])->name("updateAttendance");
 
     //Setting - end of the project
+
+
+
+    //POS 
+    Route::get("products/category/{cat_id}",[POSController::class,"getProductByCategory"])->name("productsByCategory");
+    Route::get("products/category/brand/{cat_id}/{brand_id}",[POSController::class,"getProductByCategoryAndBrand"])->name("productsByCategoryAndBrand");
+    
 
 
 

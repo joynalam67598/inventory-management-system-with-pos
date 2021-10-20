@@ -1,23 +1,51 @@
 import {
     Button,
     ButtonGroup,
+    Card,
+    CardMedia,
+    Chip,
     CircularProgress,
     Grid,
     TextField
 } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import Axios from 'axios'
-import MaterialTable from 'material-table'
-import { Fragment, useEffect, useState } from 'react'
+import MaterialTable, { MTableToolbar } from 'material-table'
+import { Fragment, useEffect, useReducer, useState } from 'react'
 import { useCart } from 'react-use-cart'
-import { SimpleCard } from '../../components'
+
+const initialState = null
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'set':
+            let newCategories = []
+            newCategories.push({
+                id: 'all',
+                category_name: 'All Categories',
+            })
+            action.value.map((category) => {
+                newCategories.push(category)
+            })
+            return newCategories
+        default:
+            return state
+    }
+}
 
 export default function PointOfSale() {
     const [products, setProducts] = useState([])
     const [brands, setBrands] = useState([])
+    const [brand, setBrand] = useState([])
     const [customers, setCustomers] = useState([])
-    const [categories, setCategories] = useState([])
+    const [categories, dispatch] = useReducer(reducer, initialState)
+    const [category, setCategory] = useState([])
     const [loading, setLoading] = useState(false)
+    const [cartData, setCartData] = useState({
+        tax: '',
+        promo_code: '',
+        discont: '',
+    })
     const [errors, setErrors] = useState({})
     const [open, setOpen] = useState(false)
     const { addItem } = useCart()
@@ -33,7 +61,7 @@ export default function PointOfSale() {
     } = useCart()
 
     useEffect(() => {
-        async function fetchSuppliersAndCategoris() {
+        async function fetchAllData() {
             try {
                 setLoading(true)
                 const res1 = await Axios.get('http://localhost:8000/api/brands')
@@ -43,14 +71,22 @@ export default function PointOfSale() {
                 const res3 = await Axios.get(
                     'http://localhost:8000/api/customers'
                 )
+                const res4 = await Axios.get(
+                    'http://localhost:8000/api/products'
+                )
                 if (
                     res1.data.status === 200 &&
                     res2.data.status === 200 &&
+                    res4.data.status === 200 &&
                     res3.data.status === 200
                 ) {
                     setBrands(res1.data.brands)
-                    setCategories(res2.data.categories)
+                    dispatch({
+                        type: 'set',
+                        value: res2.data.categories,
+                    })
                     setCustomers(res3.data.customers)
+                    setProducts(res4.data.products)
                     setLoading(false)
                 }
             } catch (err) {
@@ -58,29 +94,73 @@ export default function PointOfSale() {
                 setLoading(false)
             }
         }
-        fetchSuppliersAndCategoris()
+        fetchAllData()
     }, [])
 
     useEffect(() => {
-        async function fetchProducts() {
+        async function fetchProductsByCategory() {
             try {
-                setLoading(true)
-                const res = await Axios.get(
-                    'http://localhost:8000/api/products'
-                )
+                let res = null
+                if (category === 'all') {
+                    res = await Axios.get(`http://localhost:8000/api/products`)
+                } else {
+                    res = await Axios.get(
+                        `http://localhost:8000/api/products/category/${category}`
+                    )
+                }
                 if (res.data.status === 200) {
                     setProducts(res.data.products)
-                    setLoading(false)
                 }
             } catch (err) {
                 console.log(err.response.data.errors)
-                setLoading(false)
             }
         }
-        fetchProducts()
-    }, [])
+        fetchProductsByCategory()
+    }, [category])
+
+    useEffect(() => {
+        async function fetchProductsByCategory() {
+            try {
+                const res = await Axios.get(
+                    `http://localhost:8000/api/products/category/brand/${category}/${brand}`
+                )
+                console.log(res)
+                if (res.data.status === 200) {
+                    setProducts(res.data.products)
+                }
+            } catch (err) {
+                console.log(err.response.data.errors)
+            }
+        }
+        fetchProductsByCategory()
+    }, [brand])
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setCartData({ ...cartData, [name]: value })
+    }
 
     const columns = [
+        {
+            title: 'Image',
+            field: 'photo',
+            render: (item) => (
+                <img
+                    src={
+                        item.product_image
+                            ? `http://localhost:8000/${item.product_image}`
+                            : `http://localhost:8000/dummy.png`
+                    }
+                    alt={item.product_name}
+                    height="40rem"
+                    width="55rem"
+                    border="0"
+                />
+            ),
+            cellStyle: {
+                textAlign: 'center',
+            },
+        },
         {
             title: 'Name',
             field: 'product_name',
@@ -90,7 +170,7 @@ export default function PointOfSale() {
             },
         },
         {
-            title: 'Price',
+            title: 'Unit price (tk)',
             field: 'price',
             cellStyle: {
                 textAlign: 'center',
@@ -125,42 +205,28 @@ export default function PointOfSale() {
             },
         },
         {
-            title: 'Net Price',
+            title: 'Net Price (tk)',
             render: (item) => item.quantity * item.price,
             cellStyle: {
                 textAlign: 'center',
                 fontSize: '1rem',
             },
         },
-        {
-            title: 'Image',
-            field: 'photo',
-            render: (item) => (
-                <img
-                    src={
-                        item.product_image
-                            ? `http://localhost:8000/${item.product_image}`
-                            : `http://localhost:8000/dummy.png`
-                    }
-                    alt=""
-                    border="3"
-                    height="40rem"
-                    width="40rem"
-                    border="0"
-                />
-            ),
-            cellStyle: {
-                textAlign: 'center',
-            },
-        },
     ]
 
     return (
-        <SimpleCard>
+        <Card>
             <Grid container>
-                <Grid item xs={8}>
+                <Grid
+                    item
+                    style={{
+                        padding: '15px 15px 5px 5px',
+                    }}
+                    sm={12}
+                    md={8}
+                >
                     <Grid container spacing={1}>
-                        <Grid item xs={8}>
+                        <Grid item sm={6}>
                             <Autocomplete
                                 id="asynchronous-demo"
                                 getOptionSelected={(option, value) =>
@@ -199,67 +265,267 @@ export default function PointOfSale() {
                                 )}
                             />
                         </Grid>
-                        <Grid item xs={3}>
-                            <button
+                        <Grid item sm={2}>
+                            <Button
                                 style={{
-                                    padding: '8px 5px',
+                                    padding: '5px 5px',
                                     fontSize: '1rem',
                                     borderRadius: '5px',
-                                    backgroundColor: '#910cc2',
-                                    boxShadow:
-                                        '2px 4px 8px 2px rgba(0, 0, 0, 0.2)',
+                                    backgroundColor: '#0acf4f',
                                     color: 'white',
                                 }}
+                                fullWidth
                             >
                                 {'Add Customer'}
-                            </button>
+                            </Button>
+                        </Grid>
+                        <Grid item sm={2}>
+                            <Button
+                                onClick={() => emptyCart()}
+                                style={{
+                                    padding: '5px 5px',
+                                    fontSize: '1rem',
+                                    borderRadius: '5px',
+                                    backgroundColor: '#ad0e36',
+                                    color: 'white',
+                                }}
+                                fullWidth
+                            >
+                                {'Clear Cart'}
+                            </Button>
+                        </Grid>
+                        <Grid item sm={2}>
+                            <Button
+                                style={{
+                                    padding: '5px 5px',
+                                    fontSize: '1rem',
+                                    borderRadius: '5px',
+                                    backgroundColor: '#d119e9',
+                                    color: 'white',
+                                }}
+                                fullWidth
+                            >
+                                {'Checkout'}
+                            </Button>
                         </Grid>
                     </Grid>
                     <Grid item xs={12}>
                         <MaterialTable
                             style={{
-                                margin: '10px 30px 5px 0px',
-                                border: '3px solid #3a0dbf',
+                                padding: '10px 0px 0px',
                             }}
                             title="Cart"
                             data={items}
                             columns={columns}
                             options={{
-                                exportButton: true,
                                 actionsColumnIndex: -1,
                                 pageSize: 10,
-                                maxBodyHeight: '500px',
+                                maxBodyHeight: '420px',
                                 headerStyle: {
-                                    backgroundColor: '#2abdf7',
+                                    backgroundColor: '#031f4f',
                                     color: 'white',
                                     textAlign: 'center',
-                                    fontSize: '1.15rem',
+                                    fontSize: '.9rem',
                                 },
                             }}
                             editable={{
                                 onRowDelete: (oldData) =>
                                     new Promise((resolve, reject) => {
-                                        setTimeout(() => {
-                                            resolve()
-                                        }, 1000)
+                                        removeItem(oldData.id)
+                                        resolve()
                                     }),
+                            }}
+                            components={{
+                                Toolbar: (props) => (
+                                    <div>
+                                        <MTableToolbar {...props} />
+                                        <div style={{ padding: '0px 10px' }}>
+                                            <Chip
+                                                label={
+                                                    'Unique Items : ' +
+                                                    totalUniqueItems
+                                                }
+                                                color="secondary"
+                                                style={{ marginRight: 5 }}
+                                            />
+                                            <Chip
+                                                label={
+                                                    'Total Items : ' +
+                                                    totalItems
+                                                }
+                                                color="secondary"
+                                                style={{ marginRight: 5 }}
+                                            />
+                                            <Chip
+                                                label={
+                                                    'Total : ' +
+                                                    cartTotal +
+                                                    ' tk'
+                                                }
+                                                color="secondary"
+                                                style={{ marginRight: 5 }}
+                                            />
+                                        </div>
+                                    </div>
+                                ),
                             }}
                         />
                     </Grid>
+                    <Grid container>
+                        <form>
+                            <Grid
+                                container
+                                spacing={1}
+                                style={{ padding: '2px 10px 2px 0px' }}
+                            >
+                                <Grid item xs={9}>
+                                    <TextField
+                                        type="text"
+                                        id="outlined-basic"
+                                        label="Promo Code/Gift Card"
+                                        variant="outlined"
+                                        name="promo_code"
+                                        size="small"
+                                        style={{ margin: '0.5rem 0' }}
+                                        value={cartData['promo_code']}
+                                        onChange={handleChange}
+                                        required
+                                        fullWidth
+                                        // {...(errors.price && {
+                                        //     error: true,
+                                        //     helperText: errors['price'],
+                                        // })}
+                                    />
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Button
+                                        type="submit"
+                                        style={{
+                                            marginTop: '8px',
+                                            fontSize: '.9rem',
+                                            borderRadius: '5px',
+                                            backgroundColor: '#d119e9',
+                                            color: 'white',
+                                        }}
+                                        fullWidth
+                                    >
+                                        {'Apply'}
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </form>
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault();
+                                cartTotal = (
+                                    cartTotal -
+                                    (cartTotal * cartData['discont']) / 100
+                                ).toFixed(2)
+                            }}
+                        >
+                            <Grid
+                                container
+                                spacing={1}
+                                style={{ padding: '2px 10px 2px 0px' }}
+                            >
+                                <Grid item xs={9}>
+                                    <TextField
+                                        type="number"
+                                        id="outlined-basic"
+                                        label="Discount (%)"
+                                        variant="outlined"
+                                        name="discount"
+                                        size="small"
+                                        style={{ margin: '0.5rem 0' }}
+                                        value={cartData['discount']}
+                                        onChange={handleChange}
+                                        required
+                                        fullWidth
+                                    />
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Button
+                                        type="submit"
+                                        style={{
+                                            marginTop: '8px',
+                                            fontSize: '.9rem',
+                                            borderRadius: '5px',
+                                            backgroundColor: '#d119e9',
+                                            color: 'white',
+                                        }}
+                                        fullWidth
+                                    >
+                                        {'Apply'}
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </form>
+                        <form
+                            onSubmit={(e) => {
+                                e.preventDefault()
+                                cartTotal = (
+                                    cartTotal +
+                                    (cartTotal * cartData['tax']) / 100
+                                ).toFixed(2)
+                            }}
+                        >
+                            <Grid
+                                container
+                                spacing={1}
+                                style={{ padding: '2px 0px' }}
+                            >
+                                <Grid item xs={9}>
+                                    <TextField
+                                        type="number"
+                                        id="outlined-basic"
+                                        label="Tax (%)"
+                                        variant="outlined"
+                                        name="tax"
+                                        size="small"
+                                        style={{ margin: '0.5rem 0' }}
+                                        value={cartData['tax']}
+                                        onChange={handleChange}
+                                        required
+                                        fullWidth
+                                    />
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Button
+                                        type="submit"
+                                        style={{
+                                            marginTop: '8px',
+                                            fontSize: '.9rem',
+                                            borderRadius: '5px',
+                                            backgroundColor: '#d119e9',
+                                            color: 'white',
+                                        }}
+                                        fullWidth
+                                    >
+                                        {'Apply'}
+                                    </Button>
+                                </Grid>
+                            </Grid>
+                        </form>
+                    </Grid>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid
+                    item
+                    sm={12}
+                    md={4}
+                    style={{
+                        padding: '10px 5px 5px 5px',
+                    }}
+                >
                     <Grid container spacing={1}>
                         <Grid item xs={6}>
                             <Autocomplete
                                 id="asynchronous-demo"
-                                getOptionSelected={(option, value) =>
-                                    option.category_name === value.id
-                                }
                                 getOptionLabel={(option) =>
                                     option.category_name
                                 }
                                 options={categories}
                                 loading={loading}
+                                onChange={(e, option) => setCategory(option.id)}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
@@ -291,12 +557,10 @@ export default function PointOfSale() {
                         <Grid item xs={6}>
                             <Autocomplete
                                 id="asynchronous-demo"
-                                getOptionSelected={(option, value) =>
-                                    option.name === value.id
-                                }
                                 getOptionLabel={(option) => option.name}
                                 options={brands}
                                 loading={loading}
+                                onChange={(e, option) => setBrand(option.id)}
                                 renderInput={(params) => (
                                     <TextField
                                         {...params}
@@ -325,50 +589,46 @@ export default function PointOfSale() {
                                 )}
                             />
                         </Grid>
-                        <Grid container xs={12} style={{ marginTop: '.4rem' }}>
+                        <Grid
+                            container
+                            xs={12}
+                            style={{ marginTop: '.4rem', height: '100%' }}
+                        >
                             <Grid container spacing={1}>
                                 {products.map((product) => (
                                     <Grid item xs={3}>
-                                        <div
+                                        <Card
                                             style={{
                                                 textAlign: 'center',
-                                                backgroundColor: 'white',
-                                                color: 'black',
+                                                backgroundColor: '#575aff',
                                             }}
+                                            onClick={() => addItem(product)}
+                                            s
                                         >
-                                            <img
-                                                src={`http://localhost:8000/${product.product_image}`}
+                                            <CardMedia
+                                                component="img"
+                                                image={`http://localhost:8000/${product.product_image}`}
+                                                height="85"
                                                 alt={product.product_name}
-                                                border="3"
-                                                height="45rem"
-                                                fullWidth
-                                                border="0"
                                             />
-                                            <h6>{product.product_name}</h6>
-                                            <h6>
-                                                {product.price + 'tk (unit)'}
-                                            </h6>
-                                            <button
-                                                type="button"
-                                                onClick={() => addItem(product)}
-                                                style={{
-                                                    backgroundColor: '#02b573',
-                                                    color: 'white',
-                                                    margin: '0 0 5px',
-                                                    boxShadow:
-                                                        '2px 4px 8px 2px rgba(0, 0, 0, 0.2)',
-                                                }}
-                                            >
-                                                {'Add to Cart'}
-                                            </button>
-                                        </div>
+                                            <p style={{ fontSize: '.9rem' }}>
+                                                {product.product_name}
+                                            </p>
+                                        </Card>
                                     </Grid>
                                 ))}
                             </Grid>
                         </Grid>
                     </Grid>
+                    <Card>
+                        <Grid
+                            container
+                            spacing={1}
+                            style={{ paddingTop: '15px' }}
+                        ></Grid>
+                    </Card>
                 </Grid>
             </Grid>
-        </SimpleCard>
+        </Card>
     )
 }

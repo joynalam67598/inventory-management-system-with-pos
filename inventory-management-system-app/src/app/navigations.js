@@ -210,7 +210,7 @@ export const navigations = [
     },
 
     {
-        name: 'Documentation',
+        name: 'Website',
         icon: 'launch',
         type: 'extLink',
         path: 'http://demos.ui-lib.com/matx-react-doc/',
