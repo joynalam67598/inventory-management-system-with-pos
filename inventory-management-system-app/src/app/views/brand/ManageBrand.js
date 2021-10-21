@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@material-ui/core'
+import { Button, Card, CardContent } from '@material-ui/core'
 import Axios from 'axios'
 import MaterialTable from 'material-table'
 import { useEffect, useState } from 'react'
@@ -126,31 +126,24 @@ export default function ManageBrand() {
                                 icons={{
                                     Add: (props) => (
                                         <div>
-                                            <button
+                                            <Button
                                                 style={{
-                                                    padding: '7px 5px',
-                                                    fontSize: '1.1rem',
-                                                    borderRadius: '12px',
                                                     backgroundColor: '#910cc2',
-                                                    boxShadow:
-                                                        '2px 4px 8px 2px rgba(0, 0, 0, 0.2)',
-                                                    color: 'white',
                                                 }}
                                                 onClick={() =>
                                                     history.push({
-                                                        pathname:
-                                                            '/addBrand',
+                                                        pathname: '/addBrand',
                                                     })
                                                 }
                                             >
-                                                {"Add Brand"}
+                                                {'Add Brand'}
                                                 <span>
                                                     <i
                                                         className="material-ui-icon"
                                                         name="add_box"
                                                     ></i>
                                                 </span>
-                                            </button>
+                                            </Button>
                                         </div>
                                     ),
                                 }}

@@ -1,4 +1,4 @@
-import { Card, CardContent } from '@material-ui/core'
+import { Button, Card, CardContent } from '@material-ui/core'
 import Axios from 'axios'
 import MaterialTable, { MTableToolbar } from 'material-table'
 import { useEffect, useState } from 'react'
@@ -200,16 +200,9 @@ export default function ManageSupplier() {
                             icons={{
                                 Add: (props) => (
                                     <div>
-                                        <button
+                                        <Button
                                             style={{
-                                                padding: '7px 5px',
-                                                fontSize: '1.1rem',
                                                 backgroundColor: '#910cc2',
-                                                borderRadius: '10px',
-                                                boxShadow:
-                                                    '0 6px 12px rgba(27, 37, 86, 0.16)',
-                                                overflow: 'hidden',
-                                                color: 'white',
                                             }}
                                             onClick={() =>
                                                 history.push({
@@ -225,7 +218,7 @@ export default function ManageSupplier() {
                                                     name="add_box"
                                                 ></i>
                                             </span>
-                                        </button>
+                                        </Button>
                                     </div>
                                 ),
                             }}
