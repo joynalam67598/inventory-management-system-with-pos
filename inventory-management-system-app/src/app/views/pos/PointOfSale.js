@@ -6,7 +6,7 @@ import {
     Chip,
     CircularProgress,
     Grid,
-    TextField
+    TextField,
 } from '@material-ui/core'
 import { Autocomplete } from '@material-ui/lab'
 import Axios from 'axios'
@@ -42,23 +42,32 @@ export default function PointOfSale() {
     const [category, setCategory] = useState([])
     const [loading, setLoading] = useState(false)
     const [cartData, setCartData] = useState({
-        tax: '',
-        promo_code: '',
-        discont: '',
+        tax: 0,
+        discount: 0,
+        offer: '',
     })
+    const [tax, setTax] = useState(0)
+    const [discount, setDiscount] = useState(0)
+    const [offer, setOffer] = useState('')
     const [errors, setErrors] = useState({})
     const [open, setOpen] = useState(false)
-    const { addItem } = useCart()
     const {
         items,
         isEmpty,
         totalItems,
         totalUniqueItems,
         cartTotal,
+        addItem,
         updateItemQuantity,
         removeItem,
         emptyCart,
     } = useCart()
+
+    useEffect(() => {
+        setOffer((cartTotal * cartData['offer']) / 100)
+        setTax((cartTotal * cartData['tax']) / 100)
+        setDiscount((cartTotal * cartData['discount']) / 100)
+    }, [cartTotal])
 
     useEffect(() => {
         async function fetchAllData() {
@@ -124,7 +133,6 @@ export default function PointOfSale() {
                 const res = await Axios.get(
                     `http://localhost:8000/api/products/category/brand/${category}/${brand}`
                 )
-                console.log(res)
                 if (res.data.status === 200) {
                     setProducts(res.data.products)
                 }
@@ -320,7 +328,7 @@ export default function PointOfSale() {
                             options={{
                                 actionsColumnIndex: -1,
                                 pageSize: 10,
-                                maxBodyHeight: '420px',
+                                maxBodyHeight: '390px',
                                 headerStyle: {
                                     backgroundColor: '#031f4f',
                                     color: 'white',
@@ -345,25 +353,66 @@ export default function PointOfSale() {
                                                     'Unique Items : ' +
                                                     totalUniqueItems
                                                 }
-                                                color="secondary"
-                                                style={{ marginRight: 5 }}
+                                                style={{
+                                                    margin: '5px 5px 0 0',
+                                                    backgroundColor: '#0f8da3',
+                                                    color: 'white',
+                                                    fontSize: '1rem',
+                                                }}
                                             />
                                             <Chip
                                                 label={
                                                     'Total Items : ' +
                                                     totalItems
                                                 }
-                                                color="secondary"
-                                                style={{ marginRight: 5 }}
+                                                style={{
+                                                    margin: '5px 5px 0 0',
+                                                    backgroundColor: '#0f8da3',
+                                                    color: 'white',
+                                                    fontSize: '1rem',
+                                                }}
                                             />
                                             <Chip
                                                 label={
                                                     'Total : ' +
                                                     cartTotal +
+                                                    ' ' +
                                                     ' tk'
                                                 }
-                                                color="secondary"
-                                                style={{ marginRight: 5 }}
+                                                style={{
+                                                    margin: '5px 5px 0 0',
+                                                    backgroundColor: '#0f8da3',
+                                                    color: 'white',
+                                                    fontSize: '1rem',
+                                                }}
+                                            />
+                                            <Chip
+                                                label={
+                                                    'Tax : ' +
+                                                    tax +
+                                                    ' ' +
+                                                    ' tk (useRef)'
+                                                }
+                                                style={{
+                                                    margin: '5px 5px 0 0',
+                                                    backgroundColor: '#4c0961',
+                                                    color: 'white',
+                                                    fontSize: '1rem',
+                                                }}
+                                            />
+                                            <Chip
+                                                label={
+                                                    'Discount : ' +
+                                                    discount +
+                                                    ' ' +
+                                                    ' tk'
+                                                }
+                                                style={{
+                                                    margin: '5px 5px 0 0',
+                                                    backgroundColor: '#4c0961',
+                                                    color: 'white',
+                                                    fontSize: '1rem',
+                                                }}
                                             />
                                         </div>
                                     </div>
@@ -371,141 +420,154 @@ export default function PointOfSale() {
                             }}
                         />
                     </Grid>
-                    <Grid container>
-                        <form>
-                            <Grid
-                                container
-                                spacing={1}
-                                style={{ padding: '2px 10px 2px 0px' }}
-                            >
-                                <Grid item xs={9}>
-                                    <TextField
-                                        type="text"
-                                        id="outlined-basic"
-                                        label="Promo Code/Gift Card"
-                                        variant="outlined"
-                                        name="promo_code"
-                                        size="small"
-                                        style={{ margin: '0.5rem 0' }}
-                                        value={cartData['promo_code']}
-                                        onChange={handleChange}
-                                        required
-                                        fullWidth
-                                        // {...(errors.price && {
-                                        //     error: true,
-                                        //     helperText: errors['price'],
-                                        // })}
-                                    />
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Button
-                                        type="submit"
-                                        style={{
-                                            marginTop: '8px',
-                                            fontSize: '.9rem',
-                                            borderRadius: '5px',
-                                            backgroundColor: '#d119e9',
-                                            color: 'white',
-                                        }}
-                                        fullWidth
-                                    >
-                                        {'Apply'}
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </form>
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault();
-                                cartTotal = (
-                                    cartTotal -
-                                    (cartTotal * cartData['discont']) / 100
-                                ).toFixed(2)
-                            }}
+                    <Grid container xs={12}>
+                        <Grid
+                            container
+                            xs={4}
+                            spacing={1}
+                            style={{ padding: '2px 10px 2px 0px' }}
                         >
-                            <Grid
-                                container
-                                spacing={1}
-                                style={{ padding: '2px 10px 2px 0px' }}
-                            >
-                                <Grid item xs={9}>
-                                    <TextField
-                                        type="number"
-                                        id="outlined-basic"
-                                        label="Discount (%)"
-                                        variant="outlined"
-                                        name="discount"
-                                        size="small"
-                                        style={{ margin: '0.5rem 0' }}
-                                        value={cartData['discount']}
-                                        onChange={handleChange}
-                                        required
-                                        fullWidth
-                                    />
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Button
-                                        type="submit"
-                                        style={{
-                                            marginTop: '8px',
-                                            fontSize: '.9rem',
-                                            borderRadius: '5px',
-                                            backgroundColor: '#d119e9',
-                                            color: 'white',
-                                        }}
-                                        fullWidth
-                                    >
-                                        {'Apply'}
-                                    </Button>
-                                </Grid>
+                            <Grid item xs={9}>
+                                <TextField
+                                    type="text"
+                                    id="outlined-basic"
+                                    label="Promo Code"
+                                    variant="outlined"
+                                    name="offer"
+                                    size="small"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={cartData['offer']}
+                                    onChange={handleChange}
+                                    required
+                                    fullWidth
+                                    // {...(errors.price && {
+                                    //     error: true,
+                                    //     helperText: errors['price'],
+                                    // })}
+                                />
+                                <h5>{'Offer : ' + offer + ' tk'}</h5>
                             </Grid>
-                        </form>
-                        <form
-                            onSubmit={(e) => {
-                                e.preventDefault()
-                                cartTotal = (
-                                    cartTotal +
-                                    (cartTotal * cartData['tax']) / 100
-                                ).toFixed(2)
-                            }}
+                            <Grid item xs={3}>
+                                <Button
+                                    type="submit"
+                                    style={{
+                                        marginTop: '8px',
+                                        fontSize: '.9rem',
+                                        borderRadius: '5px',
+                                        backgroundColor: '#0f8da3',
+                                        color: 'white',
+                                    }}
+                                    onClick={() =>
+                                        setOffer(
+                                            (cartTotal * cartData['offer']) /
+                                                100
+                                        )
+                                    }
+                                    fullWidth
+                                >
+                                    {'Apply'}
+                                </Button>
+                            </Grid>
+                        </Grid>
+                        <Grid
+                            container
+                            xs={4}
+                            spacing={1}
+                            style={{ padding: '2px 10px 2px 0px' }}
                         >
-                            <Grid
-                                container
-                                spacing={1}
-                                style={{ padding: '2px 0px' }}
-                            >
-                                <Grid item xs={9}>
-                                    <TextField
-                                        type="number"
-                                        id="outlined-basic"
-                                        label="Tax (%)"
-                                        variant="outlined"
-                                        name="tax"
-                                        size="small"
-                                        style={{ margin: '0.5rem 0' }}
-                                        value={cartData['tax']}
-                                        onChange={handleChange}
-                                        required
-                                        fullWidth
-                                    />
-                                </Grid>
-                                <Grid item xs={3}>
-                                    <Button
-                                        type="submit"
-                                        style={{
-                                            marginTop: '8px',
-                                            fontSize: '.9rem',
-                                            borderRadius: '5px',
-                                            backgroundColor: '#d119e9',
-                                            color: 'white',
-                                        }}
-                                        fullWidth
-                                    >
-                                        {'Apply'}
-                                    </Button>
-                                </Grid>
+                            <Grid item xs={9}>
+                                <TextField
+                                    type="text"
+                                    id="outlined-basic"
+                                    label="Discount (%)"
+                                    variant="outlined"
+                                    name="discount"
+                                    size="small"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={cartData['discount']}
+                                    onChange={handleChange}
+                                    required
+                                    fullWidth
+                                    // {...(errors.price && {
+                                    //     error: true,
+                                    //     helperText: errors['price'],
+                                    // })}
+                                />
+                                <Card>
+                                    <h5>{'Discount : ' + discount + ' tk'}</h5>
+                                </Card>
                             </Grid>
-                        </form>
+                            <Grid item xs={3}>
+                                <Button
+                                    type="button"
+                                    style={{
+                                        marginTop: '8px',
+                                        fontSize: '.9rem',
+                                        borderRadius: '5px',
+                                        backgroundColor: '#0f8da3',
+                                        color: 'white',
+                                    }}
+                                    onClick={() =>
+                                        setDiscount(
+                                            (cartTotal * cartData['discount']) /
+                                                100
+                                        )
+                                    }
+                                    fullWidth
+                                >
+                                    {'Apply'}
+                                </Button>
+                            </Grid>
+                        </Grid>
+                        <Grid
+                            container
+                            xs={4}
+                            spacing={1}
+                            style={{ padding: '2px 10px 2px 0px' }}
+                        >
+                            <Grid item xs={9}>
+                                <TextField
+                                    type="text"
+                                    id="outlined-basic"
+                                    label="Tax (%)"
+                                    variant="outlined"
+                                    name="tax"
+                                    size="small"
+                                    style={{ margin: '0.5rem 0' }}
+                                    value={cartData['tax']}
+                                    onChange={handleChange}
+                                    required
+                                    fullWidth
+                                    // {...(errors.price && {
+                                    //     error: true,
+                                    //     helperText: errors['price'],
+                                    // })}
+                                />
+                                <Card>
+                                    <h5>{'Tax : ' + tax + ' tk'}</h5>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={3}>
+                                <Button
+                                    type="button"
+                                    style={{
+                                        marginTop: '8px',
+                                        fontSize: '.9rem',
+                                        borderRadius: '5px',
+                                        backgroundColor: '#0f8da3',
+                                        color: 'white',
+                                    }}
+                                    onClick={() =>
+                                        setTax(
+                                            (cartTotal * cartData['tax']) / 100
+                                        )
+                                    }
+                                    fullWidth
+                                >
+                                    {'Apply'}
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
                 <Grid
