@@ -17,3 +17,5 @@ We also used JWT authentication and integrate Razor Pay gateway and SSL payment 
 [![React_Cart](https://img.shields.io/badge/-React_Cart-orange?style=flat-square&logo=reactCart&link=https://github.com/joynalam67598)](https://github.com/joynalam67598)
 [![React_To_Print](https://img.shields.io/badge/-React_To_Print-green?style=flat-square&logo=api&link=https://github.com/joynalam67598)](https://github.com/joynalam67598)
 [![INVOICE](https://img.shields.io/badge/-INVOICE-orange?style=flat-square&logo=invoice&link=https://github.com/joynalam67598)](https://github.com/joynalam67598)
+<br/>
+#Demo : https://joynalam67598.github.io/inventory-management-system-deploy/
